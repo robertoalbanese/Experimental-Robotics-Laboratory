@@ -1,0 +1,2 @@
+exercise1:positionserver
+-DCATKIN_DEVEL_PREFIX=/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel -DCMAKE_INSTALL_PREFIX=/home/roberto/Documents/Unige/2°year/Experimental/ros1/install -G Unix Makefiles

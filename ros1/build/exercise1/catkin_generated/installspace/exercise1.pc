@@ -1,0 +1,8 @@
+prefix=/home/roberto/Documents/Unige/2°year/Experimental/ros1/install
+
+Name: exercise1
+Description: Description of exercise1
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: geometry_msgs nav_msgs roscpp positionserver
