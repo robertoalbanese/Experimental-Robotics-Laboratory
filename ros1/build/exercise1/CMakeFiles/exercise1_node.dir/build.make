@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/roberto/Documents/Unige/2°year/Experimental/ros1/src
+CMAKE_SOURCE_DIR = /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/roberto/Documents/Unige/2°year/Experimental/ros1/build
+CMAKE_BINARY_DIR = /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/build
 
 # Include any dependencies generated for this target.
 include exercise1/CMakeFiles/exercise1_node.dir/depend.make
@@ -58,17 +58,17 @@ include exercise1/CMakeFiles/exercise1_node.dir/progress.make
 include exercise1/CMakeFiles/exercise1_node.dir/flags.make
 
 exercise1/CMakeFiles/exercise1_node.dir/src/exercise1.cpp.o: exercise1/CMakeFiles/exercise1_node.dir/flags.make
-exercise1/CMakeFiles/exercise1_node.dir/src/exercise1.cpp.o: /home/roberto/Documents/Unige/2°year/Experimental/ros1/src/exercise1/src/exercise1.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental/ros1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object exercise1/CMakeFiles/exercise1_node.dir/src/exercise1.cpp.o"
-	cd /home/roberto/Documents/Unige/2°year/Experimental/ros1/build/exercise1 && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/exercise1_node.dir/src/exercise1.cpp.o -c /home/roberto/Documents/Unige/2°year/Experimental/ros1/src/exercise1/src/exercise1.cpp
+exercise1/CMakeFiles/exercise1_node.dir/src/exercise1.cpp.o: /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/src/exercise1/src/exercise1.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object exercise1/CMakeFiles/exercise1_node.dir/src/exercise1.cpp.o"
+	cd /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/build/exercise1 && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/exercise1_node.dir/src/exercise1.cpp.o -c /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/src/exercise1/src/exercise1.cpp
 
 exercise1/CMakeFiles/exercise1_node.dir/src/exercise1.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exercise1_node.dir/src/exercise1.cpp.i"
-	cd /home/roberto/Documents/Unige/2°year/Experimental/ros1/build/exercise1 && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/roberto/Documents/Unige/2°year/Experimental/ros1/src/exercise1/src/exercise1.cpp > CMakeFiles/exercise1_node.dir/src/exercise1.cpp.i
+	cd /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/build/exercise1 && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/src/exercise1/src/exercise1.cpp > CMakeFiles/exercise1_node.dir/src/exercise1.cpp.i
 
 exercise1/CMakeFiles/exercise1_node.dir/src/exercise1.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exercise1_node.dir/src/exercise1.cpp.s"
-	cd /home/roberto/Documents/Unige/2°year/Experimental/ros1/build/exercise1 && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/roberto/Documents/Unige/2°year/Experimental/ros1/src/exercise1/src/exercise1.cpp -o CMakeFiles/exercise1_node.dir/src/exercise1.cpp.s
+	cd /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/build/exercise1 && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/src/exercise1/src/exercise1.cpp -o CMakeFiles/exercise1_node.dir/src/exercise1.cpp.s
 
 exercise1/CMakeFiles/exercise1_node.dir/src/exercise1.cpp.o.requires:
 
@@ -88,33 +88,33 @@ exercise1_node_OBJECTS = \
 # External object files for target exercise1_node
 exercise1_node_EXTERNAL_OBJECTS =
 
-/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/lib/exercise1/exercise1_node: exercise1/CMakeFiles/exercise1_node.dir/src/exercise1.cpp.o
-/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/lib/exercise1/exercise1_node: exercise1/CMakeFiles/exercise1_node.dir/build.make
-/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/lib/exercise1/exercise1_node: /opt/ros/kinetic/lib/libroscpp.so
-/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/lib/exercise1/exercise1_node: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
-/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/lib/exercise1/exercise1_node: /usr/lib/x86_64-linux-gnu/libboost_signals.so
-/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/lib/exercise1/exercise1_node: /opt/ros/kinetic/lib/librosconsole.so
-/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/lib/exercise1/exercise1_node: /opt/ros/kinetic/lib/librosconsole_log4cxx.so
-/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/lib/exercise1/exercise1_node: /opt/ros/kinetic/lib/librosconsole_backend_interface.so
-/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/lib/exercise1/exercise1_node: /usr/lib/x86_64-linux-gnu/liblog4cxx.so
-/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/lib/exercise1/exercise1_node: /usr/lib/x86_64-linux-gnu/libboost_regex.so
-/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/lib/exercise1/exercise1_node: /opt/ros/kinetic/lib/libxmlrpcpp.so
-/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/lib/exercise1/exercise1_node: /opt/ros/kinetic/lib/libroscpp_serialization.so
-/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/lib/exercise1/exercise1_node: /opt/ros/kinetic/lib/librostime.so
-/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/lib/exercise1/exercise1_node: /opt/ros/kinetic/lib/libcpp_common.so
-/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/lib/exercise1/exercise1_node: /usr/lib/x86_64-linux-gnu/libboost_system.so
-/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/lib/exercise1/exercise1_node: /usr/lib/x86_64-linux-gnu/libboost_thread.so
-/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/lib/exercise1/exercise1_node: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
-/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/lib/exercise1/exercise1_node: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
-/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/lib/exercise1/exercise1_node: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
-/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/lib/exercise1/exercise1_node: /usr/lib/x86_64-linux-gnu/libpthread.so
-/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/lib/exercise1/exercise1_node: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
-/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/lib/exercise1/exercise1_node: exercise1/CMakeFiles/exercise1_node.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental/ros1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable /home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/lib/exercise1/exercise1_node"
-	cd /home/roberto/Documents/Unige/2°year/Experimental/ros1/build/exercise1 && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/exercise1_node.dir/link.txt --verbose=$(VERBOSE)
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/lib/exercise1/exercise1_node: exercise1/CMakeFiles/exercise1_node.dir/src/exercise1.cpp.o
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/lib/exercise1/exercise1_node: exercise1/CMakeFiles/exercise1_node.dir/build.make
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/lib/exercise1/exercise1_node: /opt/ros/kinetic/lib/libroscpp.so
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/lib/exercise1/exercise1_node: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/lib/exercise1/exercise1_node: /usr/lib/x86_64-linux-gnu/libboost_signals.so
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/lib/exercise1/exercise1_node: /opt/ros/kinetic/lib/librosconsole.so
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/lib/exercise1/exercise1_node: /opt/ros/kinetic/lib/librosconsole_log4cxx.so
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/lib/exercise1/exercise1_node: /opt/ros/kinetic/lib/librosconsole_backend_interface.so
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/lib/exercise1/exercise1_node: /usr/lib/x86_64-linux-gnu/liblog4cxx.so
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/lib/exercise1/exercise1_node: /usr/lib/x86_64-linux-gnu/libboost_regex.so
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/lib/exercise1/exercise1_node: /opt/ros/kinetic/lib/libxmlrpcpp.so
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/lib/exercise1/exercise1_node: /opt/ros/kinetic/lib/libroscpp_serialization.so
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/lib/exercise1/exercise1_node: /opt/ros/kinetic/lib/librostime.so
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/lib/exercise1/exercise1_node: /opt/ros/kinetic/lib/libcpp_common.so
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/lib/exercise1/exercise1_node: /usr/lib/x86_64-linux-gnu/libboost_system.so
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/lib/exercise1/exercise1_node: /usr/lib/x86_64-linux-gnu/libboost_thread.so
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/lib/exercise1/exercise1_node: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/lib/exercise1/exercise1_node: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/lib/exercise1/exercise1_node: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/lib/exercise1/exercise1_node: /usr/lib/x86_64-linux-gnu/libpthread.so
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/lib/exercise1/exercise1_node: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/lib/exercise1/exercise1_node: exercise1/CMakeFiles/exercise1_node.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/lib/exercise1/exercise1_node"
+	cd /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/build/exercise1 && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/exercise1_node.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-exercise1/CMakeFiles/exercise1_node.dir/build: /home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/lib/exercise1/exercise1_node
+exercise1/CMakeFiles/exercise1_node.dir/build: /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/lib/exercise1/exercise1_node
 
 .PHONY : exercise1/CMakeFiles/exercise1_node.dir/build
 
@@ -123,10 +123,10 @@ exercise1/CMakeFiles/exercise1_node.dir/requires: exercise1/CMakeFiles/exercise1
 .PHONY : exercise1/CMakeFiles/exercise1_node.dir/requires
 
 exercise1/CMakeFiles/exercise1_node.dir/clean:
-	cd /home/roberto/Documents/Unige/2°year/Experimental/ros1/build/exercise1 && $(CMAKE_COMMAND) -P CMakeFiles/exercise1_node.dir/cmake_clean.cmake
+	cd /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/build/exercise1 && $(CMAKE_COMMAND) -P CMakeFiles/exercise1_node.dir/cmake_clean.cmake
 .PHONY : exercise1/CMakeFiles/exercise1_node.dir/clean
 
 exercise1/CMakeFiles/exercise1_node.dir/depend:
-	cd /home/roberto/Documents/Unige/2°year/Experimental/ros1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/roberto/Documents/Unige/2°year/Experimental/ros1/src /home/roberto/Documents/Unige/2°year/Experimental/ros1/src/exercise1 /home/roberto/Documents/Unige/2°year/Experimental/ros1/build /home/roberto/Documents/Unige/2°year/Experimental/ros1/build/exercise1 /home/roberto/Documents/Unige/2°year/Experimental/ros1/build/exercise1/CMakeFiles/exercise1_node.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/src /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/src/exercise1 /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/build /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/build/exercise1 /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/build/exercise1/CMakeFiles/exercise1_node.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : exercise1/CMakeFiles/exercise1_node.dir/depend
 

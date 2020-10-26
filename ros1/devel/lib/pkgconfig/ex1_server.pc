@@ -1,8 +1,0 @@
-prefix=/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel
-
-Name: ex1_server
-Description: Description of ex1_server
-Version: 0.0.0
-Cflags: -I/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/include
-Libs: -L${prefix}/lib 
-Requires: 

@@ -1,4 +1,4 @@
-prefix=/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel
+prefix=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel
 
 Name: exercise1
 Description: Description of exercise1

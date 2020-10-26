@@ -1,8 +1,8 @@
-# Install script for directory: /home/roberto/Documents/Unige/2°year/Experimental/ros1/src/positionserver
+# Install script for directory: /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/src/positionserver
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/roberto/Documents/Unige/2°year/Experimental/ros1/install")
+  set(CMAKE_INSTALL_PREFIX "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -33,53 +33,53 @@ if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/positionserver/srv" TYPE FILE FILES "/home/roberto/Documents/Unige/2°year/Experimental/ros1/src/positionserver/srv/newPosition.srv")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/positionserver/srv" TYPE FILE FILES "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/src/positionserver/srv/newPosition.srv")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/positionserver/cmake" TYPE FILE FILES "/home/roberto/Documents/Unige/2°year/Experimental/ros1/build/positionserver/catkin_generated/installspace/positionserver-msg-paths.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/positionserver/cmake" TYPE FILE FILES "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/build/positionserver/catkin_generated/installspace/positionserver-msg-paths.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/include/positionserver")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/include/positionserver")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/roseus/ros" TYPE DIRECTORY FILES "/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/share/roseus/ros/positionserver")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/roseus/ros" TYPE DIRECTORY FILES "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/share/roseus/ros/positionserver")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/common-lisp/ros" TYPE DIRECTORY FILES "/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/share/common-lisp/ros/positionserver")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/common-lisp/ros" TYPE DIRECTORY FILES "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/share/common-lisp/ros/positionserver")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gennodejs/ros" TYPE DIRECTORY FILES "/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/share/gennodejs/ros/positionserver")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gennodejs/ros" TYPE DIRECTORY FILES "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/share/gennodejs/ros/positionserver")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  execute_process(COMMAND "/usr/bin/python2" -m compileall "/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/lib/python2.7/dist-packages/positionserver")
+  execute_process(COMMAND "/usr/bin/python2" -m compileall "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/lib/python2.7/dist-packages/positionserver")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages" TYPE DIRECTORY FILES "/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/lib/python2.7/dist-packages/positionserver")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages" TYPE DIRECTORY FILES "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/lib/python2.7/dist-packages/positionserver")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/roberto/Documents/Unige/2°year/Experimental/ros1/build/positionserver/catkin_generated/installspace/positionserver.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/build/positionserver/catkin_generated/installspace/positionserver.pc")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/positionserver/cmake" TYPE FILE FILES "/home/roberto/Documents/Unige/2°year/Experimental/ros1/build/positionserver/catkin_generated/installspace/positionserver-msg-extras.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/positionserver/cmake" TYPE FILE FILES "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/build/positionserver/catkin_generated/installspace/positionserver-msg-extras.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/positionserver/cmake" TYPE FILE FILES
-    "/home/roberto/Documents/Unige/2°year/Experimental/ros1/build/positionserver/catkin_generated/installspace/positionserverConfig.cmake"
-    "/home/roberto/Documents/Unige/2°year/Experimental/ros1/build/positionserver/catkin_generated/installspace/positionserverConfig-version.cmake"
+    "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/build/positionserver/catkin_generated/installspace/positionserverConfig.cmake"
+    "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/build/positionserver/catkin_generated/installspace/positionserverConfig-version.cmake"
     )
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/positionserver" TYPE FILE FILES "/home/roberto/Documents/Unige/2°year/Experimental/ros1/src/positionserver/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/positionserver" TYPE FILE FILES "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/src/positionserver/package.xml")
 endif()
 

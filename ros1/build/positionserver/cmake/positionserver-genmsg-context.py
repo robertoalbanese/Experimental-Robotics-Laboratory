@@ -1,7 +1,7 @@
 # generated from genmsg/cmake/pkg-genmsg.context.in
 
 messages_str = ""
-services_str = "/home/roberto/Documents/Unige/2°year/Experimental/ros1/src/positionserver/srv/newPosition.srv"
+services_str = "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/src/positionserver/srv/newPosition.srv"
 pkg_name = "positionserver"
 dependencies_str = "std_msgs"
 langs = "gencpp;geneus;genlisp;gennodejs;genpy"

@@ -7,4 +7,8 @@
 # new environment variables
 
 # modified environment variables
-export PWD="/home/roberto/Documents/Unige/2°year/Experimental/ros1/build"
+export CMAKE_PREFIX_PATH="/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel:$CMAKE_PREFIX_PATH"
+export LD_LIBRARY_PATH="/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/lib:$LD_LIBRARY_PATH"
+export PWD="/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/build"
+export ROSLISP_PACKAGE_DIRECTORIES="/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/share/common-lisp"
+export ROS_PACKAGE_PATH="/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/src:/opt/ros/kinetic/share"

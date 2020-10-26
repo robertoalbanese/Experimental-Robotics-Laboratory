@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/positionserver_node.dir/src/PositionServer.cpp.o"
-  "/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/lib/positionserver/positionserver_node.pdb"
-  "/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/lib/positionserver/positionserver_node"
+  "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/lib/positionserver/positionserver_node.pdb"
+  "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/lib/positionserver/positionserver_node"
 )
 
 # Per-language clean rules from dependency scanning.

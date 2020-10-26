@@ -1,8 +1,0 @@
-prefix=/home/roberto/Documents/Unige/2°year/Experimental/ros1/install
-
-Name: positionserver
-Description: Description of positionserver
-Version: 0.0.0
-Cflags: -I${prefix}/include
-Libs: -L${prefix}/lib 
-Requires: message_generation roscpp std_msgs

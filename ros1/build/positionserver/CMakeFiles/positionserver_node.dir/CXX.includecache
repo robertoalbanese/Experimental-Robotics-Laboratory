@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/include/positionserver/newPosition.h
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/include/positionserver/newPosition.h
 ros/service_traits.h
 -
 positionserver/newPositionRequest.h
@@ -14,7 +14,7 @@ positionserver/newPositionRequest.h
 positionserver/newPositionResponse.h
 -
 
-/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/include/positionserver/newPositionRequest.h
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/include/positionserver/newPositionRequest.h
 string
 -
 vector
@@ -30,7 +30,7 @@ ros/builtin_message_traits.h
 ros/message_operations.h
 -
 
-/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/include/positionserver/newPositionResponse.h
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/include/positionserver/newPositionResponse.h
 string
 -
 vector
@@ -46,11 +46,11 @@ ros/builtin_message_traits.h
 ros/message_operations.h
 -
 
-/home/roberto/Documents/Unige/2°year/Experimental/ros1/src/positionserver/src/PositionServer.cpp
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/src/positionserver/src/PositionServer.cpp
 ros/ros.h
-/home/roberto/Documents/Unige/2°year/Experimental/ros1/src/positionserver/src/ros/ros.h
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/src/positionserver/src/ros/ros.h
 positionserver/newPosition.h
-/home/roberto/Documents/Unige/2°year/Experimental/ros1/src/positionserver/src/positionserver/newPosition.h
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/src/positionserver/src/positionserver/newPosition.h
 
 /opt/ros/kinetic/include/ros/advertise_options.h
 ros/forwards.h

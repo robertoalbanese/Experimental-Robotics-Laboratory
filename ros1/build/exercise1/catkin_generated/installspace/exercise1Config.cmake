@@ -67,14 +67,14 @@ set(exercise1_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(exercise1_SOURCE_PREFIX /home/roberto/Documents/Unige/2°year/Experimental/ros1/src/exercise1)
-  set(exercise1_DEVEL_PREFIX /home/roberto/Documents/Unige/2°year/Experimental/ros1/devel)
+  set(exercise1_SOURCE_PREFIX /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/src/exercise1)
+  set(exercise1_DEVEL_PREFIX /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel)
   set(exercise1_INSTALL_PREFIX "")
   set(exercise1_PREFIX ${exercise1_DEVEL_PREFIX})
 else()
   set(exercise1_SOURCE_PREFIX "")
   set(exercise1_DEVEL_PREFIX "")
-  set(exercise1_INSTALL_PREFIX /home/roberto/Documents/Unige/2°year/Experimental/ros1/install)
+  set(exercise1_INSTALL_PREFIX /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/install)
   set(exercise1_PREFIX ${exercise1_INSTALL_PREFIX})
 endif()
 
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/roberto/Documents/Unige/2°year/Experimental/ros1/install/lib;/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/lib;/opt/ros/kinetic/lib)
+    foreach(path /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/install/lib;/opt/ros/kinetic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

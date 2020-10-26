@@ -4,5 +4,5 @@ PROJECT_PKG_CONFIG_INCLUDE_DIRS = "${prefix}/include".split(';') if "${prefix}/i
 PROJECT_CATKIN_DEPENDS = "message_generation;roscpp;std_msgs".replace(';', ' ')
 PKG_CONFIG_LIBRARIES_WITH_PREFIX = "".split(';') if "" != "" else []
 PROJECT_NAME = "positionserver"
-PROJECT_SPACE_DIR = "/home/roberto/Documents/Unige/2°year/Experimental/ros1/install"
+PROJECT_SPACE_DIR = "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/install"
 PROJECT_VERSION = "0.0.0"

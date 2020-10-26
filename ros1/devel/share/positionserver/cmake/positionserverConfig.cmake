@@ -67,14 +67,14 @@ set(positionserver_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("TRUE" STREQUAL "TRUE")
-  set(positionserver_SOURCE_PREFIX /home/roberto/Documents/Unige/2°year/Experimental/ros1/src/positionserver)
-  set(positionserver_DEVEL_PREFIX /home/roberto/Documents/Unige/2°year/Experimental/ros1/devel)
+  set(positionserver_SOURCE_PREFIX /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/src/positionserver)
+  set(positionserver_DEVEL_PREFIX /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel)
   set(positionserver_INSTALL_PREFIX "")
   set(positionserver_PREFIX ${positionserver_DEVEL_PREFIX})
 else()
   set(positionserver_SOURCE_PREFIX "")
   set(positionserver_DEVEL_PREFIX "")
-  set(positionserver_INSTALL_PREFIX /home/roberto/Documents/Unige/2°year/Experimental/ros1/install)
+  set(positionserver_INSTALL_PREFIX /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/install)
   set(positionserver_PREFIX ${positionserver_INSTALL_PREFIX})
 endif()
 
@@ -91,9 +91,9 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(positionserver_FOUND_CATKIN_PROJECT TRUE)
 
-if(NOT "/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/include " STREQUAL " ")
+if(NOT "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/include " STREQUAL " ")
   set(positionserver_INCLUDE_DIRS "")
-  set(_include_dirs "/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/include")
+  set(_include_dirs "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/include")
   if(NOT " " STREQUAL " ")
     set(_report "Check the issue tracker '' and consider creating a ticket if the problem has not been reported yet.")
   elseif(NOT " " STREQUAL " ")
@@ -110,7 +110,7 @@ if(NOT "/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/include " 
         message(FATAL_ERROR "Project 'positionserver' specifies '${idir}' as an include dir, which is not found.  It does not exist in '${include}'.  ${_report}")
       endif()
     else()
-      message(FATAL_ERROR "Project 'positionserver' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/roberto/Documents/Unige/2°year/Experimental/ros1/src/positionserver/${idir}'.  ${_report}")
+      message(FATAL_ERROR "Project 'positionserver' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/src/positionserver/${idir}'.  ${_report}")
     endif()
     _list_append_unique(positionserver_INCLUDE_DIRS ${include})
   endforeach()
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/lib;/home/roberto/Documents/Unige/2°year/Experimental/ros1/devel/lib;/opt/ros/kinetic/lib)
+    foreach(path /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/lib;/opt/ros/kinetic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

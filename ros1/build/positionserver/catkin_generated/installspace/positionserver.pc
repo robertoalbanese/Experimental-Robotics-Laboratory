@@ -1,4 +1,4 @@
-prefix=/home/roberto/Documents/Unige/2°year/Experimental/ros1/install
+prefix=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/install
 
 Name: positionserver
 Description: Description of positionserver
