@@ -1,8 +1,0 @@
-prefix=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel
-
-Name: positionserver
-Description: Description of positionserver
-Version: 0.0.0
-Cflags: -I/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/ros1/devel/include
-Libs: -L${prefix}/lib 
-Requires: message_generation roscpp std_msgs
