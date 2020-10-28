@@ -1,0 +1,8 @@
+prefix=/home/roberto/Documents/Unige/Year_2/Experimental-Robotics-Laboratory/experimental_ws/devel
+
+Name: assignment_1
+Description: Description of assignment_1
+Version: 0.0.0
+Cflags: -I/home/roberto/Documents/Unige/Year_2/Experimental-Robotics-Laboratory/experimental_ws/devel/include
+Libs: -L${prefix}/lib 
+Requires: 

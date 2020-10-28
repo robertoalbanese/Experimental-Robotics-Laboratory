@@ -1,2 +1,0 @@
-assignment_1
--DCATKIN_DEVEL_PREFIX=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel -DCMAKE_INSTALL_PREFIX=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/install -G Unix Makefiles

@@ -1,0 +1,6 @@
+<launch>
+<node pkg="assignment_1" type="random_position_server" name="random_position_server" required="true"/>
+<node pkg="assignment_1" type="navigation" name="navigation" required="true"/>
+<node pkg="assignment_1" type="state_machine.py" name="state_machine" required="true"/>
+<node pkg="smach_viewer" type="smach_viewer.py" name="smach_viewer" required="true"/>
+</launch>
