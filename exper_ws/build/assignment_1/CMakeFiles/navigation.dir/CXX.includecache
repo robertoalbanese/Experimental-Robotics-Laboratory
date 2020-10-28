@@ -6,6 +6,46 @@
 
 #IncludeRegexTransform: 
 
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/include/assignment_1/reach_next_pos.h
+ros/service_traits.h
+-
+assignment_1/reach_next_posRequest.h
+-
+assignment_1/reach_next_posResponse.h
+-
+
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/include/assignment_1/reach_next_posRequest.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/include/assignment_1/reach_next_posResponse.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+
 /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/src/navigation.cpp
 stdio.h
 -
@@ -15,6 +55,8 @@ ros/ros.h
 /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/src/ros/ros.h
 geometry_msgs/Pose2D.h
 /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/src/geometry_msgs/Pose2D.h
+assignment_1/reach_next_pos.h
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/src/assignment_1/reach_next_pos.h
 
 /opt/ros/kinetic/include/geometry_msgs/Pose2D.h
 string

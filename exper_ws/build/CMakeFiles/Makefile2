@@ -246,7 +246,7 @@ gtest/preinstall: gtest/gtest/preinstall
 gtest/CMakeFiles/gmock.dir/all:
 	$(MAKE) -f gtest/CMakeFiles/gmock.dir/build.make gtest/CMakeFiles/gmock.dir/depend
 	$(MAKE) -f gtest/CMakeFiles/gmock.dir/build.make gtest/CMakeFiles/gmock.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num=8,9,10 "Built target gmock"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num=13,14,15 "Built target gmock"
 .PHONY : gtest/CMakeFiles/gmock.dir/all
 
 # Build rule for subdir invocation for target.
@@ -278,7 +278,7 @@ clean: gtest/CMakeFiles/gmock.dir/clean
 gtest/CMakeFiles/gmock_main.dir/all:
 	$(MAKE) -f gtest/CMakeFiles/gmock_main.dir/build.make gtest/CMakeFiles/gmock_main.dir/depend
 	$(MAKE) -f gtest/CMakeFiles/gmock_main.dir/build.make gtest/CMakeFiles/gmock_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num=11,12,13,14 "Built target gmock_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num=16,17,18,19 "Built target gmock_main"
 .PHONY : gtest/CMakeFiles/gmock_main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -329,7 +329,7 @@ gtest/gtest/preinstall:
 gtest/gtest/CMakeFiles/gtest.dir/all:
 	$(MAKE) -f gtest/gtest/CMakeFiles/gtest.dir/build.make gtest/gtest/CMakeFiles/gtest.dir/depend
 	$(MAKE) -f gtest/gtest/CMakeFiles/gtest.dir/build.make gtest/gtest/CMakeFiles/gtest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num=15,16 "Built target gtest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num=20,21 "Built target gtest"
 .PHONY : gtest/gtest/CMakeFiles/gtest.dir/all
 
 # Build rule for subdir invocation for target.
@@ -361,7 +361,7 @@ clean: gtest/gtest/CMakeFiles/gtest.dir/clean
 gtest/gtest/CMakeFiles/gtest_main.dir/all: gtest/gtest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f gtest/gtest/CMakeFiles/gtest_main.dir/build.make gtest/gtest/CMakeFiles/gtest_main.dir/depend
 	$(MAKE) -f gtest/gtest/CMakeFiles/gtest_main.dir/build.make gtest/gtest/CMakeFiles/gtest_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num=17,18 "Built target gtest_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num=22,23 "Built target gtest_main"
 .PHONY : gtest/gtest/CMakeFiles/gtest_main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -428,6 +428,7 @@ assignment_1/clean: assignment_1/CMakeFiles/roscpp_generate_messages_eus.dir/cle
 assignment_1/clean: assignment_1/CMakeFiles/roscpp_generate_messages_py.dir/clean
 assignment_1/clean: assignment_1/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/clean
 assignment_1/clean: assignment_1/CMakeFiles/random_position_server.dir/clean
+assignment_1/clean: assignment_1/CMakeFiles/_assignment_1_generate_messages_check_deps_reach_next_pos.dir/clean
 assignment_1/clean: assignment_1/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
 assignment_1/clean: assignment_1/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/clean
 assignment_1/clean: assignment_1/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
@@ -474,7 +475,7 @@ assignment_1/CMakeFiles/navigation.dir/all: assignment_1/CMakeFiles/roscpp_gener
 assignment_1/CMakeFiles/navigation.dir/all: assignment_1/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
 	$(MAKE) -f assignment_1/CMakeFiles/navigation.dir/build.make assignment_1/CMakeFiles/navigation.dir/depend
 	$(MAKE) -f assignment_1/CMakeFiles/navigation.dir/build.make assignment_1/CMakeFiles/navigation.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num=19,20 "Built target navigation"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num=24,25 "Built target navigation"
 .PHONY : assignment_1/CMakeFiles/navigation.dir/all
 
 # Include target in all.
@@ -484,7 +485,7 @@ all: assignment_1/CMakeFiles/navigation.dir/all
 
 # Build rule for subdir invocation for target.
 assignment_1/CMakeFiles/navigation.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 9
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 14
 	$(MAKE) -f CMakeFiles/Makefile2 assignment_1/CMakeFiles/navigation.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 0
 .PHONY : assignment_1/CMakeFiles/navigation.dir/rule
@@ -516,7 +517,7 @@ assignment_1/CMakeFiles/assignment_1_genpy.dir/all: assignment_1/CMakeFiles/assi
 
 # Build rule for subdir invocation for target.
 assignment_1/CMakeFiles/assignment_1_genpy.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 3
 	$(MAKE) -f CMakeFiles/Makefile2 assignment_1/CMakeFiles/assignment_1_genpy.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 0
 .PHONY : assignment_1/CMakeFiles/assignment_1_genpy.dir/rule
@@ -548,7 +549,7 @@ assignment_1/CMakeFiles/assignment_1_gennodejs.dir/all: assignment_1/CMakeFiles/
 
 # Build rule for subdir invocation for target.
 assignment_1/CMakeFiles/assignment_1_gennodejs.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 assignment_1/CMakeFiles/assignment_1_gennodejs.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 0
 .PHONY : assignment_1/CMakeFiles/assignment_1_gennodejs.dir/rule
@@ -575,14 +576,15 @@ clean: assignment_1/CMakeFiles/assignment_1_gennodejs.dir/clean
 assignment_1/CMakeFiles/assignment_1_generate_messages_py.dir/all: assignment_1/CMakeFiles/_assignment_1_generate_messages_check_deps_get_pos.dir/all
 assignment_1/CMakeFiles/assignment_1_generate_messages_py.dir/all: assignment_1/CMakeFiles/geometry_msgs_generate_messages_py.dir/all
 assignment_1/CMakeFiles/assignment_1_generate_messages_py.dir/all: assignment_1/CMakeFiles/std_msgs_generate_messages_py.dir/all
+assignment_1/CMakeFiles/assignment_1_generate_messages_py.dir/all: assignment_1/CMakeFiles/_assignment_1_generate_messages_check_deps_reach_next_pos.dir/all
 	$(MAKE) -f assignment_1/CMakeFiles/assignment_1_generate_messages_py.dir/build.make assignment_1/CMakeFiles/assignment_1_generate_messages_py.dir/depend
 	$(MAKE) -f assignment_1/CMakeFiles/assignment_1_generate_messages_py.dir/build.make assignment_1/CMakeFiles/assignment_1_generate_messages_py.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num=6,7 "Built target assignment_1_generate_messages_py"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num=10,11,12 "Built target assignment_1_generate_messages_py"
 .PHONY : assignment_1/CMakeFiles/assignment_1_generate_messages_py.dir/all
 
 # Build rule for subdir invocation for target.
 assignment_1/CMakeFiles/assignment_1_generate_messages_py.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 3
 	$(MAKE) -f CMakeFiles/Makefile2 assignment_1/CMakeFiles/assignment_1_generate_messages_py.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 0
 .PHONY : assignment_1/CMakeFiles/assignment_1_generate_messages_py.dir/rule
@@ -609,14 +611,15 @@ clean: assignment_1/CMakeFiles/assignment_1_generate_messages_py.dir/clean
 assignment_1/CMakeFiles/assignment_1_generate_messages_nodejs.dir/all: assignment_1/CMakeFiles/_assignment_1_generate_messages_check_deps_get_pos.dir/all
 assignment_1/CMakeFiles/assignment_1_generate_messages_nodejs.dir/all: assignment_1/CMakeFiles/std_msgs_generate_messages_nodejs.dir/all
 assignment_1/CMakeFiles/assignment_1_generate_messages_nodejs.dir/all: assignment_1/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/all
+assignment_1/CMakeFiles/assignment_1_generate_messages_nodejs.dir/all: assignment_1/CMakeFiles/_assignment_1_generate_messages_check_deps_reach_next_pos.dir/all
 	$(MAKE) -f assignment_1/CMakeFiles/assignment_1_generate_messages_nodejs.dir/build.make assignment_1/CMakeFiles/assignment_1_generate_messages_nodejs.dir/depend
 	$(MAKE) -f assignment_1/CMakeFiles/assignment_1_generate_messages_nodejs.dir/build.make assignment_1/CMakeFiles/assignment_1_generate_messages_nodejs.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num=5 "Built target assignment_1_generate_messages_nodejs"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num=8,9 "Built target assignment_1_generate_messages_nodejs"
 .PHONY : assignment_1/CMakeFiles/assignment_1_generate_messages_nodejs.dir/all
 
 # Build rule for subdir invocation for target.
 assignment_1/CMakeFiles/assignment_1_generate_messages_nodejs.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 assignment_1/CMakeFiles/assignment_1_generate_messages_nodejs.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 0
 .PHONY : assignment_1/CMakeFiles/assignment_1_generate_messages_nodejs.dir/rule
@@ -643,14 +646,15 @@ clean: assignment_1/CMakeFiles/assignment_1_generate_messages_nodejs.dir/clean
 assignment_1/CMakeFiles/assignment_1_generate_messages_lisp.dir/all: assignment_1/CMakeFiles/_assignment_1_generate_messages_check_deps_get_pos.dir/all
 assignment_1/CMakeFiles/assignment_1_generate_messages_lisp.dir/all: assignment_1/CMakeFiles/std_msgs_generate_messages_lisp.dir/all
 assignment_1/CMakeFiles/assignment_1_generate_messages_lisp.dir/all: assignment_1/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/all
+assignment_1/CMakeFiles/assignment_1_generate_messages_lisp.dir/all: assignment_1/CMakeFiles/_assignment_1_generate_messages_check_deps_reach_next_pos.dir/all
 	$(MAKE) -f assignment_1/CMakeFiles/assignment_1_generate_messages_lisp.dir/build.make assignment_1/CMakeFiles/assignment_1_generate_messages_lisp.dir/depend
 	$(MAKE) -f assignment_1/CMakeFiles/assignment_1_generate_messages_lisp.dir/build.make assignment_1/CMakeFiles/assignment_1_generate_messages_lisp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num=4 "Built target assignment_1_generate_messages_lisp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num=6,7 "Built target assignment_1_generate_messages_lisp"
 .PHONY : assignment_1/CMakeFiles/assignment_1_generate_messages_lisp.dir/all
 
 # Build rule for subdir invocation for target.
 assignment_1/CMakeFiles/assignment_1_generate_messages_lisp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 assignment_1/CMakeFiles/assignment_1_generate_messages_lisp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 0
 .PHONY : assignment_1/CMakeFiles/assignment_1_generate_messages_lisp.dir/rule
@@ -677,14 +681,15 @@ clean: assignment_1/CMakeFiles/assignment_1_generate_messages_lisp.dir/clean
 assignment_1/CMakeFiles/assignment_1_generate_messages_eus.dir/all: assignment_1/CMakeFiles/_assignment_1_generate_messages_check_deps_get_pos.dir/all
 assignment_1/CMakeFiles/assignment_1_generate_messages_eus.dir/all: assignment_1/CMakeFiles/std_msgs_generate_messages_eus.dir/all
 assignment_1/CMakeFiles/assignment_1_generate_messages_eus.dir/all: assignment_1/CMakeFiles/geometry_msgs_generate_messages_eus.dir/all
+assignment_1/CMakeFiles/assignment_1_generate_messages_eus.dir/all: assignment_1/CMakeFiles/_assignment_1_generate_messages_check_deps_reach_next_pos.dir/all
 	$(MAKE) -f assignment_1/CMakeFiles/assignment_1_generate_messages_eus.dir/build.make assignment_1/CMakeFiles/assignment_1_generate_messages_eus.dir/depend
 	$(MAKE) -f assignment_1/CMakeFiles/assignment_1_generate_messages_eus.dir/build.make assignment_1/CMakeFiles/assignment_1_generate_messages_eus.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num=2,3 "Built target assignment_1_generate_messages_eus"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num=3,4,5 "Built target assignment_1_generate_messages_eus"
 .PHONY : assignment_1/CMakeFiles/assignment_1_generate_messages_eus.dir/all
 
 # Build rule for subdir invocation for target.
 assignment_1/CMakeFiles/assignment_1_generate_messages_eus.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 3
 	$(MAKE) -f CMakeFiles/Makefile2 assignment_1/CMakeFiles/assignment_1_generate_messages_eus.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 0
 .PHONY : assignment_1/CMakeFiles/assignment_1_generate_messages_eus.dir/rule
@@ -800,7 +805,7 @@ assignment_1/CMakeFiles/user_command.dir/all: assignment_1/CMakeFiles/roscpp_gen
 assignment_1/CMakeFiles/user_command.dir/all: assignment_1/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
 	$(MAKE) -f assignment_1/CMakeFiles/user_command.dir/build.make assignment_1/CMakeFiles/user_command.dir/depend
 	$(MAKE) -f assignment_1/CMakeFiles/user_command.dir/build.make assignment_1/CMakeFiles/user_command.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num=23,24 "Built target user_command"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num=28,29 "Built target user_command"
 .PHONY : assignment_1/CMakeFiles/user_command.dir/all
 
 # Include target in all.
@@ -810,7 +815,7 @@ all: assignment_1/CMakeFiles/user_command.dir/all
 
 # Build rule for subdir invocation for target.
 assignment_1/CMakeFiles/user_command.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 9
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 14
 	$(MAKE) -f CMakeFiles/Makefile2 assignment_1/CMakeFiles/user_command.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 0
 .PHONY : assignment_1/CMakeFiles/user_command.dir/rule
@@ -970,7 +975,7 @@ assignment_1/CMakeFiles/assignment_1_gencpp.dir/all: assignment_1/CMakeFiles/ass
 
 # Build rule for subdir invocation for target.
 assignment_1/CMakeFiles/assignment_1_gencpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 assignment_1/CMakeFiles/assignment_1_gencpp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 0
 .PHONY : assignment_1/CMakeFiles/assignment_1_gencpp.dir/rule
@@ -1066,7 +1071,7 @@ assignment_1/CMakeFiles/assignment_1_genlisp.dir/all: assignment_1/CMakeFiles/as
 
 # Build rule for subdir invocation for target.
 assignment_1/CMakeFiles/assignment_1_genlisp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 assignment_1/CMakeFiles/assignment_1_genlisp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 0
 .PHONY : assignment_1/CMakeFiles/assignment_1_genlisp.dir/rule
@@ -1162,7 +1167,7 @@ assignment_1/CMakeFiles/assignment_1_geneus.dir/all: assignment_1/CMakeFiles/ass
 
 # Build rule for subdir invocation for target.
 assignment_1/CMakeFiles/assignment_1_geneus.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 3
 	$(MAKE) -f CMakeFiles/Makefile2 assignment_1/CMakeFiles/assignment_1_geneus.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 0
 .PHONY : assignment_1/CMakeFiles/assignment_1_geneus.dir/rule
@@ -1220,15 +1225,16 @@ clean: assignment_1/CMakeFiles/std_msgs_generate_messages_py.dir/clean
 # All Build rule for target.
 assignment_1/CMakeFiles/assignment_1_generate_messages_cpp.dir/all: assignment_1/CMakeFiles/_assignment_1_generate_messages_check_deps_get_pos.dir/all
 assignment_1/CMakeFiles/assignment_1_generate_messages_cpp.dir/all: assignment_1/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/all
+assignment_1/CMakeFiles/assignment_1_generate_messages_cpp.dir/all: assignment_1/CMakeFiles/_assignment_1_generate_messages_check_deps_reach_next_pos.dir/all
 assignment_1/CMakeFiles/assignment_1_generate_messages_cpp.dir/all: assignment_1/CMakeFiles/std_msgs_generate_messages_cpp.dir/all
 	$(MAKE) -f assignment_1/CMakeFiles/assignment_1_generate_messages_cpp.dir/build.make assignment_1/CMakeFiles/assignment_1_generate_messages_cpp.dir/depend
 	$(MAKE) -f assignment_1/CMakeFiles/assignment_1_generate_messages_cpp.dir/build.make assignment_1/CMakeFiles/assignment_1_generate_messages_cpp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num=1 "Built target assignment_1_generate_messages_cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num=1,2 "Built target assignment_1_generate_messages_cpp"
 .PHONY : assignment_1/CMakeFiles/assignment_1_generate_messages_cpp.dir/all
 
 # Build rule for subdir invocation for target.
 assignment_1/CMakeFiles/assignment_1_generate_messages_cpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 assignment_1/CMakeFiles/assignment_1_generate_messages_cpp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 0
 .PHONY : assignment_1/CMakeFiles/assignment_1_generate_messages_cpp.dir/rule
@@ -1472,7 +1478,7 @@ assignment_1/CMakeFiles/random_position_server.dir/all: assignment_1/CMakeFiles/
 assignment_1/CMakeFiles/random_position_server.dir/all: assignment_1/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all
 	$(MAKE) -f assignment_1/CMakeFiles/random_position_server.dir/build.make assignment_1/CMakeFiles/random_position_server.dir/depend
 	$(MAKE) -f assignment_1/CMakeFiles/random_position_server.dir/build.make assignment_1/CMakeFiles/random_position_server.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num=21,22 "Built target random_position_server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num=26,27 "Built target random_position_server"
 .PHONY : assignment_1/CMakeFiles/random_position_server.dir/all
 
 # Include target in all.
@@ -1482,7 +1488,7 @@ all: assignment_1/CMakeFiles/random_position_server.dir/all
 
 # Build rule for subdir invocation for target.
 assignment_1/CMakeFiles/random_position_server.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 9
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 14
 	$(MAKE) -f CMakeFiles/Makefile2 assignment_1/CMakeFiles/random_position_server.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 0
 .PHONY : assignment_1/CMakeFiles/random_position_server.dir/rule
@@ -1499,6 +1505,38 @@ assignment_1/CMakeFiles/random_position_server.dir/clean:
 
 # clean rule for target.
 clean: assignment_1/CMakeFiles/random_position_server.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target assignment_1/CMakeFiles/_assignment_1_generate_messages_check_deps_reach_next_pos.dir
+
+# All Build rule for target.
+assignment_1/CMakeFiles/_assignment_1_generate_messages_check_deps_reach_next_pos.dir/all:
+	$(MAKE) -f assignment_1/CMakeFiles/_assignment_1_generate_messages_check_deps_reach_next_pos.dir/build.make assignment_1/CMakeFiles/_assignment_1_generate_messages_check_deps_reach_next_pos.dir/depend
+	$(MAKE) -f assignment_1/CMakeFiles/_assignment_1_generate_messages_check_deps_reach_next_pos.dir/build.make assignment_1/CMakeFiles/_assignment_1_generate_messages_check_deps_reach_next_pos.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num= "Built target _assignment_1_generate_messages_check_deps_reach_next_pos"
+.PHONY : assignment_1/CMakeFiles/_assignment_1_generate_messages_check_deps_reach_next_pos.dir/all
+
+# Build rule for subdir invocation for target.
+assignment_1/CMakeFiles/_assignment_1_generate_messages_check_deps_reach_next_pos.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 assignment_1/CMakeFiles/_assignment_1_generate_messages_check_deps_reach_next_pos.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 0
+.PHONY : assignment_1/CMakeFiles/_assignment_1_generate_messages_check_deps_reach_next_pos.dir/rule
+
+# Convenience name for target.
+_assignment_1_generate_messages_check_deps_reach_next_pos: assignment_1/CMakeFiles/_assignment_1_generate_messages_check_deps_reach_next_pos.dir/rule
+
+.PHONY : _assignment_1_generate_messages_check_deps_reach_next_pos
+
+# clean rule for target.
+assignment_1/CMakeFiles/_assignment_1_generate_messages_check_deps_reach_next_pos.dir/clean:
+	$(MAKE) -f assignment_1/CMakeFiles/_assignment_1_generate_messages_check_deps_reach_next_pos.dir/build.make assignment_1/CMakeFiles/_assignment_1_generate_messages_check_deps_reach_next_pos.dir/clean
+.PHONY : assignment_1/CMakeFiles/_assignment_1_generate_messages_check_deps_reach_next_pos.dir/clean
+
+# clean rule for target.
+clean: assignment_1/CMakeFiles/_assignment_1_generate_messages_check_deps_reach_next_pos.dir/clean
 
 .PHONY : clean
 
@@ -1683,7 +1721,7 @@ all: assignment_1/CMakeFiles/assignment_1_generate_messages.dir/all
 
 # Build rule for subdir invocation for target.
 assignment_1/CMakeFiles/assignment_1_generate_messages.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 12
 	$(MAKE) -f CMakeFiles/Makefile2 assignment_1/CMakeFiles/assignment_1_generate_messages.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles 0
 .PHONY : assignment_1/CMakeFiles/assignment_1_generate_messages.dir/rule

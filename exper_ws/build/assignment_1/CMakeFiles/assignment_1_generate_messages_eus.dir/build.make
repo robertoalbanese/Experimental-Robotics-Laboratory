@@ -54,6 +54,7 @@ CMAKE_BINARY_DIR = /home/roberto/Documents/Unige/2°year/Experimental-Robotics-L
 include assignment_1/CMakeFiles/assignment_1_generate_messages_eus.dir/progress.make
 
 assignment_1/CMakeFiles/assignment_1_generate_messages_eus: /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/share/roseus/ros/assignment_1/srv/get_pos.l
+assignment_1/CMakeFiles/assignment_1_generate_messages_eus: /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/share/roseus/ros/assignment_1/srv/reach_next_pos.l
 assignment_1/CMakeFiles/assignment_1_generate_messages_eus: /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/share/roseus/ros/assignment_1/manifest.l
 
 
@@ -62,12 +63,18 @@ assignment_1/CMakeFiles/assignment_1_generate_messages_eus: /home/roberto/Docume
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating EusLisp code from assignment_1/get_pos.srv"
 	cd /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/assignment_1 && ../catkin_generated/env_cached.sh /usr/bin/python2 /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/srv/get_pos.srv -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p assignment_1 -o /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/share/roseus/ros/assignment_1/srv
 
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/share/roseus/ros/assignment_1/srv/reach_next_pos.l: /opt/ros/kinetic/lib/geneus/gen_eus.py
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/share/roseus/ros/assignment_1/srv/reach_next_pos.l: /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/srv/reach_next_pos.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating EusLisp code from assignment_1/reach_next_pos.srv"
+	cd /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/assignment_1 && ../catkin_generated/env_cached.sh /usr/bin/python2 /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/srv/reach_next_pos.srv -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p assignment_1 -o /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/share/roseus/ros/assignment_1/srv
+
 /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/share/roseus/ros/assignment_1/manifest.l: /opt/ros/kinetic/lib/geneus/gen_eus.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating EusLisp manifest code for assignment_1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating EusLisp manifest code for assignment_1"
 	cd /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/assignment_1 && ../catkin_generated/env_cached.sh /usr/bin/python2 /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py -m -o /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/share/roseus/ros/assignment_1 assignment_1 std_msgs geometry_msgs
 
 assignment_1_generate_messages_eus: assignment_1/CMakeFiles/assignment_1_generate_messages_eus
 assignment_1_generate_messages_eus: /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/share/roseus/ros/assignment_1/srv/get_pos.l
+assignment_1_generate_messages_eus: /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/share/roseus/ros/assignment_1/srv/reach_next_pos.l
 assignment_1_generate_messages_eus: /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/share/roseus/ros/assignment_1/manifest.l
 assignment_1_generate_messages_eus: assignment_1/CMakeFiles/assignment_1_generate_messages_eus.dir/build.make
 

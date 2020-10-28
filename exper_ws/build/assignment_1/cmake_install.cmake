@@ -33,7 +33,10 @@ if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/assignment_1/srv" TYPE FILE FILES "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/srv/get_pos.srv")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/assignment_1/srv" TYPE FILE FILES
+    "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/srv/get_pos.srv"
+    "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/srv/reach_next_pos.srv"
+    )
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")

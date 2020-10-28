@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.cmake.em
 
-message(STATUS "assignment_1: 0 messages, 1 services")
+message(STATUS "assignment_1: 0 messages, 2 services")
 
 set(MSG_I_FLAGS "-Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg;-Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg")
 
@@ -22,6 +22,11 @@ add_custom_target(_assignment_1_generate_messages_check_deps_${_filename}
   COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "assignment_1" "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/srv/get_pos.srv" ""
 )
 
+get_filename_component(_filename "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/srv/reach_next_pos.srv" NAME_WE)
+add_custom_target(_assignment_1_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "assignment_1" "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/srv/reach_next_pos.srv" ""
+)
+
 #
 #  langs = gencpp;geneus;genlisp;gennodejs;genpy
 #
@@ -32,6 +37,12 @@ add_custom_target(_assignment_1_generate_messages_check_deps_${_filename}
 ### Generating Services
 _generate_srv_cpp(assignment_1
   "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/srv/get_pos.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/assignment_1
+)
+_generate_srv_cpp(assignment_1
+  "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/srv/reach_next_pos.srv"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/assignment_1
@@ -51,6 +62,8 @@ add_dependencies(assignment_1_generate_messages assignment_1_generate_messages_c
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/srv/get_pos.srv" NAME_WE)
 add_dependencies(assignment_1_generate_messages_cpp _assignment_1_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/srv/reach_next_pos.srv" NAME_WE)
+add_dependencies(assignment_1_generate_messages_cpp _assignment_1_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
 add_custom_target(assignment_1_gencpp)
@@ -65,6 +78,12 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS assignment_1_generate_messages_cpp)
 ### Generating Services
 _generate_srv_eus(assignment_1
   "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/srv/get_pos.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/assignment_1
+)
+_generate_srv_eus(assignment_1
+  "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/srv/reach_next_pos.srv"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/assignment_1
@@ -84,6 +103,8 @@ add_dependencies(assignment_1_generate_messages assignment_1_generate_messages_e
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/srv/get_pos.srv" NAME_WE)
 add_dependencies(assignment_1_generate_messages_eus _assignment_1_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/srv/reach_next_pos.srv" NAME_WE)
+add_dependencies(assignment_1_generate_messages_eus _assignment_1_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
 add_custom_target(assignment_1_geneus)
@@ -98,6 +119,12 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS assignment_1_generate_messages_eus)
 ### Generating Services
 _generate_srv_lisp(assignment_1
   "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/srv/get_pos.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/assignment_1
+)
+_generate_srv_lisp(assignment_1
+  "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/srv/reach_next_pos.srv"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/assignment_1
@@ -117,6 +144,8 @@ add_dependencies(assignment_1_generate_messages assignment_1_generate_messages_l
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/srv/get_pos.srv" NAME_WE)
 add_dependencies(assignment_1_generate_messages_lisp _assignment_1_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/srv/reach_next_pos.srv" NAME_WE)
+add_dependencies(assignment_1_generate_messages_lisp _assignment_1_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
 add_custom_target(assignment_1_genlisp)
@@ -131,6 +160,12 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS assignment_1_generate_messages_lisp
 ### Generating Services
 _generate_srv_nodejs(assignment_1
   "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/srv/get_pos.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/assignment_1
+)
+_generate_srv_nodejs(assignment_1
+  "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/srv/reach_next_pos.srv"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/assignment_1
@@ -150,6 +185,8 @@ add_dependencies(assignment_1_generate_messages assignment_1_generate_messages_n
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/srv/get_pos.srv" NAME_WE)
 add_dependencies(assignment_1_generate_messages_nodejs _assignment_1_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/srv/reach_next_pos.srv" NAME_WE)
+add_dependencies(assignment_1_generate_messages_nodejs _assignment_1_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
 add_custom_target(assignment_1_gennodejs)
@@ -168,6 +205,12 @@ _generate_srv_py(assignment_1
   ""
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/assignment_1
 )
+_generate_srv_py(assignment_1
+  "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/srv/reach_next_pos.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/assignment_1
+)
 
 ### Generating Module File
 _generate_module_py(assignment_1
@@ -182,6 +225,8 @@ add_dependencies(assignment_1_generate_messages assignment_1_generate_messages_p
 
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/srv/get_pos.srv" NAME_WE)
+add_dependencies(assignment_1_generate_messages_py _assignment_1_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/srv/reach_next_pos.srv" NAME_WE)
 add_dependencies(assignment_1_generate_messages_py _assignment_1_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility

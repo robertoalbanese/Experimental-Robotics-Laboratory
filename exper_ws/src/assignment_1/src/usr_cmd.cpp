@@ -10,19 +10,16 @@ int main(int argc, char **argv)
     ros::Publisher pub = n.advertise<std_msgs::String>("hw1_usr_cmd", 1);
 
     std_msgs::String msg;
+    std::stringstream s;
+
+  while (ros::ok())
+  {
+    std_msgs::String msg;
     msg.data = "Play";
-
-    ros::Rate loop_rate(10);
-
-    while (ros::ok())
-    {
-        sleep(rand() % 10 + 1);
-        pub.publish(msg);
-
-        loop_rate.sleep();
-    }
-
-    
+    ROS_INFO("%s", msg.data.c_str());
+    pub.publish(msg);
+    sleep(rand() % 15 + 15);
+    }    
 
     ros::spin();
     return 0;

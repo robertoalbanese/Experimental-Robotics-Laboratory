@@ -8,6 +8,7 @@ import time
 import random
 from collections import namedtuple
 from std_msgs.msg import String
+from geometry_msgs.msg import Pose2D
 from assignment_1.srv import *
 
 # INSTALLATION
@@ -22,19 +23,36 @@ from assignment_1.srv import *
 # - run the visualiser with
 #          $ sudo apt-get install ros-kinetic-smach-viewer
 
+#Subscriber to user command callback
+def get_command(data):
+    global command
+    command = data.data
+
+#Client to new position callback
+def new_position(x,y):
+    rospy.wait_for_service('reach_new_position')
+    try:
+        new_pos = rospy.ServiceProxy('reach_new_position', reach_next_pos)
+        resp = new_pos(x,y)
+        return resp
+    except rospy.ServiceException, e:
+        print "Service call failed: %s" % e
+
+
+#Next position client
 def get_position_client(xmin, xmax, ymin, ymax):
     rospy.wait_for_service('random_position')
     try:
-        new_position = rospy.ServiceProxy('random_position', get_pos)
-        resp1 = new_position(xmin, xmax, ymin, ymax)
-        return resp1
+        rand_pos = rospy.ServiceProxy('random_position', get_pos)
+        resp = rand_pos(xmin, xmax, ymin, ymax)
+        return resp
     except rospy.ServiceException, e:
         print "Service call failed: %s" % e
 
 # define environment structure builder
 env_struct = namedtuple("env_struct", "min max user")
 
-# define state Sleep
+#define state Sleep
 class Sleep(smach.State):
     def __init__(self):
         # initialisation function, it should not wait
@@ -57,15 +75,26 @@ class Normal(smach.State):
                              )
 
     def execute(self, userdata):
+        global command
+        global pub
         # function called when exiting from the node, it can be blacking
         rospy.loginfo('Executing state Normal')
         time.sleep(1)
 
+        #Check if a command is been received
+        if (command == "Play"):
+            command = ""
+            return 'gotoPlay'
+        
+        #Randomly going to sleep
         if (random.randint(1, 4) == random.randint(1, 4)):
-            return 'gotoSleep'
+             return 'gotoSleep'
 
-        new_pos = get_position_client(1, 20, 2, 15)
-        rospy.loginfo('I am in x = %d, y = %d', new_pos.x, new_pos.y)
+        rospy.loginfo('Old postion x = %d, y = %d',next_pos.x, next_pos.y)
+        new_pos = get_position_client(x.min,x.max,y.min,y.max)
+        reached_pos = new_position(new_pos.x,new_pos.y)
+
+        rospy.loginfo('I am in x = %d, y = %d', reached_pos.x, reached_pos.y)
         return 'gotoNormal'
 
 # define state Sleep
@@ -78,7 +107,6 @@ class Play(smach.State):
 
     def execute(self, userdata):
         # function called when exiting from the node, it can be blacking
-        time.sleep(5)
         rospy.loginfo('Executing state Play')
         # userdata.unlocked_counter_out = userdata.unlocked_counter_in + 1
         time.sleep(random.randint(1, 5))
@@ -88,19 +116,38 @@ class Play(smach.State):
 def main():
     rospy.init_node('Assignment_1_state_machine')
 
+    #Subcriber to hw1_usr_cmd topic
+    rospy.Subscriber("hw1_usr_cmd", String, get_command)
+
+    #Plubisher to hw1_position
+    global pub
+    pub = rospy.Publisher('hw1_position', Pose2D, queue_size=1)
+    rospy.Subscriber("hw1_position", Pose2D, new_position)
+
     xmin = random.randint(0, 5)
     xmax = random.randint(10, 15)
     ymin = random.randint(0, 5)
     ymax = random.randint(10, 15)
 
+    #Command initialization
+    global command
+    command = ""
+
     # Build environment
+    global x
+    global y
     x = env_struct(xmin, xmax, random.randint(xmin, xmax))
     y = env_struct(ymin, ymax, random.randint(ymin, ymax))
+
+    global next_pos
+    next_pos = Pose2D()
+    next_pos.x = xmin
+    next_pos.y = ymin
 
     rospy.loginfo('Map is setted as: x = {%d:%d}, y = {%d:%d}.',x.min, x.max, y.min, y.max)
     rospy.loginfo('The user is located in [%d,%d]',x.user,y.user)
 
-    # Create a SMACH state machine
+    #Create a SMACH state machine
     sm = smach.StateMachine(outcomes=['container_interface'])
     sm.userdata.sm_counter = 0
 

@@ -54,6 +54,7 @@ CMAKE_BINARY_DIR = /home/roberto/Documents/Unige/2°year/Experimental-Robotics-L
 include assignment_1/CMakeFiles/assignment_1_generate_messages_nodejs.dir/progress.make
 
 assignment_1/CMakeFiles/assignment_1_generate_messages_nodejs: /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/share/gennodejs/ros/assignment_1/srv/get_pos.js
+assignment_1/CMakeFiles/assignment_1_generate_messages_nodejs: /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/share/gennodejs/ros/assignment_1/srv/reach_next_pos.js
 
 
 /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/share/gennodejs/ros/assignment_1/srv/get_pos.js: /opt/ros/kinetic/lib/gennodejs/gen_nodejs.py
@@ -61,8 +62,14 @@ assignment_1/CMakeFiles/assignment_1_generate_messages_nodejs: /home/roberto/Doc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Javascript code from assignment_1/get_pos.srv"
 	cd /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/assignment_1 && ../catkin_generated/env_cached.sh /usr/bin/python2 /opt/ros/kinetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/srv/get_pos.srv -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p assignment_1 -o /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/share/gennodejs/ros/assignment_1/srv
 
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/share/gennodejs/ros/assignment_1/srv/reach_next_pos.js: /opt/ros/kinetic/lib/gennodejs/gen_nodejs.py
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/share/gennodejs/ros/assignment_1/srv/reach_next_pos.js: /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/srv/reach_next_pos.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Javascript code from assignment_1/reach_next_pos.srv"
+	cd /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/assignment_1 && ../catkin_generated/env_cached.sh /usr/bin/python2 /opt/ros/kinetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/srv/reach_next_pos.srv -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p assignment_1 -o /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/share/gennodejs/ros/assignment_1/srv
+
 assignment_1_generate_messages_nodejs: assignment_1/CMakeFiles/assignment_1_generate_messages_nodejs
 assignment_1_generate_messages_nodejs: /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/share/gennodejs/ros/assignment_1/srv/get_pos.js
+assignment_1_generate_messages_nodejs: /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/share/gennodejs/ros/assignment_1/srv/reach_next_pos.js
 assignment_1_generate_messages_nodejs: assignment_1/CMakeFiles/assignment_1_generate_messages_nodejs.dir/build.make
 
 .PHONY : assignment_1_generate_messages_nodejs

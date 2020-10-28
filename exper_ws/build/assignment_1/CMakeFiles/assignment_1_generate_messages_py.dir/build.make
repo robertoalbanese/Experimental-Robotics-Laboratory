@@ -54,6 +54,7 @@ CMAKE_BINARY_DIR = /home/roberto/Documents/Unige/2°year/Experimental-Robotics-L
 include assignment_1/CMakeFiles/assignment_1_generate_messages_py.dir/progress.make
 
 assignment_1/CMakeFiles/assignment_1_generate_messages_py: /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/lib/python2.7/dist-packages/assignment_1/srv/_get_pos.py
+assignment_1/CMakeFiles/assignment_1_generate_messages_py: /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/lib/python2.7/dist-packages/assignment_1/srv/_reach_next_pos.py
 assignment_1/CMakeFiles/assignment_1_generate_messages_py: /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/lib/python2.7/dist-packages/assignment_1/srv/__init__.py
 
 
@@ -62,13 +63,20 @@ assignment_1/CMakeFiles/assignment_1_generate_messages_py: /home/roberto/Documen
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Python code from SRV assignment_1/get_pos"
 	cd /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/assignment_1 && ../catkin_generated/env_cached.sh /usr/bin/python2 /opt/ros/kinetic/share/genpy/cmake/../../../lib/genpy/gensrv_py.py /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/srv/get_pos.srv -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p assignment_1 -o /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/lib/python2.7/dist-packages/assignment_1/srv
 
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/lib/python2.7/dist-packages/assignment_1/srv/_reach_next_pos.py: /opt/ros/kinetic/lib/genpy/gensrv_py.py
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/lib/python2.7/dist-packages/assignment_1/srv/_reach_next_pos.py: /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/srv/reach_next_pos.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Python code from SRV assignment_1/reach_next_pos"
+	cd /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/assignment_1 && ../catkin_generated/env_cached.sh /usr/bin/python2 /opt/ros/kinetic/share/genpy/cmake/../../../lib/genpy/gensrv_py.py /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/src/assignment_1/srv/reach_next_pos.srv -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -p assignment_1 -o /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/lib/python2.7/dist-packages/assignment_1/srv
+
 /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/lib/python2.7/dist-packages/assignment_1/srv/__init__.py: /opt/ros/kinetic/lib/genpy/genmsg_py.py
 /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/lib/python2.7/dist-packages/assignment_1/srv/__init__.py: /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/lib/python2.7/dist-packages/assignment_1/srv/_get_pos.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Python srv __init__.py for assignment_1"
+/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/lib/python2.7/dist-packages/assignment_1/srv/__init__.py: /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/lib/python2.7/dist-packages/assignment_1/srv/_reach_next_pos.py
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Python srv __init__.py for assignment_1"
 	cd /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/build/assignment_1 && ../catkin_generated/env_cached.sh /usr/bin/python2 /opt/ros/kinetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py -o /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/lib/python2.7/dist-packages/assignment_1/srv --initpy
 
 assignment_1_generate_messages_py: assignment_1/CMakeFiles/assignment_1_generate_messages_py
 assignment_1_generate_messages_py: /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/lib/python2.7/dist-packages/assignment_1/srv/_get_pos.py
+assignment_1_generate_messages_py: /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/lib/python2.7/dist-packages/assignment_1/srv/_reach_next_pos.py
 assignment_1_generate_messages_py: /home/roberto/Documents/Unige/2°year/Experimental-Robotics-Laboratory/exper_ws/devel/lib/python2.7/dist-packages/assignment_1/srv/__init__.py
 assignment_1_generate_messages_py: assignment_1/CMakeFiles/assignment_1_generate_messages_py.dir/build.make
 

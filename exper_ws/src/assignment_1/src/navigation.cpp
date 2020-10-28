@@ -2,15 +2,15 @@
 #include <stdlib.h>
 #include "ros/ros.h"
 #include "geometry_msgs/Pose2D.h"
+#include "assignment_1/reach_next_pos.h"
 
-ros::Publisher pub;
-ros::Subscriber sub;
-
-void move(const geometry_msgs::Pose2D &msg)
+bool reach_Pos(assignment_1::reach_next_pos::Request &req,
+              assignment_1::reach_next_pos::Response &res)
 {
-  ROS_INFO_STREAM(msg);
-  sleep(rand() % 10 + 1);
-  pub.publish(msg);
+    res.x = req.x;
+    res.y = req.y;
+    ROS_INFO("sending back response: x = [%d] , y = [%d]", int(res.x), int(res.x));
+    return true;
 }
 
 int main(int argc, char **argv)
@@ -18,9 +18,7 @@ int main(int argc, char **argv)
   ros::init(argc, argv, "navigation");
   ros::NodeHandle n;
 
-  pub = n.advertise<geometry_msgs::Pose2D>("hw1_position", 1000);
-
-  sub = n.subscribe("hw1_position", 0, move);
+  ros::ServiceServer service = n.advertiseService("reach_new_position",reach_Pos);
 
   ros::Rate loop_rate(10);
 
