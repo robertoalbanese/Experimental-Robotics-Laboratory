@@ -18,7 +18,7 @@ int main(int argc, char **argv)
     msg.data = "Play";
     ROS_INFO("%s", msg.data.c_str());
     pub.publish(msg);
-    sleep(rand() % 15 + 15);
+    sleep(rand() % 60 + 15);
     }    
 
     ros::spin();

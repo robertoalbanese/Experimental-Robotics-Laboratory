@@ -30,9 +30,9 @@ def get_command(data):
 
 #Client to new position callback
 def go_to_new_position(x,y):
-    rospy.wait_for_service('reach_go_to_new_position')
+    rospy.wait_for_service('reach_new_position')
     try:
-        new_pos = rospy.ServiceProxy('reach_go_to_new_position', reach_next_pos)
+        new_pos = rospy.ServiceProxy('reach_new_position', reach_next_pos)
         resp = new_pos(x,y)
         return resp
     except rospy.ServiceException, e:
@@ -59,9 +59,12 @@ class Sleep(smach.State):
 
     def execute(self, userdata):
         # function called when exiting from the node, it can be blacking
-        rospy.loginfo('Executing state Sleep')
+        rospy.loginfo('State: SLEEP')
+
         time.sleep(random.randint(1, 6))
         rospy.loginfo('I just woke up!')
+
+        time.sleep(1)
         return 'gotoNormal'
 
 # define state Normal
@@ -73,27 +76,29 @@ class Normal(smach.State):
                              )
 
     def execute(self, userdata):
+        # function called when exiting from the node, it can be blacking
+        rospy.loginfo('State: NORMAL')
+
         global command
         global pub
 
-        # function called when exiting from the node, it can be blacking
-        rospy.loginfo('Executing state Normal')
         time.sleep(1)
 
         #Check if a command is been received
         if (command == "Play"):
             command = ""
             return 'gotoPlay'
-        
+
         #Randomly going to sleep
-        if (random.randint(1, 4) == random.randint(1, 4)):
+        if (random.randint(1, 5) == 1):
             return 'gotoSleep'
 
         #Move to a new random position
         new_pos = get_position_client(x.min,x.max,y.min,y.max)
         reached_pos = go_to_new_position(new_pos.x,new_pos.y)
 
-        rospy.loginfo('I am in x = %d, y = %d', reached_pos.x, reached_pos.y)
+        rospy.loginfo('Dog: I\'m in      [%d,%d]', reached_pos.x, reached_pos.y)
+        time.sleep(2)
         return 'gotoNormal'
 
 # define state Sleep
@@ -106,21 +111,26 @@ class Play(smach.State):
 
     def execute(self, userdata):
         # function called when exiting from the node, it can be blacking
-        rospy.loginfo('Executing state Play')
+        rospy.loginfo('State: PLAY')
 
         reached_pos = go_to_new_position(x.user,y.user)
-        rospy.loginfo('Dog: I am in [%d,%d]',reached_pos.x,reached_pos.y)
+        time.sleep(2)
+        rospy.loginfo('Dog: I\'m in      [%d,%d]',reached_pos.x,reached_pos.y)
         new_pos = get_position_client(x.min,x.max,y.min,y.max)
-        rospy.loginfo('User: Go to [%d,%d]',new_pos.x,new_pos.y)
+        time.sleep(1)
+        rospy.loginfo('User: Go to      [%d,%d]',new_pos.x,new_pos.y)
         reached_pos = go_to_new_position(new_pos.x,new_pos.y)
-        rospy.loginfo('Dog: Here I am [%d,%d]',reached_pos.x,reached_pos.y)
+        time.sleep(2)
+        rospy.loginfo('Dog: Here I am   [%d,%d]',reached_pos.x,reached_pos.y)
         reached_pos = go_to_new_position(x.user,y.user)
-        rospy.loginfo('Dog: And now back to my owner [%d,%d]',reached_pos.x,reached_pos.y)
+        time.sleep(2)
+        rospy.loginfo('Dog: Back to my owner    [%d,%d]',reached_pos.x,reached_pos.y)
 
-        if (random.randint(1, 5) == random.randint(1, 4)):
+        if (random.randint(1, 4) == 1):
             return 'gotoNormal'
 
-        return 'gotoNormal'
+        time.sleep(1)
+        return 'gotoPlay'
 
 
 def main():
