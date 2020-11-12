@@ -26,6 +26,7 @@ The software architecture is composed by four elements:
 <p align="center">
   <img src="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/blob/master/experimental_ws/src/assignment_1/Architecture.jpg" />
 </p>
+
 * __User Command__: it represents the user command "play";
 * __Command Manager__: it is the main part of the architecture in which the **FSM** is;
 * __Navigation__: it manages the motion of the robot and brings it to the new position;
