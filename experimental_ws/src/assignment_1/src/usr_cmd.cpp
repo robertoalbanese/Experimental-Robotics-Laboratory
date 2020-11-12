@@ -1,3 +1,10 @@
+/**
+ * @file usr_cmd.cpp
+ * @brief Provides stuff for my great program.
+ * 
+ * Detailed description.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "ros/ros.h"

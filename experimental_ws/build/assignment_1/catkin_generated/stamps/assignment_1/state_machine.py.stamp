@@ -32,7 +32,8 @@ def get_command(data):
 def go_to_new_position(x,y):
     rospy.wait_for_service('reach_new_position')
     try:
-        new_pos = rospy.ServiceProxy('reach_new_position', reach_next_pos)
+        new_pos = rospy.ServiceProxy('reach_new_position', Pose2D)
+        #new_pos = rospy.ServiceProxy('reach_new_position', reach_next_pos)
         resp = new_pos(x,y)
         return resp
     except rospy.ServiceException, e:
@@ -59,6 +60,7 @@ class Sleep(smach.State):
 
     def execute(self, userdata):
         # function called when exiting from the node, it can be blacking
+        time.sleep(1)
         rospy.loginfo('State: SLEEP')
 
         time.sleep(random.randint(1, 6))
@@ -77,6 +79,7 @@ class Normal(smach.State):
 
     def execute(self, userdata):
         # function called when exiting from the node, it can be blacking
+        time.sleep(1)
         rospy.loginfo('State: NORMAL')
 
         global command
@@ -98,7 +101,7 @@ class Normal(smach.State):
         reached_pos = go_to_new_position(new_pos.x,new_pos.y)
 
         rospy.loginfo('Dog: I\'m in      [%d,%d]', reached_pos.x, reached_pos.y)
-        time.sleep(2)
+        time.sleep(1)
         return 'gotoNormal'
 
 # define state Sleep
@@ -111,8 +114,10 @@ class Play(smach.State):
 
     def execute(self, userdata):
         # function called when exiting from the node, it can be blacking
+        time.sleep(1)
         rospy.loginfo('State: PLAY')
 
+        #Play behaviour
         reached_pos = go_to_new_position(x.user,y.user)
         time.sleep(2)
         rospy.loginfo('Dog: I\'m in      [%d,%d]',reached_pos.x,reached_pos.y)
@@ -125,8 +130,10 @@ class Play(smach.State):
         reached_pos = go_to_new_position(x.user,y.user)
         time.sleep(2)
         rospy.loginfo('Dog: Back to my owner    [%d,%d]',reached_pos.x,reached_pos.y)
+        time.sleep(1)
 
-        if (random.randint(1, 4) == 1):
+        #Randomly reuturn to Normal state
+        if (random.randint(1, 3) == 1):
             return 'gotoNormal'
 
         time.sleep(1)
@@ -144,11 +151,6 @@ def main():
     pub = rospy.Publisher('hw1_position', Pose2D, queue_size=1)
     rospy.Subscriber("hw1_position", Pose2D, go_to_new_position)
 
-    xmin = random.randint(0, 5)
-    xmax = random.randint(10, 15)
-    ymin = random.randint(0, 5)
-    ymax = random.randint(10, 15)
-
     #Command initialization
     global command
     command = ""
@@ -157,6 +159,11 @@ def main():
     env_struct = namedtuple("env_struct", "min max user")
 
     # Build environment
+    xmin = random.randint(0, 5)
+    xmax = random.randint(10, 15)
+    ymin = random.randint(0, 5)
+    ymax = random.randint(10, 15)
+
     global x
     global y
     x = env_struct(xmin, xmax, random.randint(xmin, xmax))

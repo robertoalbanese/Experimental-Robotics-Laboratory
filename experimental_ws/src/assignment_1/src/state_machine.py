@@ -1,5 +1,18 @@
 #!/usr/bin/env python
 
+"""!
+ @mainpage
+ @author Roberto Albanese
+ @version 1.0
+ @date 10-28-2020
+ @section Introduction
+ This code implements a basic software architecture accordingly to assignment n°1 of the **Experimental Robotics** course.<br>
+ If you want to learn more about code development please read the README file in the git repository
+"""
+
+"""!    @file state_machine.py
+        @brief Example Python program with Doxygen style comments."""
+
 import roslib
 import rospy
 import smach
@@ -32,7 +45,8 @@ def get_command(data):
 def go_to_new_position(x,y):
     rospy.wait_for_service('reach_new_position')
     try:
-        new_pos = rospy.ServiceProxy('reach_new_position', reach_next_pos)
+        new_pos = rospy.ServiceProxy('reach_new_position', Pose2D)
+        #new_pos = rospy.ServiceProxy('reach_new_position', reach_next_pos)
         resp = new_pos(x,y)
         return resp
     except rospy.ServiceException, e:
