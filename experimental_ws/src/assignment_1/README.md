@@ -13,8 +13,11 @@ In this project folder the reader will encounter the following folders:
 - [srv](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/srv) Service files 
 
 ## Software Architecture and System's Features
-The scenario is represented by a robot, simulating a pet, that interacts with a human and moves in a discrete 2D environment. 
-The robot has three possible behaviors: it can sleep, Play or Stay in a Normal state.
+The scenario is represented by a robot, simulating a pet, that interacts with a human and moves in a discrete 2D environment. <br>
+The robot has three possible behaviors: it can Sleep, Play or stay in a Normal state.<br>
+In the Normal state the robot has to move randomly.<br>
+In the Sleep state the robot chooses a random location and sleep there for a random amount of time. Then it will go back in the Normal state. The robot can pass to the Spleep state only from the Normal state in a random time instant.<br>
+In the Play state the robot reaches the User and waits untill it points to a random position. The robot has to reach the position and then come back to the user. The robot can reach the Play state only from the Normal state and only when a "Play" command is recived.<br>
 The software architecture is composed by four elements:
 IMAGE
 * __User Command__: it represents the user command "play"
@@ -23,7 +26,7 @@ IMAGE
 * __Random Position Generator__: generates random positions
 
 Navigation and Random Position Generator are services because they are thought to operate in a syncronous mode; they will generate a new position and move the robot to the generated position only when it is specifically requested from the code.
-While, User Command is meant to be a node because it has to behave in an asyncronous mode: it must send a command randomly.
+While, User Command is meant to be a node because it has to behave in an asyncronous mode (it must send a command randomly).
 
 * __usr_cmd.cpp__ 
 * __rand_position.cpp__ 
