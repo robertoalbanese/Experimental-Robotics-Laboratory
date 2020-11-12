@@ -97,12 +97,11 @@ $(document).ready(function(){initNavTree('navigation_8cpp.html','');});
 </div><!--header-->
 <div class="contents">
 
-<p>Provides stuff for my great program.  
+<p>In this file the service "reach_new_position" is initialized.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &quot;ros/ros.h&quot;</code><br />
-<code>#include &quot;geometry_msgs/Pose2D.h&quot;</code><br />
 <code>#include &quot;assignment_1/reach_next_pos.h&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for navigation.cpp:</div>
@@ -112,14 +111,16 @@ Include dependency graph for navigation.cpp:</div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a0e8ebd216c5e82fe2849e4151bac53d0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="navigation_8cpp.html#a0e8ebd216c5e82fe2849e4151bac53d0">reach_Pos</a> (assignment_1::reach_next_pos::Request &amp;req, assignment_1::reach_next_pos::Response &amp;res)</td></tr>
-<tr class="separator:a0e8ebd216c5e82fe2849e4151bac53d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a479340b1dd0af6fd3eec23bce4f2075e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="navigation_8cpp.html#a479340b1dd0af6fd3eec23bce4f2075e">reachPos</a> (assignment_1::reach_next_pos::Request &amp;req, assignment_1::reach_next_pos::Response &amp;res)</td></tr>
+<tr class="memdesc:a479340b1dd0af6fd3eec23bce4f2075e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback function for the service "reach_new_position".  <a href="#a479340b1dd0af6fd3eec23bce4f2075e">More...</a><br /></td></tr>
+<tr class="separator:a479340b1dd0af6fd3eec23bce4f2075e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c04138a5bfe5d72780bb7e82a18e627"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="navigation_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a> (int argc, char **argv)</td></tr>
+<tr class="memdesc:a3c04138a5bfe5d72780bb7e82a18e627"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization of the service "reach_new_position".  <a href="#a3c04138a5bfe5d72780bb7e82a18e627">More...</a><br /></td></tr>
 <tr class="separator:a3c04138a5bfe5d72780bb7e82a18e627"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Provides stuff for my great program. </p>
-<p>Detailed description. </p>
+<div class="textblock"><p>In this file the service "reach_new_position" is initialized. </p>
+<p>The server recives a requested position and brings the robot to there </p>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a3c04138a5bfe5d72780bb7e82a18e627"></a>
 <div class="memitem">
@@ -145,14 +146,17 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Initialization of the service "reach_new_position". </p>
+<div class="fragment"><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  ros::init(argc, argv, <span class="stringliteral">&quot;navigation&quot;</span>);</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  ros::NodeHandle n;</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  ros::ServiceServer service = n.advertiseService(<span class="stringliteral">&quot;reach_new_position&quot;</span>,<a class="code" href="navigation_8cpp.html#a479340b1dd0af6fd3eec23bce4f2075e">reachPos</a>);</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  ros::Rate loop_rate(10);</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  ros::spin();</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  <span class="keywordflow">return</span> 0;</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;}<div class="ttc" id="navigation_8cpp_html_a479340b1dd0af6fd3eec23bce4f2075e"><div class="ttname"><a href="navigation_8cpp.html#a479340b1dd0af6fd3eec23bce4f2075e">reachPos</a></div><div class="ttdeci">bool reachPos(assignment_1::reach_next_pos::Request &amp;req, assignment_1::reach_next_pos::Response &amp;res)</div><div class="ttdoc">Callback function for the service &quot;reach_new_position&quot;. </div><div class="ttdef"><b>Definition:</b> navigation.cpp:21</div></div>
+</div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a0e8ebd216c5e82fe2849e4151bac53d0"></a>
+<a class="anchor" id="a479340b1dd0af6fd3eec23bce4f2075e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool reach_Pos </td>
+          <td class="memname">bool reachPos </td>
           <td>(</td>
           <td class="paramtype">assignment_1::reach_next_pos::Request &amp;&#160;</td>
           <td class="paramname"><em>req</em>, </td>
@@ -171,6 +175,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Callback function for the service "reach_new_position". </p>
+<p>Whenever the service recives a request of the type assignment_1::reach_next_pos::Request, the function will be executed </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">req</td><td>stores the request parameter for the service "reach_new_position" (req.x, req.y) </td></tr>
+    <tr><td class="paramname">res</td><td>stores the response parameter for the service "reach_new_position" (res.x, res.y) </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="fragment"><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    res.x = req.x;</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    res.y = req.y;</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    ROS_INFO(<span class="stringliteral">&quot;sending back response: x = [%d] , y = [%d]&quot;</span>, <span class="keywordtype">int</span>(res.x), <span class="keywordtype">int</span>(res.x));</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;}</div></div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->

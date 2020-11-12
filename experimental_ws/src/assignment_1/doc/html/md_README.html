@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Assignment_1: Behavioral Architecture - Assignment 1</title>
+<title>Assignment_1: Assignment 1 - Experimental Robotics Laboratory</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -72,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('index.html','');});
+$(document).ready(function(){initNavTree('md_README.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -91,30 +91,30 @@ $(document).ready(function(){initNavTree('index.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Behavioral Architecture - Assignment 1 </div>  </div>
+<div class="title">Assignment 1 - Experimental Robotics Laboratory </div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><ul>
-<li><b>Author:</b> Roberto Albanese</li>
-<li><b>Version:</b> 1.0</li>
-<li><b>Date:</b> 10-28-2020</li>
+<li><b>Author</b> Roberto Albanese</li>
+<li><b>Version</b> 1.0</li>
+<li><b>Date</b> 10-28-2020</li>
 </ul>
 <h2>Indrodution</h2>
 <ul>
-<li><b><a class="el" href="classstate__machine_1_1_play.html" title="Definition of state Play. ">state_machine.Play</a></b></li>
-<li><b><a class="el" href="classstate__machine_1_1_normal.html" title="Definition of state Normal. ">state_machine.Normal</a></b></li>
-<li><b><a class="el" href="classstate__machine_1_1_sleep.html" title="Definition of state Sleep. ">state_machine.Sleep</a></b> <h2>Software Architecture and System's Features</h2>
+<li><b><a class="el" href="classstate__machine_1_1_play.html">state_machine.Play</a></b></li>
+<li><b><a class="el" href="classstate__machine_1_1_normal.html">state_machine.Normal</a></b></li>
+<li><b><a class="el" href="classstate__machine_1_1_sleep.html">state_machine.Sleep</a></b> <h2>Software Architecture and System's Features</h2>
 </li>
 </ul>
 <ul>
-<li><b><a class="el" href="usr__cmd_8cpp.html" title="In this file the publisher to the topic &quot;hw1_usr_cmd&quot; is initialized. ">usr_cmd.cpp</a></b></li>
-<li><b><a class="el" href="rand__position_8cpp.html" title="In this file the service &quot;random_position&quot; is initialized. ">rand_position.cpp</a></b><ol type="1">
+<li><b><a class="el" href="usr__cmd_8cpp.html" title="Provides stuff for my great program. ">usr_cmd.cpp</a></b></li>
+<li><b><a class="el" href="rand__position_8cpp.html" title="Provides stuff for my great program. ">rand_position.cpp</a></b><ol type="1">
 <li></li>
 <li></li>
 </ol>
 </li>
-<li><b><a class="el" href="navigation_8cpp.html" title="In this file the service &quot;reach_new_position&quot; is initialized. ">navigation.cpp</a></b></li>
-<li><b><a class="el" href="state__machine_8py.html" title="FSM of the architecture. ">state_machine.py</a></b> is the core node , that manages information from the two previous publishers and implements a <em>Finite State Machine</em> which alternates the three possible states (<b>PLAY</b>,<b>NORMAL</b> and <b>SLEEP</b>). Finally in according to them it makes some requests to the <em>Navigation</em> service in order to move the robot. It should be noted that this node continuously receives positions from the <em>getPosition</em> node but simply ignores such information when it is in a finite state where those data is not needed.</li>
+<li><b><a class="el" href="navigation_8cpp.html" title="Provides stuff for my great program. ">navigation.cpp</a></b></li>
+<li><b><a class="el" href="state__machine_8py.html">state_machine.py</a></b> is the core node , that manages information from the two previous publishers and implements a <em>Finite State Machine</em> which alternates the three possible states (<b>PLAY</b>,<b>NORMAL</b> and <b>SLEEP</b>). Finally in according to them it makes some requests to the <em>Navigation</em> service in order to move the robot. It should be noted that this node continuously receives positions from the <em>getPosition</em> node but simply ignores such information when it is in a finite state where those data is not needed.</li>
 </ul>
 <h2>Finite State Machine</h2>
 <p>The finite state machine, present in the <em>commandManager</em> node, was developed as follows:</p><ul>
@@ -131,13 +131,7 @@ $(document).ready(function(){initNavTree('index.html','');});
 </ul>
 <h2>Usage</h2>
 <p>First of all remeber to source your wrokspace in every terminal you will use. If wou want run the whole project just type: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;$ roslaunch assignment1 assignment1.launch</div></div><!-- fragment --> <h3>Test getPosition</h3>
-<p>In order to test in two different terminals the messages random generates by the <em>getPosition</em> node and see the their effects, plese go to the <em>assignment1</em> directory and execute from shell: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;$ cd ~/assignment1</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;$ ./run_getPosition.sh</div></div><!-- fragment --><p> and then in another terminal execute </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;$ cd ~/assignment1</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;$ ./run_sys.sh</div></div><!-- fragment --><p> You will see in first terminal window the positions randomly generated by <em>getPostion</em> and the response in real time of the <em>commandManager</em> node. ### Test impossible position </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;$ cd ~/assignment1</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;$ ./run_sys.sh</div></div><!-- fragment --><p> and in a new terminal execute </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;$ cd ~/assignment1</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;$ ./impossiblePosition.sh</div></div><!-- fragment --><p> <br />
- <br />
- <br />
-</p>
-<p><b>Robotics Engineering Master - 2nd year</b> <br />
- <b>University of Genoa</b> </p>
-</div></div><!-- contents -->
+<p>In order to test in two different terminals the messages random generates by the <em>getPosition</em> node and see the their effects, plese go to the <em>assignment1</em> directory and execute from shell: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;$ cd ~/assignment1</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;$ ./run_getPosition.sh</div></div><!-- fragment --><p> and then in another terminal execute </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;$ cd ~/assignment1</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;$ ./run_sys.sh</div></div><!-- fragment --><p> You will see in first terminal window the positions randomly generated by <em>getPostion</em> and the response in real time of the <em>commandManager</em> node. ### Test impossible position </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;$ cd ~/assignment1</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;$ ./run_sys.sh</div></div><!-- fragment --><p> and in a new terminal execute </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;$ cd ~/assignment1</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;$ ./impossiblePosition.sh</div></div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

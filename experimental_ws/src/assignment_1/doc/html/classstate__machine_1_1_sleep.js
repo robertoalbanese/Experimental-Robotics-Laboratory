@@ -1,5 +1,5 @@
 var classstate__machine_1_1_sleep =
 [
-    [ "__init__", "classstate__machine_1_1_sleep.html#a473b93a1ddf11f9e664d1fb694ce1a3c", null ],
-    [ "execute", "classstate__machine_1_1_sleep.html#a89527836f1edcefb6467fa9c041fbbfe", null ]
+    [ "__init__", "classstate__machine_1_1_sleep.html#ae64f0875afe3067b97ba370b354b9213", null ],
+    [ "execute", "classstate__machine_1_1_sleep.html#ad6396d649e54be90eab61c90bf0b7958", null ]
 ];

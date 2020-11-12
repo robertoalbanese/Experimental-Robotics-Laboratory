@@ -1,17 +1,24 @@
 /**
  * @file navigation.cpp
- * @brief Provides stuff for my great program.
+ * @brief In this file the service "reach_new_position" is initialized.
  * 
- * Detailed description.
+ * The server recives a requested position and brings the robot to there
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "ros/ros.h"
-#include "geometry_msgs/Pose2D.h"
 #include "assignment_1/reach_next_pos.h"
 
-bool reach_Pos(assignment_1::reach_next_pos::Request &req,
+/*!
+* \brief Callback function for the service "reach_new_position"
+*
+* Whenever the service recives a request of the type assignment_1::reach_next_pos::Request, the function will be executed
+* \param req stores the request parameter for the service "reach_new_position" (req.x, req.y)
+* \param res stores the response parameter for the service "reach_new_position" (res.x, res.y)
+*/
+
+bool reachPos(assignment_1::reach_next_pos::Request &req,
               assignment_1::reach_next_pos::Response &res)
 {
     res.x = req.x;
@@ -20,12 +27,14 @@ bool reach_Pos(assignment_1::reach_next_pos::Request &req,
     return true;
 }
 
+/*! \brief Initialization of the service "reach_new_position" */
+
 int main(int argc, char **argv)
 {
   ros::init(argc, argv, "navigation");
   ros::NodeHandle n;
 
-  ros::ServiceServer service = n.advertiseService("reach_new_position",reach_Pos);
+  ros::ServiceServer service = n.advertiseService("reach_new_position",reachPos);
 
   ros::Rate loop_rate(10);
 

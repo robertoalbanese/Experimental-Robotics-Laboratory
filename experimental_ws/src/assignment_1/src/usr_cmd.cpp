@@ -1,14 +1,16 @@
 /**
  * @file usr_cmd.cpp
- * @brief Provides stuff for my great program.
+ * @brief In this file the publisher to the topic "hw1_usr_cmd" is initialized.
  * 
- * Detailed description.
+ * The publisher randomly sends the command "Play" to the topic "hw1_usr_cmd"
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "ros/ros.h"
 #include "std_msgs/String.h"
+
+/*! \brief Initialization of the publisher to the topic "hw1_usr_cmd" */
 
 int main(int argc, char **argv)
 {

@@ -1,8 +1,8 @@
 /**
  * @file rand_position.cpp
- * @brief Provides stuff for my great program.
+ * @brief In this file the service "random_position" is initialized.
  * 
- * Detailed description.
+ * The server recives a request and it generates a new random position. 
  */
 
 #include <stdio.h>
@@ -14,21 +14,20 @@
 * \brief Callback function for the service random_position
 *
 * Whenever the service recives a request of the type assignment_1::get_pos::Request, the function will be executed
-* \param req stores the request parameter for the service random_position
-* \param res stores the response parameter for the service random_position
-* @see get_pos.srv
+* \param req stores the request parameter for the service random_position (req.x, req.y)
+* \param res stores the response parameter for the service random_position (res.x, res.y)
 */
 
 bool randPos(assignment_1::get_pos::Request &req,
              assignment_1::get_pos::Response &res)
 {
-    ///X parameter of the variable res
     res.x = rand() % (req.maxx - req.minx) + req.minx;
-    ///Y parameter of the variable res
     res.y = rand() % (req.maxy - req.miny) + req.miny;
     ROS_INFO("sending back response: x = [%d] , y = [%d]", int(res.x), int(res.x));
     return true;
 }
+
+/*! \brief Initialization of the service "random_position" */
 
 int main(int argc, char **argv)
 {

@@ -53,26 +53,8 @@ stdlib.h
 -
 ros/ros.h
 /home/roberto/Documents/Unige/Year_2/Experimental-Robotics-Laboratory/experimental_ws/src/assignment_1/src/ros/ros.h
-geometry_msgs/Pose2D.h
-/home/roberto/Documents/Unige/Year_2/Experimental-Robotics-Laboratory/experimental_ws/src/assignment_1/src/geometry_msgs/Pose2D.h
 assignment_1/reach_next_pos.h
 /home/roberto/Documents/Unige/Year_2/Experimental-Robotics-Laboratory/experimental_ws/src/assignment_1/src/assignment_1/reach_next_pos.h
-
-/opt/ros/kinetic/include/geometry_msgs/Pose2D.h
-string
--
-vector
--
-map
--
-ros/types.h
--
-ros/serialization.h
--
-ros/builtin_message_traits.h
--
-ros/message_operations.h
--
 
 /opt/ros/kinetic/include/ros/advertise_options.h
 ros/forwards.h

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['assignment_201',['ASSIGNMENT 1',['../index.html',1,'']]]
+  ['behavioral_20architecture_20_2d_20assignment_201',['Behavioral Architecture - Assignment 1',['../index.html',1,'']]]
 ];

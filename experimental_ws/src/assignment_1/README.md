@@ -73,7 +73,9 @@ and in a new terminal execute
 $ cd ~/assignment1
 $ ./impossiblePosition.sh
 ```
+<br>
+<br>
+<br>
 
-
-***Robotics Engineering Master - 2nd year***   <br>
-***University of Genoa***
+**Robotics Engineering Master - 2nd year**  <br>
+**University of Genoa**

@@ -97,7 +97,7 @@ $(document).ready(function(){initNavTree('rand__position_8cpp.html','');});
 </div><!--header-->
 <div class="contents">
 
-<p>Provides stuff for my great program.  
+<p>In this file the service "random_position" is initialized.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
@@ -115,11 +115,12 @@ Functions</h2></td></tr>
 <tr class="memdesc:af3aa8f420bc72d2a5f625ae69a5c815e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback function for the service random_position.  <a href="#af3aa8f420bc72d2a5f625ae69a5c815e">More...</a><br /></td></tr>
 <tr class="separator:af3aa8f420bc72d2a5f625ae69a5c815e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c04138a5bfe5d72780bb7e82a18e627"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rand__position_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a> (int argc, char **argv)</td></tr>
+<tr class="memdesc:a3c04138a5bfe5d72780bb7e82a18e627"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization of the service "random_position".  <a href="#a3c04138a5bfe5d72780bb7e82a18e627">More...</a><br /></td></tr>
 <tr class="separator:a3c04138a5bfe5d72780bb7e82a18e627"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Provides stuff for my great program. </p>
-<p>Detailed description. </p>
+<div class="textblock"><p>In this file the service "random_position" is initialized. </p>
+<p>The server recives a request and it generates a new random position. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a3c04138a5bfe5d72780bb7e82a18e627"></a>
 <div class="memitem">
@@ -145,6 +146,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Initialization of the service "random_position". </p>
+<div class="fragment"><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    ros::init(argc, argv, <span class="stringliteral">&quot;random_position_server&quot;</span>);</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    ros::NodeHandle n;</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    ros::ServiceServer service = n.advertiseService(<span class="stringliteral">&quot;random_position&quot;</span>,<a class="code" href="rand__position_8cpp.html#af3aa8f420bc72d2a5f625ae69a5c815e">randPos</a>);</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    ros::spin();</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordflow">return</span> 0;</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;}<div class="ttc" id="rand__position_8cpp_html_af3aa8f420bc72d2a5f625ae69a5c815e"><div class="ttname"><a href="rand__position_8cpp.html#af3aa8f420bc72d2a5f625ae69a5c815e">randPos</a></div><div class="ttdeci">bool randPos(assignment_1::get_pos::Request &amp;req, assignment_1::get_pos::Response &amp;res)</div><div class="ttdoc">Callback function for the service random_position. </div><div class="ttdef"><b>Definition:</b> rand_position.cpp:21</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="af3aa8f420bc72d2a5f625ae69a5c815e"></a>
@@ -174,15 +178,12 @@ Functions</h2></td></tr>
 <p>Callback function for the service random_position. </p>
 <p>Whenever the service recives a request of the type assignment_1::get_pos::Request, the function will be executed </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">req</td><td>stores the request parameter for the service random_position </td></tr>
-    <tr><td class="paramname">res</td><td>stores the response parameter for the service random_position </td></tr>
+    <tr><td class="paramname">req</td><td>stores the request parameter for the service random_position (req.x, req.y) </td></tr>
+    <tr><td class="paramname">res</td><td>stores the response parameter for the service random_position (res.x, res.y) </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd>get_pos.srv </dd></dl>
-<p>X parameter of the variable res</p>
-<p>Y parameter of the variable res </p>
-
+<div class="fragment"><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    res.x = rand() % (req.maxx - req.minx) + req.minx;</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    res.y = rand() % (req.maxy - req.miny) + req.miny;</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    ROS_INFO(<span class="stringliteral">&quot;sending back response: x = [%d] , y = [%d]&quot;</span>, <span class="keywordtype">int</span>(res.x), int(res.x));</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;}</div></div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->

@@ -6,5 +6,6 @@ var state__machine_8py =
     [ "get_command", "state__machine_8py.html#a78c1380282a5b6544ab6fe7f5e091f57", null ],
     [ "get_position_client", "state__machine_8py.html#a266484cc4e9a6bd93fabf77f859fd01a", null ],
     [ "go_to_new_position", "state__machine_8py.html#adb94b0a8473a7ba47947225a5e5917e6", null ],
-    [ "main", "state__machine_8py.html#a5c680ce705e6052fa07c6cece21743d0", null ]
+    [ "main", "state__machine_8py.html#a5c680ce705e6052fa07c6cece21743d0", null ],
+    [ "command", "state__machine_8py.html#a4c9ef422180cc13bda2c623c7b9d43e5", null ]
 ];
