@@ -67,10 +67,22 @@ There are few steps to follow before to being able to execute the code. Firs of 
 ```
 $ sudo apt-get install ros-kinetic-smach-viewer
 ```
+Then is it necessary to give running permission to the file *state_machine.py*:
+* Open the terminal
+* Move into the folder /../experimental_ws/src/assignment_1/src
+* Launch the command:
+```
+$ chmod +x state_machine.py
+```
+
 It's also required to make a _catkin_make_ in your _ROS_ workspace. Check [ROS tutorials](http://wiki.ros.org/catkin/Tutorials) to see how to do it.    
 
 ## Usage
-First of all it is required to source your workspace setup.bash file.
+First of all it is required to source your workspace setup.bash file. To do it open a terminal, move into the workspace directory and the launch the command:
+```
+source devel/setup.bash
+```
+
 If wou want run the whole project just type:
 ```
 $ roslaunch assignment_1 assignment_1.launch

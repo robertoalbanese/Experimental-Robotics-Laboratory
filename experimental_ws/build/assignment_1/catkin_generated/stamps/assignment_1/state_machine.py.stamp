@@ -93,7 +93,7 @@ class Sleep(smach.State):
 
 ## Definition of state Normal
 #
-# In this state the robot will randomly navigate until either a command is recived from the user or the robot randomly decides to go to Sleep.
+# In this state the robot will randomly navigate untill either a command is recived from the user or the robot randomly decides to go to Sleep.
 
 
 class Normal(smach.State):
