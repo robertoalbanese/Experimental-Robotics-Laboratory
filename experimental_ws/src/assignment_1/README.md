@@ -1,9 +1,14 @@
-# Assignment 1 of Experimental Robotics Laboratory
+# Assignment 1 - Experimental Robotics Laboratory
+
+- __Author__ Roberto Albanese
+- __Version__ 1.0
+- __Date__ 10-28-2020
+
 ## Indrodution
 
-- __PLAY__  
+- __state_machine.Play__  
 - __state_machine.Normal__ 
-- __SLEEP__ 
+- __state_machine.Sleep__ 
 ## Software Architecture and System's Features
 
 * __usr_cmd.cpp__ 
