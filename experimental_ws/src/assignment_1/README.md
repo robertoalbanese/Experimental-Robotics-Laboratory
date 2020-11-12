@@ -5,11 +5,25 @@
    - __Date:__ 10-28-2020
 
 ## Indrodution
+This is the first assignment of the course *Experimental Robotics*. I am asked to build an ROS architecture to implement a dog alike robot’s behavior.
+In this project folder the reader will encounter the following folders:
+- [doc](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/doc/html) Doxygen documentation
+- [launch](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/launch) Launch files
+- [src](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/src) Source files
+- [srv](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/srv) Service files 
 
-- __state_machine.Play__  
-- __state_machine.Normal__ 
-- __state_machine.Sleep__ 
 ## Software Architecture and System's Features
+The scenario is represented by a robot, simulating a pet, that interacts with a human and moves in a discrete 2D environment. 
+The robot has three possible behaviors: it can sleep, Play or Stay in a Normal state.
+The software architecture is composed by four elements:
+IMAGE
+* __User Command__: it represents the user command "play"
+* __Command Manager__: it is the main part of the architecture in which the **FSM** is.
+* __Navigation__: it manages the motion of the robot and brings it to the new position
+* __Random Position Generator__: generates random positions
+
+Navigation and Random Position Generator are services because they are thought to operate in a syncronous mode; they will generate a new position and move the robot to the generated position only when it is specifically requested from the code.
+While, User Command is meant to be a node because it has to behave in an asyncronous mode: it must send a command randomly.
 
 * __usr_cmd.cpp__ 
 * __rand_position.cpp__ 
