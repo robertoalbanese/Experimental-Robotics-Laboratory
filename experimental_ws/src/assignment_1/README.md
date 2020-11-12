@@ -2,17 +2,17 @@
 ## Indrodution
 
 - __PLAY__  
-- __NORMAL__ 
+- __state_machine.Normal__ 
 - __SLEEP__ 
 ## Software Architecture and System's Features
 
-* __usr_cmd__ 
-* __rand_position__ 
+* __usr_cmd.cpp__ 
+* __rand_position.cpp__ 
    1. 
    2. 
-* __navigation__ 
+* __navigation.cpp__ 
    
-* __state_machine__ is the core node , that manages information from the two previous publishers and implements a _Finite State Machine_ which alternates the three possible states (__PLAY__,__NORMAL__ and __SLEEP__). Finally in according to them it makes some requests to the _Navigation_ service in order to move the robot. 
+* __state_machine.py__ is the core node , that manages information from the two previous publishers and implements a _Finite State Machine_ which alternates the three possible states (__PLAY__,__NORMAL__ and __SLEEP__). Finally in according to them it makes some requests to the _Navigation_ service in order to move the robot. 
 It should be noted that this node continuously receives positions from the _getPosition_ node but simply ignores such information when it is in a finite state where those data is not needed.
 
 ## Finite State Machine 
