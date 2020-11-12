@@ -35,7 +35,7 @@ In the  [source folder](https://github.com/robertoalbanese/Experimental-Robotics
 * __state_machine.py__ is the core node that manages information from the two services and the publisher. It initializes and executes a state machine, using the library *smach_ros*, in which all the three states and their behaviours are defined.<br>
 
 In the [service folder](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/srv) is it possible to find the two files used by the services:
-* __get_pos.serv__: the request part of the message represents the boundaries of the map. The service cannot generate a random position outside of the map. The respose part represents the new generated random position.
+* __get_pos.srv__: the request part of the message represents the boundaries of the map. The service cannot generate a random position outside of the map. The respose part represents the new generated random position.
 ```
 int64 minx
 int64 maxx
