@@ -7,31 +7,31 @@
 ## Indrodution
 This is the first assignment of the course *Experimental Robotics*. I am asked to build an ROS architecture to implement a dog alike robot’s behavior.
 In this project folder the reader will encounter the following folders:
-- [doc](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/doc/html) Doxygen documentation
-- [launch](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/launch) Launch files
-- [src](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/src) Source files
-- [srv](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/srv) Service files 
+- [doc](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/doc/html) Doxygen documentation;
+- [launch](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/launch) Launch files;
+- [src](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/src) Source files;
+- [srv](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/srv) Service files.
 
 ## Software Architecture and System's Features
 The scenario is represented by a robot, simulating a pet, that interacts with a human and moves in a discrete 2D environment. <br>
 The robot has three possible behaviors: it can Sleep, Play or stay in a Normal state.<br><br>
 In the Normal state the robot has to move randomly.<br><br>
 In the Sleep state the robot chooses a random location and sleep there for a random amount of time. Then it goes back in the Normal state. The robot can pass to the Spleep state only from the Normal state in a random time instant.<br><br>
-In the Play state the robot reaches the User and waits until it points to a random position. The robot has to reach the position and then come back to the user. The robot can reach the Play state only from the Normal state and only when a "Play" command is recived.<br><br>
+In the Play state the robot reaches the User and waits until it points to a random position. The robot has to reach the position and then come back to the user. The robot can reach the Play state only from the Normal state and only when a "Play" command is recived. The robot can remain in the Play state for multiple iterations.<br><br>
 The software architecture is composed by four elements:
 ![alt text](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/blob/master/experimental_ws/src/assignment_1/Architecture.jpg)
-* __User Command__: it represents the user command "play"
-* __Command Manager__: it is the main part of the architecture in which the **FSM** is.
-* __Navigation__: it manages the motion of the robot and brings it to the new position
-* __Random Position Generator__: generates random positions
+* __User Command__: it represents the user command "play";
+* __Command Manager__: it is the main part of the architecture in which the **FSM** is;
+* __Navigation__: it manages the motion of the robot and brings it to the new position;
+* __Random Position Generator__: generates random positions.
 
 Navigation and Random Position Generator are services because they are thought to operate in a syncronous mode. They will generate a new position and move the robot to the generated position only when it is specifically requested from the code. On the other hand, User Command is meant to be a node because it has to behave in an asyncronous mode (it must send a command randomly).
 ### File list
 In the  [source folder](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/src) it is possible to find four files which compose the whole architecture:
 
-* __usr_cmd.cpp__: it is the only node leaving out the state machine. In here I have defined a publisher which randomly publishes a string "Play" in the topic *hw1_usr_cmd*.
-* __rand_position.cpp__: it is the fist service of the architecture. It waits for a request message of the type *get_pos.srv* and randomly generates a 2D position
-* __navigation.cpp__: it is the second service of the architecture. It waits for a request message of the type *reach_next_pos.srv* in which it is present the new position where the robot needs to go, waits for a reasonable amount of time to simulate a motion, and gives as response the new current position.   
+* __usr_cmd.cpp__: it is the only node leaving out the state machine. In here I have defined a publisher which randomly publishes a string "Play" in the topic *hw1_usr_cmd*;
+* __rand_position.cpp__: it is the fist service of the architecture. It waits for a request message of the type *get_pos.srv* and randomly generates a 2D position;
+* __navigation.cpp__: it is the second service of the architecture. It waits for a request message of the type *reach_next_pos.srv* in which it is present the new position where the robot needs to go, waits for a reasonable amount of time to simulate a motion, and gives as response the new current position;
 * __state_machine.py__ is the core node that manages information from the two services and the publisher. It initializes and executes a state machine, using the library *smach_ros*, in which all the three states and their behaviours are defined.<br>
 
 In the [service folder](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/srv) is it possible to find the two files used by the services:
@@ -54,59 +54,35 @@ int64 x
 int64 y
 ```
 In the [launch folder](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/launch) it is present the launch file used to execute all the nodes.
-## Finite State Machine 
-The finite state machine, present in the _commandManager_ node, was developed as follows: 
-* __NORMAL__ : First of all _NORMAL_ is the initial state. In this state the _FSM_ checks if the _state_ variable (which contains the strings published from the _speakPerception_ node) is equal to the string _play_. In that case the _FSM_ goes in _PLAY_ state. Otherwise it makes a request to the _Navigation_ service to go in a random position provided by the _getPosition_ node. 
-Then this routine is iterated for a random number of times (max 3 times) after which the robot goes in _SLEEP_ mode. 
-* __PLAY__ : In this state the _commandManager_ moves the robot to the goal position which is just the last position sent by the _getPosition_ node. Then it call again the _Navigation_ service sending as goal position the user position, in order to tell the robot to come back to the user. After then that the _FSM_ come back in _NORMAL_ mode.
-* __SLEEP__ : The robot goes to the home which is a known position a priori chosen. Then it sleeps for a random time after which the _FSM_ goes in NORML mode. 
 
 ## Installation
-In order to use this package it's necessary to install the _smach_ library which allows to implement a _Finite State Machine_. So on a command window digit:
+There are few steps to follow before to being able to execute the code. Firs of all we need to intall the _smach_ library to let ROS to work with finite state machines:
 ```
-
 $ sudo apt-get install ros-kinetic-smach-viewer
 ```
-Of coure it's also required to make a _catkin_make_ in your _ROS_ workspace
-### File list
-In this package you can find in the _src_ directory the three nodes file and the service. In the _launch_ directory has been defined several launch files to test the system (_assignment1.launch_ launches every components of the system). _srv_ directory contains the definition of the only service of the architecture. Finally you can find three _bash command file_ usefull to test the system avoiding to digit long terminals commands :
-- __run_sys.sh__ allows to launch all componets of the system without the _getPosition_node
-- __run_gesPosition.sh__ launches the _getPosition_ node
-- __impossiblePosition.sh__  just publishes on the _Position_ topic a position messagge which is out of the map. This is usefull to test the response of the system in case the user points a position which is not reachable from the robot.     
+It's also required to make a _catkin_make_ in your _ROS_ workspace. Check [ROS tutorials](http://wiki.ros.org/catkin/Tutorials) to see how to do it.    
 
 ## Usage
-First of all remeber to source your wrokspace in every terminal you will use.
+First of all it is required to source your workspace setup.bash file.
 If wou want run the whole project just type:
 ```
-
-$ roslaunch assignment1 assignment1.launch
+$ roslaunch assignment_1 assignment_1.launch
 ```
-### Test getPosition 
-In order to test in two different terminals the messages random generates by the _getPosition_ node and see the their effects, plese go to the _assignment1_ directory and execute from shell:
-```
-
-$ cd ~/assignment1
-$ ./run_getPosition.sh
-```
-and then in another terminal execute
-```
-
-$ cd ~/assignment1
-$ ./run_sys.sh
-```
-You will see in first terminal window the positions randomly generated by _getPostion_ and the response in real time of the _commandManager_ node.
-### Test impossible position
-```
-
-$ cd ~/assignment1
-$ ./run_sys.sh
-```
-and in a new terminal execute
-```
-
-$ cd ~/assignment1
-$ ./impossiblePosition.sh
-```
+The launch file is done in a way that it makes possible to see the state of the **FSM** in the *smach_viewer* node automatically.<br>
+In the terminal in which the roslaunch command is executed it is possible to see the current positions of the robot.<br><br>
+In order to manually execute the nodes/services to see in each terminal the data generated from each node/service, it is required to *rosrun* each node/service listed in *assignment_1.launch* in the exact same order they are listed in.
+## Software Limitation and Possible technical Improvements
+### Limitations
+- The system generates randomly the boundaries of the map and the position of the user and it's not implemented a routine to accept these information from a configuration file yet;
+- It is not implemented a routine to check if the new randomly generated position is inside or outside of the boundaries of the map.
+### Possible Improvements
+- Recive informations, as the map or the position of the user, from a configuration file;
+- Let the user change his/her position during the execution;
+- Add a microphone sensor to the robot, so that the user can command the robot by speech;
+- Implement a real navigation algorithm;
+- Add more states as Eat or Drink.
+## Contacts
+Roberto Albanese ralbanese18@gmail.com
 <br>
 <br>
 <br>
