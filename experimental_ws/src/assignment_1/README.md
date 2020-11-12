@@ -15,9 +15,9 @@ In this project folder the reader will encounter the following folders:
 ## Software Architecture and System's Features
 The scenario is represented by a robot, simulating a pet, that interacts with a human and moves in a discrete 2D environment. <br>
 The robot has three possible behaviors: it can Sleep, Play or stay in a Normal state.<br><br>
-In the Normal state the robot has to move randomly.<br>
-In the Sleep state the robot chooses a random location and sleep there for a random amount of time. Then it will go back in the Normal state. The robot can pass to the Spleep state only from the Normal state in a random time instant.<br>
-In the Play state the robot reaches the User and waits untill it points to a random position. The robot has to reach the position and then come back to the user. The robot can reach the Play state only from the Normal state and only when a "Play" command is recived.<br>
+In the Normal state the robot has to move randomly.<br><br>
+In the Sleep state the robot chooses a random location and sleep there for a random amount of time. Then it goes back in the Normal state. The robot can pass to the Spleep state only from the Normal state in a random time instant.<br><br>
+In the Play state the robot reaches the User and waits until it points to a random position. The robot has to reach the position and then come back to the user. The robot can reach the Play state only from the Normal state and only when a "Play" command is recived.<br><br>
 The software architecture is composed by four elements:
 IMAGE
 * __User Command__: it represents the user command "play"
@@ -25,18 +25,37 @@ IMAGE
 * __Navigation__: it manages the motion of the robot and brings it to the new position
 * __Random Position Generator__: generates random positions
 
-Navigation and Random Position Generator are services because they are thought to operate in a syncronous mode; they will generate a new position and move the robot to the generated position only when it is specifically requested from the code.
-While, User Command is meant to be a node because it has to behave in an asyncronous mode (it must send a command randomly).
+Navigation and Random Position Generator are services because they are thought to operate in a syncronous mode. They will generate a new position and move the robot to the generated position only when it is specifically requested from the code. On the other hand, User Command is meant to be a node because it has to behave in an asyncronous mode (it must send a command randomly).
+### File list
+In the  [source folder](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/src) it is possible to find four files which compose the whole architecture:
 
-* __usr_cmd.cpp__ 
-* __rand_position.cpp__ 
-   1. 
-   2. 
-* __navigation.cpp__ 
-   
-* __state_machine.py__ is the core node , that manages information from the two previous publishers and implements a _Finite State Machine_ which alternates the three possible states (__PLAY__,__NORMAL__ and __SLEEP__). Finally in according to them it makes some requests to the _Navigation_ service in order to move the robot. 
-It should be noted that this node continuously receives positions from the _getPosition_ node but simply ignores such information when it is in a finite state where those data is not needed.
+* __usr_cmd.cpp__: it is the only node leaving out the state machine. In here I have defined a publisher which randomly publishes a string "Play" in the topic *hw1_usr_cmd*.
+* __rand_position.cpp__: it is the fist service of the architecture. It waits for a request message of the type *get_pos.srv* and randomly generates a 2D position
+* __navigation.cpp__: it is the second service of the architecture. It waits for a request message of the type *reach_next_pos.srv* in which it is present the new position where the robot needs to go, waits for a reasonable amount of time to simulate a motion, and gives as response the new current position.   
+* __state_machine.py__ is the core node that manages information from the two services and the publisher. It initializes and executes a state machine, using the library *smach_ros*, in which all the three states and their behaviours are defined.<br>
 
+In the [service folder](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/srv) is it possible to find the two files used by the services:
+* __get_pos.serv__: the request part of the message represents the boundaries of the map. The service cannot generate a random position outside of the map. The respose part represents the new generated random position.
+```
+
+int64 minx
+int64 maxx
+int64 miny
+int64 maxy
+---
+int64 x
+int64 y
+```
+* __reach_next_pos.srv__:the request part of the message is formed by the new position that the robot has to reach while the response part represents the new current position after the motion.
+```
+
+int64 x
+int64 y
+---
+int64 x
+int64 y
+```
+In the [launch folder](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/launch) it is present the launch file used to execute all the nodes.
 ## Finite State Machine 
 The finite state machine, present in the _commandManager_ node, was developed as follows: 
 * __NORMAL__ : First of all _NORMAL_ is the initial state. In this state the _FSM_ checks if the _state_ variable (which contains the strings published from the _speakPerception_ node) is equal to the string _play_. In that case the _FSM_ goes in _PLAY_ state. Otherwise it makes a request to the _Navigation_ service to go in a random position provided by the _getPosition_ node. 

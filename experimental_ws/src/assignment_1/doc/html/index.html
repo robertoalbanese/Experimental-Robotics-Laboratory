@@ -100,12 +100,29 @@ $(document).ready(function(){initNavTree('index.html','');});
 <li><b>Date:</b> 10-28-2020</li>
 </ul>
 <h2>Indrodution</h2>
-<ul>
-<li><b><a class="el" href="classstate__machine_1_1_play.html" title="Definition of state Play. ">state_machine.Play</a></b></li>
-<li><b><a class="el" href="classstate__machine_1_1_normal.html" title="Definition of state Normal. ">state_machine.Normal</a></b></li>
-<li><b><a class="el" href="classstate__machine_1_1_sleep.html" title="Definition of state Sleep. ">state_machine.Sleep</a></b> <h2>Software Architecture and System's Features</h2>
-</li>
+<p>This is the first assignment of the course <em>Experimental Robotics</em>. I am asked to build an ROS architecture to implement a dog alike robot’s behavior. In this project folder the reader will encounter the following folders:</p><ul>
+<li><a href="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/doc/html">doc</a> Doxygen documentation</li>
+<li><a href="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/launch">launch</a> Launch files</li>
+<li><a href="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/src">src</a> Source files</li>
+<li><a href="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/srv">srv</a> Service files</li>
 </ul>
+<h2>Software Architecture and System's Features</h2>
+<p>The scenario is represented by a robot, simulating a pet, that interacts with a human and moves in a discrete 2D environment. <br />
+ The robot has three possible behaviors: it can Sleep, Play or stay in a Normal state.<br />
+<br />
+ In the Normal state the robot has to move randomly.<br />
+<br />
+ In the Sleep state the robot chooses a random location and sleep there for a random amount of time. Then it will go back in the Normal state. The robot can pass to the Spleep state only from the Normal state in a random time instant.<br />
+<br />
+ In the Play state the robot reaches the User and waits untill it points to a random position. The robot has to reach the position and then come back to the user. The robot can reach the Play state only from the Normal state and only when a "Play" command is recived.<br />
+<br />
+ The software architecture is composed by four elements: IMAGE</p><ul>
+<li><b>User Command</b>: it represents the user command "play"</li>
+<li><b>Command Manager</b>: it is the main part of the architecture in which the <b>FSM</b> is.</li>
+<li><b>Navigation</b>: it manages the motion of the robot and brings it to the new position</li>
+<li><b>Random Position Generator</b>: generates random positions</li>
+</ul>
+<p>Navigation and Random Position Generator are services because they are thought to operate in a syncronous mode; they will generate a new position and move the robot to the generated position only when it is specifically requested from the code. While, User Command is meant to be a node because it has to behave in an asyncronous mode (it must send a command randomly).</p>
 <ul>
 <li><b><a class="el" href="usr__cmd_8cpp.html" title="In this file the publisher to the topic &quot;hw1_usr_cmd&quot; is initialized. ">usr_cmd.cpp</a></b></li>
 <li><b><a class="el" href="rand__position_8cpp.html" title="In this file the service &quot;random_position&quot; is initialized. ">rand_position.cpp</a></b><ol type="1">
