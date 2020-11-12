@@ -1,8 +1,8 @@
-# Assignment 1 - Experimental Robotics Laboratory
+# Behavioral Architecture - Assignment 1
 
-- __Author__ Roberto Albanese
-- __Version__ 1.0
-- __Date__ 10-28-2020
+   - __Author:__ Roberto Albanese
+   - __Version:__ 1.0
+   - __Date:__ 10-28-2020
 
 ## Indrodution
 
@@ -73,3 +73,7 @@ and in a new terminal execute
 $ cd ~/assignment1
 $ ./impossiblePosition.sh
 ```
+
+
+***Robotics Engineering Master - 2nd year***   <br>
+***University of Genoa***
