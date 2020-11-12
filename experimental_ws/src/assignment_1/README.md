@@ -14,7 +14,7 @@ In this project folder the reader will encounter the following folders:
 
 ## Software Architecture and System's Features
 The scenario is represented by a robot, simulating a pet, that interacts with a human and moves in a discrete 2D environment. <br>
-The robot has three possible behaviors: it can Sleep, Play or stay in a Normal state.<br>
+The robot has three possible behaviors: it can Sleep, Play or stay in a Normal state.<br><br>
 In the Normal state the robot has to move randomly.<br>
 In the Sleep state the robot chooses a random location and sleep there for a random amount of time. Then it will go back in the Normal state. The robot can pass to the Spleep state only from the Normal state in a random time instant.<br>
 In the Play state the robot reaches the User and waits untill it points to a random position. The robot has to reach the position and then come back to the user. The robot can reach the Play state only from the Normal state and only when a "Play" command is recived.<br>
