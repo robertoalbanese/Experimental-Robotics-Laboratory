@@ -101,10 +101,10 @@ $(document).ready(function(){initNavTree('index.html','');});
 </ul>
 <h2>Indrodution</h2>
 <p>This is the first assignment of the course <em>Experimental Robotics</em>. I am asked to build an ROS architecture to implement a dog alike robot’s behavior. In this project folder the reader will encounter the following folders:</p><ul>
-<li><a href="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/doc/html">doc</a> Doxygen documentation</li>
-<li><a href="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/launch">launch</a> Launch files</li>
-<li><a href="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/src">src</a> Source files</li>
-<li><a href="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/srv">srv</a> Service files</li>
+<li><a href="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/doc/html">doc</a> Doxygen documentation;</li>
+<li><a href="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/launch">launch</a> Launch files;</li>
+<li><a href="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/src">src</a> Source files;</li>
+<li><a href="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/srv">srv</a> Service files.</li>
 </ul>
 <h2>Software Architecture and System's Features</h2>
 <p>The scenario is represented by a robot, simulating a pet, that interacts with a human and moves in a discrete 2D environment. <br />
@@ -112,43 +112,54 @@ $(document).ready(function(){initNavTree('index.html','');});
 <br />
  In the Normal state the robot has to move randomly.<br />
 <br />
- In the Sleep state the robot chooses a random location and sleep there for a random amount of time. Then it will go back in the Normal state. The robot can pass to the Spleep state only from the Normal state in a random time instant.<br />
+ In the Sleep state the robot chooses a random location and sleep there for a random amount of time. Then it goes back in the Normal state. The robot can pass to the Spleep state only from the Normal state in a random time instant.<br />
 <br />
- In the Play state the robot reaches the User and waits untill it points to a random position. The robot has to reach the position and then come back to the user. The robot can reach the Play state only from the Normal state and only when a "Play" command is recived.<br />
+ In the Play state the robot reaches the User and waits until it points to a random position. The robot has to reach the position and then come back to the user. The robot can reach the Play state only from the Normal state and only when a "Play" command is recived. The robot can remain in the Play state for multiple iterations.<br />
 <br />
- The software architecture is composed by four elements: IMAGE</p><ul>
-<li><b>User Command</b>: it represents the user command "play"</li>
-<li><b>Command Manager</b>: it is the main part of the architecture in which the <b>FSM</b> is.</li>
-<li><b>Navigation</b>: it manages the motion of the robot and brings it to the new position</li>
-<li><b>Random Position Generator</b>: generates random positions</li>
-</ul>
-<p>Navigation and Random Position Generator are services because they are thought to operate in a syncronous mode; they will generate a new position and move the robot to the generated position only when it is specifically requested from the code. While, User Command is meant to be a node because it has to behave in an asyncronous mode (it must send a command randomly).</p>
+ The software architecture is composed by four elements: </p><div class="image">
+<img src="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/blob/master/experimental_ws/src/assignment_1/Architecture.jpg"  alt="alt text"/>
+</div>
 <ul>
-<li><b><a class="el" href="usr__cmd_8cpp.html" title="In this file the publisher to the topic &quot;hw1_usr_cmd&quot; is initialized. ">usr_cmd.cpp</a></b></li>
-<li><b><a class="el" href="rand__position_8cpp.html" title="In this file the service &quot;random_position&quot; is initialized. ">rand_position.cpp</a></b><ol type="1">
-<li></li>
-<li></li>
-</ol>
-</li>
-<li><b><a class="el" href="navigation_8cpp.html" title="In this file the service &quot;reach_new_position&quot; is initialized. ">navigation.cpp</a></b></li>
-<li><b><a class="el" href="state__machine_8py.html" title="FSM of the architecture. ">state_machine.py</a></b> is the core node , that manages information from the two previous publishers and implements a <em>Finite State Machine</em> which alternates the three possible states (<b>PLAY</b>,<b>NORMAL</b> and <b>SLEEP</b>). Finally in according to them it makes some requests to the <em>Navigation</em> service in order to move the robot. It should be noted that this node continuously receives positions from the <em>getPosition</em> node but simply ignores such information when it is in a finite state where those data is not needed.</li>
+<li><b>User Command</b>: it represents the user command "play";</li>
+<li><b>Command Manager</b>: it is the main part of the architecture in which the <b>FSM</b> is;</li>
+<li><b>Navigation</b>: it manages the motion of the robot and brings it to the new position;</li>
+<li><b>Random Position Generator</b>: generates random positions.</li>
 </ul>
-<h2>Finite State Machine</h2>
-<p>The finite state machine, present in the <em>commandManager</em> node, was developed as follows:</p><ul>
-<li><b>NORMAL</b> : First of all <em>NORMAL</em> is the initial state. In this state the <em>FSM</em> checks if the <em>state</em> variable (which contains the strings published from the <em>speakPerception</em> node) is equal to the string <em>play</em>. In that case the <em>FSM</em> goes in <em>PLAY</em> state. Otherwise it makes a request to the <em>Navigation</em> service to go in a random position provided by the <em>getPosition</em> node. Then this routine is iterated for a random number of times (max 3 times) after which the robot goes in <em>SLEEP</em> mode.</li>
-<li><b>PLAY</b> : In this state the <em>commandManager</em> moves the robot to the goal position which is just the last position sent by the <em>getPosition</em> node. Then it call again the <em>Navigation</em> service sending as goal position the user position, in order to tell the robot to come back to the user. After then that the <em>FSM</em> come back in <em>NORMAL</em> mode.</li>
-<li><b>SLEEP</b> : The robot goes to the home which is a known position a priori chosen. Then it sleeps for a random time after which the <em>FSM</em> goes in NORML mode.</li>
+<p>Navigation and Random Position Generator are services because they are thought to operate in a syncronous mode. They will generate a new position and move the robot to the generated position only when it is specifically requested from the code. On the other hand, User Command is meant to be a node because it has to behave in an asyncronous mode (it must send a command randomly). </p><h3>File list</h3>
+<p>In the <a href="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/src">source folder</a> it is possible to find four files which compose the whole architecture:</p>
+<ul>
+<li><b><a class="el" href="usr__cmd_8cpp.html" title="In this file the publisher to the topic &quot;hw1_usr_cmd&quot; is initialized. ">usr_cmd.cpp</a></b>: it is the only node leaving out the state machine. In here I have defined a publisher which randomly publishes a string "Play" in the topic <em>hw1_usr_cmd</em>;</li>
+<li><b><a class="el" href="rand__position_8cpp.html" title="In this file the service &quot;random_position&quot; is initialized. ">rand_position.cpp</a></b>: it is the fist service of the architecture. It waits for a request message of the type <em>get_pos.srv</em> and randomly generates a 2D position;</li>
+<li><b><a class="el" href="navigation_8cpp.html" title="In this file the service &quot;reach_new_position&quot; is initialized. ">navigation.cpp</a></b>: it is the second service of the architecture. It waits for a request message of the type <em>reach_next_pos.srv</em> in which it is present the new position where the robot needs to go, waits for a reasonable amount of time to simulate a motion, and gives as response the new current position;</li>
+<li><b><a class="el" href="state__machine_8py.html" title="FSM of the architecture. ">state_machine.py</a></b> is the core node that manages information from the two services and the publisher. It initializes and executes a state machine, using the library <em>smach_ros</em>, in which all the three states and their behaviours are defined.<br />
+</li>
+</ul>
+<p>In the <a href="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/srv">service folder</a> is it possible to find the two files used by the services:</p><ul>
+<li><b>get_pos.srv</b>: the request part of the message represents the boundaries of the map. The service cannot generate a random position outside of the map. The respose part represents the new generated random position. <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;int64 minx</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;int64 maxx</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;int64 miny</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;int64 maxy</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;---</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;int64 x</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;int64 y</div></div><!-- fragment --></li>
+<li><b>reach_next_pos.srv</b>:the request part of the message is formed by the new position that the robot has to reach while the response part represents the new current position after the motion. <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;int64 x</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;int64 y</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;---</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;int64 x</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;int64 y</div></div><!-- fragment --> In the <a href="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/launch">launch folder</a> it is present the launch file used to execute all the nodes.</li>
 </ul>
 <h2>Installation</h2>
-<p>In order to use this package it's necessary to install the <em>smach</em> library which allows to implement a <em>Finite State Machine</em>. So on a command window digit: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;$ sudo apt-get install ros-kinetic-smach-viewer</div></div><!-- fragment --><p> Of coure it's also required to make a <em>catkin_make</em> in your <em>ROS</em> workspace </p><h3>File list</h3>
-<p>In this package you can find in the <em>src</em> directory the three nodes file and the service. In the <em>launch</em> directory has been defined several launch files to test the system (<em>assignment1.launch</em> launches every components of the system). <em>srv</em> directory contains the definition of the only service of the architecture. Finally you can find three <em>bash command file</em> usefull to test the system avoiding to digit long terminals commands :</p><ul>
-<li><b>run_sys.sh</b> allows to launch all componets of the system without the <em>getPosition_node</em></li>
-<li><em><b>run_gesPosition.sh</b> launches the _getPosition</em> node</li>
-<li><b>impossiblePosition.sh</b> just publishes on the <em>Position</em> topic a position messagge which is out of the map. This is usefull to test the response of the system in case the user points a position which is not reachable from the robot.</li>
-</ul>
+<p>There are few steps to follow before to being able to execute the code. Firs of all we need to intall the <em>smach</em> library to let ROS to work with finite state machines: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;$ sudo apt-get install ros-kinetic-smach-viewer</div></div><!-- fragment --><p> It's also required to make a <em>catkin_make</em> in your <em>ROS</em> workspace. Check <a href="http://wiki.ros.org/catkin/Tutorials">ROS tutorials</a> to see how to do it.</p>
 <h2>Usage</h2>
-<p>First of all remeber to source your wrokspace in every terminal you will use. If wou want run the whole project just type: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;$ roslaunch assignment1 assignment1.launch</div></div><!-- fragment --> <h3>Test getPosition</h3>
-<p>In order to test in two different terminals the messages random generates by the <em>getPosition</em> node and see the their effects, plese go to the <em>assignment1</em> directory and execute from shell: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;$ cd ~/assignment1</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;$ ./run_getPosition.sh</div></div><!-- fragment --><p> and then in another terminal execute </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;$ cd ~/assignment1</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;$ ./run_sys.sh</div></div><!-- fragment --><p> You will see in first terminal window the positions randomly generated by <em>getPostion</em> and the response in real time of the <em>commandManager</em> node. ### Test impossible position </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;$ cd ~/assignment1</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;$ ./run_sys.sh</div></div><!-- fragment --><p> and in a new terminal execute </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;$ cd ~/assignment1</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;$ ./impossiblePosition.sh</div></div><!-- fragment --><p> <br />
+<p>First of all it is required to source your workspace setup.bash file. If wou want run the whole project just type: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;$ roslaunch assignment_1 assignment_1.launch</div></div><!-- fragment --><p> The launch file is done in a way that it makes possible to see the state of the <b>FSM</b> in the <em>smach_viewer</em> node automatically.<br />
+ In the terminal in which the roslaunch command is executed it is possible to see the current positions of the robot.<br />
+<br />
+ In order to manually execute the nodes/services to see in each terminal the data generated from each node/service, it is required to <em>rosrun</em> each node/service listed in <em>assignment_1.launch</em> in the exact same order they are listed in. </p><h2>Software Limitation and Possible technical Improvements</h2>
+<h3>Limitations</h3>
+<ul>
+<li>The system generates randomly the boundaries of the map and the position of the user and it's not implemented a routine to accept these information from a configuration file yet;</li>
+<li>It is not implemented a routine to check if the new randomly generated position is inside or outside of the boundaries of the map. <h3>Possible Improvements</h3>
+</li>
+</ul>
+<ul>
+<li>Recive informations, as the map or the position of the user, from a configuration file;</li>
+<li>Let the user change his/her position during the execution;</li>
+<li>Add a microphone sensor to the robot, so that the user can command the robot by speech;</li>
+<li>Implement a real navigation algorithm;</li>
+<li>Add more states as Eat or Drink. <h2>Contacts</h2>
+</li>
+</ul>
+<p>Roberto Albanese <a href="#" onclick="location.href='mai'+'lto:'+'ral'+'ba'+'nes'+'e1'+'8@g'+'ma'+'il.'+'co'+'m'; return false;">ralba<span style="display: none;">.nosp@m.</span>nese<span style="display: none;">.nosp@m.</span>18@gm<span style="display: none;">.nosp@m.</span>ail.<span style="display: none;">.nosp@m.</span>com</a> <br />
  <br />
  <br />
 </p>
