@@ -37,7 +37,6 @@ In the  [source folder](https://github.com/robertoalbanese/Experimental-Robotics
 In the [service folder](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/srv) is it possible to find the two files used by the services:
 * __get_pos.serv__: the request part of the message represents the boundaries of the map. The service cannot generate a random position outside of the map. The respose part represents the new generated random position.
 ```
-
 int64 minx
 int64 maxx
 int64 miny
@@ -48,7 +47,6 @@ int64 y
 ```
 * __reach_next_pos.srv__:the request part of the message is formed by the new position that the robot has to reach while the response part represents the new current position after the motion.
 ```
-
 int64 x
 int64 y
 ---
