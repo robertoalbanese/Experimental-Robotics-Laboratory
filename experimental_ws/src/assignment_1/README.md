@@ -5,7 +5,7 @@
    - __Date:__ 10-28-2020
 
 ## Indrodution
-This is the first assignment of the course *Experimental Robotics*. I am asked to build an ROS architecture to implement a dog alike robot’s behavior.
+This is the first assignment of the course *Experimental Robotics*. I am asked to build a ROS architecture to implement a dog alike robot’s behavior.
 In this project folder the reader will encounter the following folders:
 - [doc](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/doc/html) Doxygen documentation;
 - [launch](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/assignment_1/launch) Launch files;
