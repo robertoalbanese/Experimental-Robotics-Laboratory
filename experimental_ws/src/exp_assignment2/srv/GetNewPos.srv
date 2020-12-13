@@ -1,0 +1,7 @@
+int64 minx
+int64 maxx
+int64 miny
+int64 maxy
+---
+int64 x
+int64 y
