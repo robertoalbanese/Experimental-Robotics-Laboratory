@@ -11,8 +11,11 @@ import smach
 import smach_ros
 import time
 import random
+import actionlib
+import actionlib.msg
+import exp_assignment2.msg
 from collections import namedtuple
-from std_msgs.msg import String
+from std_msgs.msg import String, Bool
 from geometry_msgs.msg import Pose2D
 from exp_assignment2.srv import *
 
@@ -36,15 +39,30 @@ def get_command(data):
 # @return **resp** new current position (resp.x, resp.y)
 
 
+def feedback_cb(msg):
+    print 'Feedback received:', msg
+
+
 def go_to_new_position(x, y):
-    rospy.wait_for_service('/robot/reach_new_position')
+    # rospy.wait_for_service('/robot/reaching_goal')
     try:
-        new_pos = rospy.ServiceProxy('/robot/reach_new_position', ReachNextPosition)
-        resp = new_pos(x, y)
-        return resp
+        new_pos = actionlib.SimpleActionClient(
+            '/robot/reaching_goal', exp_assignment2.msg.PlanningAction)
+        new_pos.wait_for_server(rospy.Duration(10.0))
+        msg = exp_assignment2.msg.PlanningActionGoal()
+        msg.goal.target_pose.pose.position.x = x
+        msg.goal.target_pose.pose.position.y = y
+        new_pos.send_goal(msg.goal, feedback_cb=feedback_cb)
+        new_pos.wait_for_result()
+        print "hey"
+        return
     except rospy.ServiceException, e:
         print "Service call failed: %s" % e
 
+
+def update_state(msg):
+    global ball_detected
+    ball_detected = msg.data
 
 # Next random position client.
 #
@@ -55,6 +73,7 @@ def go_to_new_position(x, y):
 # @param ymax high boundary of the map for the y coordinate
 # @return **resp** new random position (resp.x, resp.y)
 
+
 def get_position_client(xmin, xmax, ymin, ymax):
     rospy.wait_for_service('new_rand_pos_srv')
     try:
@@ -64,13 +83,13 @@ def get_position_client(xmin, xmax, ymin, ymax):
     except rospy.ServiceException, e:
         print "Service call failed: %s" % e
 
-## Definition of state Sleep
+# Definition of state Sleep
 #
 # In this state the robot will go to sleep and then will return in the Normal state
 
 
 class Sleep(smach.State):
-    ## Initialization of the state.
+    # Initialization of the state.
     #
     # The outcomes are defined.
     def __init__(self):
@@ -79,7 +98,7 @@ class Sleep(smach.State):
                              outcomes=['gotoNormal'],
                              )
 
-    ## Body of the class
+    # Body of the class
     def execute(self, userdata):
         # function called when exiting from the node, it can be blacking
         time.sleep(1)
@@ -91,13 +110,13 @@ class Sleep(smach.State):
         time.sleep(1)
         return 'gotoNormal'
 
-## Definition of state Normal
+# Definition of state Normal
 #
 # In this state the robot will randomly navigate untill either a command is recived from the user or the robot randomly decides to go to Sleep.
 
 
 class Normal(smach.State):
-    ## Initialization of the state.
+    # Initialization of the state.
     #
     # The outcomes are defined.
     def __init__(self):
@@ -106,7 +125,7 @@ class Normal(smach.State):
                              outcomes=['gotoSleep', 'gotoPlay', 'gotoNormal'],
                              )
 
-    ## Body of the class
+    # Body of the class
     def execute(self, userdata):
         # function called when exiting from the node, it can be blacking
         time.sleep(1)
@@ -114,36 +133,42 @@ class Normal(smach.State):
 
         global command
         global pub
+        global ball_detected
 
         time.sleep(1)
 
-        #~ # Check if a command is been received
-        #~ if (command == "Play"):
-            #~ command = ""
-            #~ return 'gotoPlay'
+        # ~ # Check if a command is been received
+        # ~ if (command == "Play"):
+        # ~ command = ""
+        # ~ return 'gotoPlay'
 
-        #~ # Randomly going to sleep
-        #~ if (random.randint(1, 5) == 1):
-            #~ return 'gotoSleep'
+        # ~ # Randomly going to sleep
+        # ~ if (random.randint(1, 5) == 1):
+        # ~ return 'gotoSleep'
 
         # Move to a new random position
-        new_pos = get_position_client(x.min, x.max, y.min, y.max)
+        # new_pos = get_position_client(x.min, x.max, y.min, y.max)
         print x
         print y
-        reached_pos = go_to_new_position(new_pos.x, new_pos.y)
-        
-        rospy.loginfo('Dog: I\'m in      [%d,%d]',
+        # reached_pos = go_to_new_position(new_pos.x, new_pos.y)
+        go_to_new_position(5, 0)
+        if ball_detected == True:
+            return 'gotoPlay'
+
+        """    rospy.loginfo('Dog: I\'m in      [%d,%d]',
                       reached_pos.x, reached_pos.y)
-        time.sleep(1)
+        time.sleep(1) """
+        # Wait for ctrl-c to stop the application
+        rospy.spin()
         return 'gotoNormal'
 
-## Definition of state Play
+# Definition of state Play
 #
 # In this state the robot will reach the user, it will go in the pointed position and it will finally come back to the user.
 
 
 class Play(smach.State):
-    ## Initialization of the state.
+    # Initialization of the state.
     #
     # The outcomes are defined.
     def __init__(self):
@@ -152,7 +177,7 @@ class Play(smach.State):
                              outcomes=['gotoNormal', 'gotoPlay'],
                              )
 
-    ## Body of the class
+    # Body of the class
     def execute(self, userdata):
         # function called when exiting from the node, it can be blacking
         time.sleep(1)
@@ -199,6 +224,13 @@ def main():
 
     # define environment structure builder
     env_struct = namedtuple("env_struct", "min max user")
+
+    global ball_detected
+
+    # A subscriber to the topic '/ball/state'. self.update_state is called
+    # when a message of type Bool is received.
+    msg_ballstate_subscriber = rospy.Subscriber(
+        '/ball/state', Bool, update_state)
 
     # Build environment
     xmin = -4
