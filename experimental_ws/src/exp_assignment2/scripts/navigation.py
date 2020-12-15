@@ -3,6 +3,7 @@
 import rospy
 from sensor_msgs.msg import LaserScan
 from geometry_msgs.msg import Twist, Point
+from std_msgs.msg import Bool
 from nav_msgs.msg import Odometry
 from gazebo_msgs.msg import LinkState
 from tf import transformations
@@ -37,14 +38,23 @@ class Navigation:
 
         # A subscriber to the topic '/robot/pose'. self.update_pose is called
         # when a message of type Pose is received.
-        self.msg_posesubscriber = rospy.Subscriber(
+        self.msg_pose_subscriber = rospy.Subscriber(
             '/robot/odom', Odometry, self.update_pose)
+
+        # A subscriber to the topic '/ball/state'. self.update_state is called
+        # when a message of type Bool is received.
+        self.msg_ballstate_subscriber = rospy.Subscriber(
+            '/ball/state', Bool, self.update_state)
 
         # An action service for the server /robot/reach_new_position'. move2goal() is called
         # whenever a cliend request is received.
         self.act_s = actionlib.SimpleActionServer(
             '/robot/reaching_goal', exp_assignment2.msg.PlanningAction, self.planning, auto_start=False)
         self.act_s.start()
+
+    def update_state(self, msg):
+        if msg.data == True:
+            self.state = 2
 
     def change_state(self, new_state):
         self.state = new_state
@@ -62,7 +72,6 @@ class Navigation:
         self.msg_pose.x = round(data.pose.pose.position.x, 4)
         self.msg_pose.y = round(data.pose.pose.position.y, 4)
         self.msg_pose.theta = round(yaw, 4)
-        print self.msg_pose
 
     def euclidean_distance(self, goal_pose):
         """Euclidean distance between current pose and the goal."""
@@ -123,11 +132,11 @@ class Navigation:
 
         self.state = 0
         success = True
-        print goal
         feedback = exp_assignment2.msg.PlanningFeedback()
         result = exp_assignment2.msg.PlanningResult()
 
         while not rospy.is_shutdown():
+            print self.state
             if self.act_s.is_preempt_requested():
                 rospy.loginfo('Goal was preempted')
                 self.act_s.set_preempted()
@@ -135,14 +144,22 @@ class Navigation:
                 break
             elif self.state == 0:
                 feedback.stat = "Reaching the goal"
-                feedback.position = self.msg_pose
+                feedback.position.position.x = self.msg_pose.x
+                feedback.position.position.y = self.msg_pose.y
                 self.act_s.publish_feedback(feedback)
                 self.move2goal(goal)
+                print 0
             elif self.state == 1:
                 feedback.stat = "Target reached!"
-                feedback.position = self.msg_pose
+                feedback.position.position.x = self.msg_pose.x
+                feedback.position.position.y = self.msg_pose.y
                 self.act_s.publish_feedback(feedback)
                 self.done()
+                print 1
+            elif self.state == 2:
+                rospy.loginfo('Green ball seen!')
+                self.act_s.set_aborted("aborted")
+                print 2
                 break
             else:
                 rospy.logerr('Unknown state!')
