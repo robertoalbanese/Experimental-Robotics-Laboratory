@@ -181,7 +181,7 @@ add_dependencies(new_rand_pos_srv ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_E
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
  install(PROGRAMS
-   scripts/go_to_point_ball.py
+   go_to_point_ball.py
    usr_cmd_client.py
    navigation.py
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
