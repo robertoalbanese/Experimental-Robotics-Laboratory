@@ -131,7 +131,7 @@ class Normal(smach.State):
         print x
         print y
         reached_pos = go_to_new_position(new_pos.x, new_pos.y)
-
+        
         rospy.loginfo('Dog: I\'m in      [%d,%d]',
                       reached_pos.x, reached_pos.y)
         time.sleep(1)
