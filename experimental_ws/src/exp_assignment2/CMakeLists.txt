@@ -58,8 +58,7 @@ find_package (OpenCV REQUIRED)
 ## Generate messages in the 'msg' folder
 # add_message_files(
 #   FILES
-#   Message1.msg
-#   Message2.msg
+#   BallState.msg
 # )
 
 ## Generate services in the 'srv' folder
@@ -82,6 +81,7 @@ find_package (OpenCV REQUIRED)
    geometry_msgs
    actionlib_msgs
    nav_msgs
+   std_msgs
  )
 
 ################################################
@@ -184,6 +184,7 @@ add_dependencies(new_rand_pos_srv ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_E
    go_to_point_ball.py
    usr_cmd_client.py
    navigation.py
+   ball_perception.py
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
  )
 
