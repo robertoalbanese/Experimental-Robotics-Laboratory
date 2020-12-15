@@ -26,7 +26,7 @@ def main():
     rospy.init_node('user_command_client')
     
     #Action client initialization
-    client = actionlib.SimpleActionClient('/reaching_goal', exp_assignment2.msg.PlanningAction)
+    client = actionlib.SimpleActionClient('/ball/reaching_goal', exp_assignment2.msg.PlanningAction)
     client.wait_for_server()
 
     # Fill in the goal here
@@ -38,9 +38,9 @@ def main():
 		action_msg.goal.target_pose.pose.position.x = randrange(-8, 8)
 		action_msg.goal.target_pose.pose.position.y = randrange(-8, 8)
 		action_msg.goal.target_pose.pose.position.z = 1
-		if andrange(1, 4) == randrange(1, 4): #randomizing the case of disappearing ball
-			action_msg.goal.target_pose.pose.position.z = -1
-			rospy.loginfo('Ball disappeared');
+		#~ if randrange(1, 4) == randrange(1, 4): #randomizing the case of disappearing ball
+			#~ action_msg.goal.target_pose.pose.position.z = -1
+			#~ rospy.loginfo('Ball disappeared');
 
 		#~ rospy.loginfo(action_msg);
 		
