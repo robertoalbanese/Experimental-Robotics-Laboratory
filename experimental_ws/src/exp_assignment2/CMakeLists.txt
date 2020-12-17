@@ -56,17 +56,17 @@ find_package (OpenCV REQUIRED)
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   BallState.msg
-# )
+ add_message_files(
+   FILES
+   BallState.msg
+ )
 
 ## Generate services in the 'srv' folder
- add_service_files(
-   FILES
-   ReachNextPosition.srv
-   GetNewPos.srv
- )
+#add_service_files(
+#   FILES
+#   ReachNextPosition.srv
+#   GetNewPos.srv
+# )
 
 ## Generate actions in the 'action' folder
  add_action_files(
@@ -145,7 +145,7 @@ include_directories(
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/example.cpp)
-add_executable(new_rand_pos_srv scripts/rand_position.cpp)
+#add_executable(new_rand_pos_srv scripts/rand_position.cpp)
 
 # add_executable(${PROJECT_NAME}_node_t src/example_transport.cpp)
 
@@ -159,15 +159,15 @@ add_executable(new_rand_pos_srv scripts/rand_position.cpp)
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-add_dependencies(new_rand_pos_srv ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+#add_dependencies(new_rand_pos_srv ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
 #  target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES} ${OpenCV_LIBRARIES}
 # )
-  target_link_libraries(new_rand_pos_srv ${catkin_LIBRARIES})
-# target_link_libraries(${PROJECT_NAME}_node_t
-#   ${catkin_LIBRARIES} ${OpenCV_LIBRARIES}
+#  target_link_libraries(new_rand_pos_srv ${catkin_LIBRARIES})
+#  target_link_libraries(${PROJECT_NAME}_node_t
+#  ${catkin_LIBRARIES} ${OpenCV_LIBRARIES}
 # )
 
 
