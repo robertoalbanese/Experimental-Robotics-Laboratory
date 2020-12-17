@@ -17,6 +17,8 @@ import cv2
 import roslib
 import rospy
 
+# Custom messages
+from exp_assignment2.msg import BallState
 # Ros Messages
 from sensor_msgs.msg import CompressedImage
 from geometry_msgs.msg import Twist
@@ -37,21 +39,19 @@ class image_feature:
                                          CompressedImage, queue_size=1)
      # @param vel_pub pub for send to the command manager information reguarding the ball and the corraction to       		##apply to the robot
         self.ball_state_pub = rospy.Publisher(
-            "/ball/state", Bool, queue_size=1)
+            "/ball/state", BallState, queue_size=1)
 
      # @param joint_pub to move the head of the robot
         # self.joint_pub = rospy.Publisher("joint_head_controller/command",Float64,queue_size=1)
-
-     # @param vel_pub to move the whole robot
-        self.vel_pub = rospy.Publisher("/robot/cmd_vel", Twist, queue_size=1)
 
         # subscribed Topic
         # @param subsriber to get the compressed images from the camera
         self.camera_sub = rospy.Subscriber("/robot/camera1/image_raw/compressed",
                                            CompressedImage, self.callback,  queue_size=1)
 
-        # @stop it's a stop condition when the robot is too close to the goal
-        self.stop = False
+        # Publisher which will publish to the topic '/joint_head_controller/command' the position of the head.
+        self.head_pos_publisher = rospy.Publisher(
+            '/joint_head_controller/command', Float64, queue_size=1)
 
     def callback(self, ros_data):
         '''Callback function of subscribed topic.
@@ -73,7 +73,7 @@ class image_feature:
         mask = cv2.inRange(hsv, greenLower, greenUpper)
         mask = cv2.erode(mask, None, iterations=2)
         mask = cv2.dilate(mask, None, iterations=2)
-        #cv2.imshow('mask', mask)
+        # cv2.imshow('mask', mask)
         cnts = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL,
                                 cv2.CHAIN_APPROX_SIMPLE)
         cnts = imutils.grab_contours(cnts)
@@ -89,7 +89,6 @@ class image_feature:
             ((x, y), radius) = cv2.minEnclosingCircle(c)
             M = cv2.moments(c)
             center = (int(M["m10"] / M["m00"]), int(M["m01"] / M["m00"]))
-            print radius
 
             # only proceed if the radius meets a minimum size
             if radius > 10:
@@ -98,47 +97,23 @@ class image_feature:
                 cv2.circle(image_np, (int(x), int(y)), int(radius),
                            (0, 255, 255), 2)
                 cv2.circle(image_np, center, 5, (0, 0, 255), -1)
-
-                msg = Bool()
-                msg.data = True
-                print msg
+                msg = BallState()
+                msg.state = True
+                msg.ball_reached = False
+                msg.center = center
+                msg.radius = radius
                 self.ball_state_pub.publish(msg)
-                # check if the robot has reached the object
-
-                # if self.stop == False:
-
-                vel = Twist()
-                # 400 is the center of the image
-                vel.angular.z = -0.005*(center[0]-400)
-                # 150 is the radius that we want see in the image, which represent the desired disatance from the object
-                vel.linear.x = -0.01*(radius-150)
-                print vel.linear.x
-                print radius
-                self.vel_pub.publish(vel)
-                if radius > 129:
-                    self.stop = True
-                # else:
-                    """ self.joint_pub.publish(0.785398)
-                    time.sleep(5)
-                    self.joint_pub.publish(-0.785398)
-                    time.sleep(5)
-                    self.joint_pub.publish(0)
-                    time.sleep(5)
-                    self.stop = False """
-
         else:
-            msg = Bool()
-            print msg
-            msg.data = False
-            print msg
+            msg = BallState()
+            msg.state = False
+            msg.ball_reached = False
             self.ball_state_pub.publish(msg)
-        # update the points queue
-        # pts.appendleft(center)
+
+            # update the points queue
+            # pts.appendleft(center)
 
         cv2.imshow('window', image_np)
         cv2.waitKey(2)
-
-        # self.subscriber.unregister()
 
 
 def main(args):
