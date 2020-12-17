@@ -14,14 +14,24 @@ import random
 import actionlib
 import actionlib.msg
 import exp_assignment2.msg
+from exp_assignment2.msg import BallState
 from collections import namedtuple
-from std_msgs.msg import String, Bool
-from geometry_msgs.msg import Pose2D
+from std_msgs.msg import String, Bool, Float64
+from geometry_msgs.msg import Pose2D, Twist
 from exp_assignment2.srv import *
 
 # User command initialization.
 # Stores the command Play of the user.
 command = ""
+
+ball_state = BallState()
+
+# Publisher which will publish to the topic '/joint_head_controller/command' the position of the head.
+head_pos_publisher = rospy.Publisher(
+    '/robot/joint_head_controller/command', Float64, queue_size=1)
+
+# Publisher vel_pub to move the whole robot
+vel_pub = rospy.Publisher("/robot/cmd_vel", Twist, queue_size=1)
 
 # Subscriber to user command callback.
 # This function is called whenever the publisher of the function usr_cmd.cpp publishes a message in the topic "hw1_usr_cmd". The message is stored in command
@@ -46,23 +56,30 @@ def feedback_cb(msg):
 def go_to_new_position(x, y):
     # rospy.wait_for_service('/robot/reaching_goal')
     try:
+        print x
+        print y
         new_pos = actionlib.SimpleActionClient(
             '/robot/reaching_goal', exp_assignment2.msg.PlanningAction)
         new_pos.wait_for_server(rospy.Duration(10.0))
         msg = exp_assignment2.msg.PlanningActionGoal()
         msg.goal.target_pose.pose.position.x = x
         msg.goal.target_pose.pose.position.y = y
+        print "befor sending goal"
+        time.sleep(2)
         new_pos.send_goal(msg.goal, feedback_cb=feedback_cb)
-        new_pos.wait_for_result()
-        print "hey"
+        time.sleep(2)
+        print "after"
+        new_pos.wait_for_result(rospy.Duration.from_sec(5.0))
+        print "result"
+        """new_pos.cancel_all_goals() """
         return
     except rospy.ServiceException, e:
         print "Service call failed: %s" % e
 
 
 def update_state(msg):
-    global ball_detected
-    ball_detected = msg.data
+    global ball_state
+    ball_state = msg
 
 # Next random position client.
 #
@@ -100,9 +117,11 @@ class Sleep(smach.State):
 
     # Body of the class
     def execute(self, userdata):
-        # function called when exiting from the node, it can be blacking
+        # function called when exiting from the node, it can be blocking
         time.sleep(1)
         rospy.loginfo('State: SLEEP')
+
+        reached_pos = go_to_new_position(-5, 7)
 
         time.sleep(random.randint(1, 6))
         rospy.loginfo('I just woke up!')
@@ -131,9 +150,8 @@ class Normal(smach.State):
         time.sleep(1)
         rospy.loginfo('State: NORMAL')
 
-        global command
-        global pub
-        global ball_detected
+        # global command
+        # global pub
 
         time.sleep(1)
 
@@ -142,25 +160,28 @@ class Normal(smach.State):
         # ~ command = ""
         # ~ return 'gotoPlay'
 
-        # ~ # Randomly going to sleep
-        # ~ if (random.randint(1, 5) == 1):
-        # ~ return 'gotoSleep'
+        # Randomly going to sleep
+        """ if (random.randint(1, 5) == 1):
+            return 'gotoSleep' """
+        if (random.randint(1, 2) == 1):
+            return 'gotoSleep'
 
         # Move to a new random position
-        # new_pos = get_position_client(x.min, x.max, y.min, y.max)
-        print x
-        print y
-        # reached_pos = go_to_new_position(new_pos.x, new_pos.y)
-        go_to_new_position(5, 0)
-        if ball_detected == True:
+        #new_pos = get_position_client(x.min, x.max, y.min, y.max)
+        # request for the service to move in X and Y position
+        new_goal_x = random.randrange(-5, 5)
+        new_goal_y = random.randrange(-5, 5)
+        reached_pos = go_to_new_position(new_goal_x, new_goal_y)
+        # go_to_new_position(-1, -1)
+        if ball_state.state == True:
             return 'gotoPlay'
 
         """    rospy.loginfo('Dog: I\'m in      [%d,%d]',
                       reached_pos.x, reached_pos.y)
         time.sleep(1) """
+        return 'gotoNormal'
         # Wait for ctrl-c to stop the application
         rospy.spin()
-        return 'gotoNormal'
 
 # Definition of state Play
 #
@@ -176,36 +197,48 @@ class Play(smach.State):
         smach.State.__init__(self,
                              outcomes=['gotoNormal', 'gotoPlay'],
                              )
+        # Use time to see how much seconds pass after the ball is no more detected
+        self.now = rospy.Time()
+        self.then = rospy.Time()
+        self.prev_ball_detected = False
 
     # Body of the class
     def execute(self, userdata):
         # function called when exiting from the node, it can be blacking
         time.sleep(1)
         rospy.loginfo('State: PLAY')
+        global ball_state
+        while 1:
+            self.now = rospy.get_rostime()
+            vel = Twist()
+            # 400 is the center of the image
+            vel.angular.z = -0.005*(ball_state.center[0]-400)
+            # 150 is the radius that we want see in the image, which represent the desired disatance from the object
+            vel.linear.x = -0.01*(ball_state.radius-150)
+            # The head mantein a fixed position
+            head_pos_publisher.publish(0)
+            vel_pub.publish(vel)
+            if vel.linear.x < 0.01 and ball_state.radius > 130:
+                head_pos_publisher.publish(0.785398)
+                time.sleep(5)
+                head_pos_publisher.publish(-0.785398)
+                time.sleep(5)
+                head_pos_publisher.publish(0)
+                time.sleep(5)
+                rospy.loginfo("Finito di muovere la testa ")
 
-        # Play behaviour
-        reached_pos = go_to_new_position(x.user, y.user)
-        time.sleep(2)
-        rospy.loginfo('Dog: I\'m in      [%d,%d]',
-                      reached_pos.x, reached_pos.y)
-        new_pos = get_position_client(x.min, x.max, y.min, y.max)
-        time.sleep(1)
-        rospy.loginfo('User: Go to      [%d,%d]', new_pos.x, new_pos.y)
-        reached_pos = go_to_new_position(new_pos.x, new_pos.y)
-        time.sleep(2)
-        rospy.loginfo('Dog: Here I am   [%d,%d]', reached_pos.x, reached_pos.y)
-        reached_pos = go_to_new_position(x.user, y.user)
-        time.sleep(2)
-        rospy.loginfo(
-            'Dog: Back to my owner    [%d,%d]', reached_pos.x, reached_pos.y)
-        time.sleep(1)
+            while self.prev_ball_detected == True and ball_state.state == False:
+                self.then = rospy.get_rostime()
+                if self.then.secs - self.now.secs > 3:
+                    return 'gotoNormal'
 
-        # Randomly reuturn to Normal state
-        if (random.randint(1, 3) == 1):
-            return 'gotoNormal'
-
-        time.sleep(1)
+            self.then = self.now
+            self.prev_ball_detected = ball_state.state
+            time.sleep(1)
         return 'gotoPlay'
+
+        # Wait for ctrl-c to stop the application
+        rospy.spin()
 
 # Main body of the program.
 #
@@ -225,18 +258,16 @@ def main():
     # define environment structure builder
     env_struct = namedtuple("env_struct", "min max user")
 
-    global ball_detected
-
     # A subscriber to the topic '/ball/state'. self.update_state is called
-    # when a message of type Bool is received.
+    # when a message of type BallState is received.
     msg_ballstate_subscriber = rospy.Subscriber(
-        '/ball/state', Bool, update_state)
+        '/ball/state', BallState, update_state)
 
     # Build environment
-    xmin = -4
-    xmax = 4
-    ymin = -4
-    ymax = 4
+    xmin = -1
+    xmax = 1
+    ymin = -1
+    ymax = 1
 
     # Global structs composed of three fields
     global x
