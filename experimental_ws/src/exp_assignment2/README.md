@@ -28,7 +28,7 @@ In the Sleep state the robot goes back to the human and sleeps there for a rando
 In the Play state the robot follows the green ball. If the robot reaches the ball and the ball stops, the robot has to look around with his head and then continue following the ball, if possible. The robot can reach the Play state whenever it sees the ball. The robot remains in the Play state untill it cannot see the ball for a certain amount of time (3s).<br><br>
 The software architecture is composed by five elements:
 <p align="center">
-  <img src="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/blob/master/experimental_ws/src/exp_assignment2/Architecture.png" />
+  <img src="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/blob/master/experimental_ws/src/exp_assignment2/Architecture.jpg" />
 </p>
 
 * __User Command__: it represents the human command to move the ball;
