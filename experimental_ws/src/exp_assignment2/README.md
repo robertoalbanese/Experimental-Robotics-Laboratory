@@ -20,7 +20,7 @@ In this project folder the reader will encounter the following folders:
 The scenario is represented by a robot, simulating a pet, that interacts with a human and moves in a discrete 2D environment. <br>
 The robot has three possible behaviors: it can Sleep, Play or stay in a Normal state.<br><br>
 <p align="center">
-  <img src="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/blob/master/experimental_ws/src/exp_assignment2/FSM.png" />
+  <img src="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/blob/master/experimental_ws/src/exp_assignment2/img/FSM.png" />
 </p>
 
 In the Normal state the robot has to move randomly.<br><br>
@@ -28,7 +28,7 @@ In the Sleep state the robot goes back to the human and sleeps there for a rando
 In the Play state the robot follows the green ball. If the robot reaches the ball and the ball stops, the robot has to look around with his head and then continue following the ball, if possible. The robot can reach the Play state whenever it sees the ball. The robot remains in the Play state untill it cannot see the ball for a certain amount of time (3s).<br><br>
 The software architecture is composed by five elements:
 <p align="center">
-  <img src="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/blob/master/experimental_ws/src/exp_assignment2/Architecture.jpg" />
+  <img src="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/blob/master/experimental_ws/src/exp_assignment2/img/Architecture.jpg" />
 </p>
 
 * __User Command__: it represents the human command to move the ball;
