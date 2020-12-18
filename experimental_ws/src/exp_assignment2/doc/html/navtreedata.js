@@ -1,6 +1,7 @@
 var NAVTREE =
 [
-  [ "Experimental Robotics  - Final Assignment", "index.html", [
+  [ "Exp_Rob Assignment 2", "index.html", [
+    [ "Robot dog Architecture - Assignment 2", "index.html", null ],
     [ "Namespaces", null, [
       [ "Namespace List", "namespaces.html", "namespaces" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -15,7 +16,8 @@ var NAVTREE =
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", null ],
-        [ "Functions", "functions_func.html", null ]
+        [ "Functions", "functions_func.html", null ],
+        [ "Variables", "functions_vars.html", null ]
       ] ]
     ] ],
     [ "Files", null, [

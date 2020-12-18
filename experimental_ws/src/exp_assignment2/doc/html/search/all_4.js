@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['execute',['execute',['../classstate__machine_1_1_sleep.html#a89527836f1edcefb6467fa9c041fbbfe',1,'state_machine.Sleep.execute()'],['../classstate__machine_1_1_normal.html#a2930df5f4890ec4b47b2a8e18f9bff08',1,'state_machine.Normal.execute()'],['../classstate__machine_1_1_play.html#a04168d6842960585b4bbcf58f950547b',1,'state_machine.Play.execute()']]]
+  ['desired_5fposition_5f',['desired_position_',['../namespacego__to__point__ball.html#ac81a8393fb253c9e0b7255f779f16884',1,'go_to_point_ball']]],
+  ['dist_5fprecision_5f',['dist_precision_',['../namespacego__to__point__ball.html#a9a02c8ca89a09909111972ec4fd317ca',1,'go_to_point_ball']]],
+  ['distance_5ftolerance',['distance_tolerance',['../classnavigation_1_1_navigation.html#a3d4022f6ee5dcc413c29359e2d14b192',1,'navigation::Navigation']]],
+  ['done',['done',['../classnavigation_1_1_navigation.html#a77988f5af1de9c97622188f33e349059',1,'navigation.Navigation.done()'],['../namespacego__to__point__ball.html#ab92c8b4240f09ff0b5d960c748ade799',1,'go_to_point_ball.done()']]]
 ];

@@ -1,45 +1,60 @@
 #! /usr/bin/env python
-# import ros stuff
+
+"""!    @file go_to_point_ball.py
+        @brief Ball navigation action server.
+        
+        This file defines the ball navigation field of the architecture."""
+
+# Ros library
 import rospy
+
+# Useful library 
+import math
+
+#Actionlib
+import actionlib
+import actionlib.msg
+# Custom message
+import exp_assignment2.msg
+
+# Messages
 from sensor_msgs.msg import LaserScan
 from geometry_msgs.msg import Twist, Point, Pose
 from nav_msgs.msg import Odometry
 from gazebo_msgs.msg import LinkState
-from tf import transformations
-import math
-import actionlib
-import actionlib.msg
-import exp_assignment2.msg
 
-# robot state variables
+## robot position variable
 position_ = Point()
+## robot pose variable
 pose_ = Pose()
+## robot yaw variable
 yaw_ = 0
-# machine state
+## Action server state
 state_ = 0
-# goal
+## Goal
 desired_position_ = Point()
 # parameters
 yaw_precision_ = math.pi / 9  # +/- 20 degree allowed
 yaw_precision_2_ = math.pi / 90  # +/- 2 degree allowed
 dist_precision_ = 0.1
-kp_a = 3.0
 kp_d = 0.5
-ub_a = 0.6
-lb_a = -0.5
-ub_d = 2.0
+ub_d = 1
 z_back = 0.25
 
-# publisher
+## Publisher
 pub = None
+## Publisher
 pubz = None
 
-# action_server
+## Action_server
 act_s = None
 
 # callbacks
 
-
+## Callback function of the subscriber to the topic '/ball/odom'.
+#
+# It updates the current position of the ball.
+# @param msg New current position of the ball
 def clbk_odom(msg):
     global position_
     global pose_
@@ -49,13 +64,19 @@ def clbk_odom(msg):
     position_ = msg.pose.pose.position
     pose_ = msg.pose.pose
 
-
+## Action state controller
+#
+# Changes the state of the action server
+# @param state New action server state
 def change_state(state):
     global state_
     state_ = state
     print ('State changed to [%s]' % state_)
 
-
+## Ball velocity controller
+#
+# It computes and publishes the next velocities for the Ball
+# @param data Goal position
 def go_straight_ahead(des_pos):
     global pub, state_, z_back
     err_pos = math.sqrt(pow(des_pos.y - position_.y, 2) +
@@ -90,14 +111,17 @@ def go_straight_ahead(des_pos):
         print ('Position error: [%s]' % err_pos)
         change_state(1)
 
-
+## Stops the robot
 def done():
     twist_msg = Twist()
     twist_msg.linear.x = 0
     twist_msg.linear.y = 0
     pub.publish(twist_msg)
 
-
+## Core of the action server
+#
+# It manages different behaviors w.r.t. to the state of the action server.
+# @param goal Goal position
 def planning(goal):
 
     global state_, desired_position_
@@ -139,6 +163,13 @@ def planning(goal):
         rospy.loginfo('Goal: Succeeded!')
         act_s.set_succeeded(result)
 
+## Initialization of the node.
+#
+# This function initialize some of the publisher and subscriber executed by the program:<br>
+# - A publisher to the topic "/ball/cmd_vel" to send command velocities to the ball.<br>
+# - A publisher to the topic "/gazebo/set_link_state" to update the current link state of the ball.<br>
+# - A subscriber to the topic "/ball/odom" to read the current position of the ball.<br>
+# - An action server to the server '/robot/reaching_goal' to drive the ball in a new position.
 
 def main():
     global pub, active_, act_s, pubz

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['yaw_5f',['yaw_',['../namespacego__to__point__ball.html#a74d8ca28c507d35baf1ea8e8f9595a78',1,'go_to_point_ball']]],
-  ['yaw_5fprecision_5f',['yaw_precision_',['../namespacego__to__point__ball.html#acc228d72c1ee47a43061e3563ac20d5c',1,'go_to_point_ball']]],
-  ['yaw_5fprecision_5f2_5f',['yaw_precision_2_',['../namespacego__to__point__ball.html#a1985c69cf8534ba0bd2c6080f788a992',1,'go_to_point_ball']]]
+  ['msg_5fballstate_5fsubscriber',['msg_ballstate_subscriber',['../classnavigation_1_1_navigation.html#a1ed79499561c28c2b7cba5589e8f03ac',1,'navigation::Navigation']]],
+  ['msg_5fpose',['msg_pose',['../classnavigation_1_1_navigation.html#ac7e28af9ebdeffa2dd7f5c8d144ba978',1,'navigation::Navigation']]],
+  ['msg_5fpose_5fsubscriber',['msg_pose_subscriber',['../classnavigation_1_1_navigation.html#aa8d48f146f2abdcf4b54ffd467da9822',1,'navigation::Navigation']]]
 ];

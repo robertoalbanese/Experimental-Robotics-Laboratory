@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['desired_5fposition_5f',['desired_position_',['../namespacego__to__point__ball.html#ac81a8393fb253c9e0b7255f779f16884',1,'go_to_point_ball']]],
-  ['dist_5fprecision_5f',['dist_precision_',['../namespacego__to__point__ball.html#a9a02c8ca89a09909111972ec4fd317ca',1,'go_to_point_ball']]]
+  ['camera_5fsub',['camera_sub',['../classball__perception_1_1image__feature.html#a660a18737853467046158ca24133d69e',1,'ball_perception::image_feature']]]
 ];

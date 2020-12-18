@@ -1,70 +1,92 @@
 #! /usr/bin/env python
-# import ros stuff
+
+"""!    @file navigation.py
+        @brief Navigation action server.
+        
+        This file defines the navigation field of the architecture."""
+
+# Ros library
 import rospy
-from sensor_msgs.msg import LaserScan
-from geometry_msgs.msg import Twist, Point
-from std_msgs.msg import Bool, Float64
-from nav_msgs.msg import Odometry
-from gazebo_msgs.msg import LinkState
-from tf import transformations
+
+# Useful libraries
+import numpy as np
 import time
-import math
+from math import pow, atan2, sqrt
+from tf.transformations import euler_from_quaternion
+
+# Actionlib
 import actionlib
 import actionlib.msg
+
+# Messages
 from turtlesim.msg import Pose
-from math import pow, atan2, sqrt
-from tf.transformations import euler_from_quaternion, quaternion_from_euler
+from geometry_msgs.msg import Twist
+from std_msgs.msg import Float64
+from nav_msgs.msg import Odometry
 
 # Custom messages
 import exp_assignment2.msg
 from exp_assignment2.msg import BallState
-from exp_assignment2.srv import ReachNextPosition
 
+## Definition of the class Navigation.
+#
+# This is an action server which takes a desired goal position and brings the robot to it by publishing velocities in the topic 'robot/cmd_vel'.
 class Navigation:
+    ## Initialization of the class.
+    #
+    # This constructor initialize some of the publisher and subscriber executed by the program:<br>
+    # - A publisher to the topic "/robot/cmd_vel" to send command velocities to the robot.<br>
+    # - A subscriber to the topic "/robot/odom" to read the current position of the robot.<br>
+    # - A subscriber to the topic "/ball/state" to read the current state of the ball w.r.t. the robot.<br>
+    # - A publisher to the topic "/joint_head_controller/command" to control the position of the head of the robot.<br>
+    # - An action server to the server '/robot/reaching_goal' to drive the robot in a new position.
 
+    # - Some useful variables.
     def __init__(self):
         # Creates a node with name 'navigation'.
         rospy.init_node('navigation')
-        # Current position
+        ## Current position.
         self.msg_pose = Pose()
 
         self.rate = rospy.Rate(20)
-        # distance tolerance for navigation
+        ## Distance tolerance for navigation.
         self.distance_tolerance = 0.1
-        # machine state
+        ## Action server state.
         self.state = 0
-        # ball reached flag
+        ## Ball reached flag.
         self.ball_reached = False
-        # action server success
+        ## Action server success.
         self.success = False
-        # linear velocity upper and lower bound
+        ## Linear velocity upper bound.
         self.ub = 1.5
-        self.lb = 0.8    
+        ## Linear velocity lower bound.
+        self.lb = 0.5
 
-        # Publisher which will publish to the topic '/robot/cmd_vel'.
+        ## Publisher which will publish to the topic '/robot/cmd_vel'.
         self.velocity_publisher = rospy.Publisher(
             '/robot/cmd_vel', Twist, queue_size=10)
 
-        # A subscriber to the topic '/robot/pose'. self.update_pose is called
-        # when a message of type Pose is received.
+        ## A subscriber to the topic '/robot/pose'. self.update_pose is called when a message of type Pose is received.
         self.msg_pose_subscriber = rospy.Subscriber(
             '/robot/odom', Odometry, self.update_pose)
 
-        # A subscriber to the topic '/ball/state'. self.update_state is called
-        # when a message of type BallState is received.
+        ## A subscriber to the topic '/ball/state'. self.update_state is called when a message of type BallState is received.
         self.msg_ballstate_subscriber = rospy.Subscriber(
             '/ball/state', BallState, self.update_state)
 
-        # Publisher which will publish to the topic '/joint_head_controller/command' the position of the head.
+        ## Publisher which will publish to the topic '/joint_head_controller/command' the position of the head.
         self.head_pos_publisher = rospy.Publisher(
             '/joint_head_controller/command', Float64, queue_size=1)
 
-        # An action service for the server /robot/reach_new_position'. move2goal() is called
-        # whenever a cliend request is received.
+        ## An action service for the server /robot/reach_new_position'. planning() is called whenever a cliend request is received.
         self.act_s = actionlib.SimpleActionServer(
             '/robot/reaching_goal', exp_assignment2.msg.PlanningAction, self.planning, auto_start=False)
         self.act_s.start()
 
+    ## Callback function of the subscriber to the topic '/ball/state'.
+    #
+    # It updates the state of the ball w.r.t. the robot
+    # @param msg BallState message
     def update_state(self, msg):
         if msg.state == True:
             self.state = 2
@@ -72,14 +94,19 @@ class Navigation:
             self.state = 0
         self.ball_reached = msg.ball_reached
 
+    ## Action state controller
+    #
+    # Changes the state of the action server
+    # @param new_state New action server state
     def change_state(self, new_state):
         self.state = new_state
         print ('State changed to [%s]' % self.state)
 
+    ## Callback function of the subscriber to the topic '/robot/odom'.
+    #
+    # It updates the current position of the robot
+    # @param data New current position of the robot
     def update_pose(self, data):
-        """Callback function which is called when a new message of type Pose is
-        received by the subscriber."""
-
         # Get yaw from quaternions
         orientation_q = data.pose.pose.orientation
         orientation_list = [orientation_q.x,
@@ -89,22 +116,35 @@ class Navigation:
         self.msg_pose.y = round(data.pose.pose.position.y, 4)
         self.msg_pose.theta = round(yaw, 4)
 
+    ## Euclidean distance calculator.
+    #
+    # Euclidean distance between current pose and the goal.
+    # @param goal_pose Goal position
     def euclidean_distance(self, goal_pose):
-        """Euclidean distance between current pose and the goal."""
+        
         return sqrt(pow((goal_pose.x - self.msg_pose.x), 2) +
                     pow((goal_pose.y - self.msg_pose.y), 2))
 
+    ## Linear velocity calculator.
+    # @param goal_pose Goal position
     def linear_vel(self, goal_pose, constant=0.2):
-        return min(max(constant * (0.1 + self.euclidean_distance(goal_pose)),self.lb), self.ub)
+        return constant * (0.1 + self.euclidean_distance(goal_pose))
 
+    ## Steering angle calculator.
+    # @param goal_pose Goal position
     def steering_angle(self, goal_pose):
         return atan2(goal_pose.y - self.msg_pose.y, goal_pose.x - self.msg_pose.x)
 
+    ## Angular velocity calculator.
+    # @param goal_pose Goal position
     def angular_vel(self, goal_pose, constant=2):
-        return min(constant * (self.steering_angle(goal_pose) - self.msg_pose.theta), self.ub)
+        return constant * (self.steering_angle(goal_pose) - self.msg_pose.theta)
 
+    ## Robot velocity controller
+    #
+    # It computes and publishes the next velocities for the robot
+    # @param data Goal position
     def move2goal(self, data):
-        """Moves the robot to the goal."""
         goal_pose = Pose()
 
         # Get the input from the user.
@@ -114,6 +154,7 @@ class Navigation:
         err_pos = self.euclidean_distance(goal_pose)
         vel_msg = Twist()
 
+        # If we havent reached the goal yet
         if err_pos >= self.distance_tolerance:
             # The head mantein a fixed position
             self.head_pos_publisher.publish(0)
@@ -121,13 +162,12 @@ class Navigation:
             # Porportional controller.
 
             # Linear velocity in the x-axis.
-            vel_msg.linear.x = self.linear_vel(goal_pose)
-            vel_msg.linear.y = 0
-            vel_msg.linear.z = 0
+            temp_vel_x = self.linear_vel(goal_pose)
+            # Upper and lower bounding
+            vel_msg.linear.x = np.sign(
+                temp_vel_x)*min(abs(max(abs(temp_vel_x), abs(self.lb))), abs(self.ub))
 
             # Angular velocity in the z-axis.
-            vel_msg.angular.x = 0
-            vel_msg.angular.y = 0
             vel_msg.angular.z = self.angular_vel(goal_pose)
             print vel_msg
             # Publishing our vel_msg
@@ -140,12 +180,17 @@ class Navigation:
             print ('Position error: [%s]' % err_pos)
             self.change_state(1)
 
+    ## Stops the robot
     def done(self):
         twist_msg = Twist()
         twist_msg.linear.x = 0
         twist_msg.linear.y = 0
         self.velocity_publisher.publish(twist_msg)
 
+    ## Core of the action server
+    #
+    # It manages different behaviors w.r.t. to the state of the action server.
+    # @param goal Goal position
     def planning(self, goal):
 
         self.state = 0
@@ -171,7 +216,7 @@ class Navigation:
                 feedback.position.position.y = self.msg_pose.y
                 self.act_s.publish_feedback(feedback)
                 self.done()
-                # self.success = True
+                self.act_s.set_succeeded(result)
                 break
             elif self.state == 2:
                 rospy.loginfo('Goal: Green!')
@@ -179,17 +224,15 @@ class Navigation:
                 feedback.position.position.x = self.msg_pose.x
                 feedback.position.position.y = self.msg_pose.y
                 self.act_s.publish_feedback(feedback)
+                self.done()
                 self.act_s.set_succeeded(result)
                 break
             else:
                 rospy.logerr('Unknown state!')
 
-        if self.success:
-            #self.success = False
-            rospy.loginfo('Goal: Succeeded!')
-            self.act_s.set_succeeded(result)
-
-
+## Main function
+#
+# It defines an object of the type Navigation
 if __name__ == '__main__':
     try:
         x = Navigation()

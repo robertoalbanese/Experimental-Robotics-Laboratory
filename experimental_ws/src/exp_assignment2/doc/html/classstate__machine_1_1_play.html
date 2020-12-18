@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Experimental Robotics  - Final Assignment: state_machine.Play Class Reference</title>
+<title>Exp_Rob Assignment 2: state_machine.Play Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Experimental Robotics  - Final Assignment
+   <div id="projectname">Exp_Rob Assignment 2
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -90,6 +90,7 @@ $(document).ready(function(){initNavTree('classstate__machine_1_1_play.html','')
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classstate__machine_1_1_play-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">state_machine.Play Class Reference</div>  </div>
@@ -117,10 +118,23 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a04168d6842960585b4bbcf58f950547b"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstate__machine_1_1_play.html#a04168d6842960585b4bbcf58f950547b">execute</a> (self, userdata)</td></tr>
 <tr class="memdesc:a04168d6842960585b4bbcf58f950547b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Body of the class.  <a href="#a04168d6842960585b4bbcf58f950547b">More...</a><br /></td></tr>
 <tr class="separator:a04168d6842960585b4bbcf58f950547b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a4de35e2607ef3278b84fe13419d06c64"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstate__machine_1_1_play.html#a4de35e2607ef3278b84fe13419d06c64">now</a></td></tr>
+<tr class="separator:a4de35e2607ef3278b84fe13419d06c64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a2b273d8ea3e982ec2d32d3e9ec24bf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstate__machine_1_1_play.html#a9a2b273d8ea3e982ec2d32d3e9ec24bf">then</a></td></tr>
+<tr class="separator:a9a2b273d8ea3e982ec2d32d3e9ec24bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6bd3db967cc621ea5f0d720d626273f7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstate__machine_1_1_play.html#a6bd3db967cc621ea5f0d720d626273f7">prev_ball_detected</a></td></tr>
+<tr class="separator:a6bd3db967cc621ea5f0d720d626273f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad075ae30c970d31c03196224136e1a03"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstate__machine_1_1_play.html#ad075ae30c970d31c03196224136e1a03">head_pos_publisher</a></td></tr>
+<tr class="separator:ad075ae30c970d31c03196224136e1a03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54944b9f6203268d91848c9135d43afb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstate__machine_1_1_play.html#a54944b9f6203268d91848c9135d43afb">vel_pub</a></td></tr>
+<tr class="separator:a54944b9f6203268d91848c9135d43afb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Definition of state <a class="el" href="classstate__machine_1_1_play.html" title="Definition of state Play. ">Play</a>. </p>
-<p>In this state the robot will reach the user, it will go in the pointed position and it will finally come back to the user. </p>
+<p>In this state the robot follows the ball untill it cannot see it anymore for a certain amount of time (3 s). </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a5993a23d8be7f7b2647f71ede0334957"></a>
 <div class="memitem">
@@ -137,7 +151,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Initialization of the state. </p>
-<p>The outcomes are defined. </p>
+<p>The outcomes, the '/robot/joint_head_controller/command' publisher and the '/robot/cmd_vel' publisher are defined. </p>
 
 </div>
 </div>
@@ -167,6 +181,67 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Body of the class. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="ad075ae30c970d31c03196224136e1a03"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">state_machine.Play.head_pos_publisher</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a4de35e2607ef3278b84fe13419d06c64"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">state_machine.Play.now</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a6bd3db967cc621ea5f0d720d626273f7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">state_machine.Play.prev_ball_detected</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a9a2b273d8ea3e982ec2d32d3e9ec24bf"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">state_machine.Play.then</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a54944b9f6203268d91848c9135d43afb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">state_machine.Play.vel_pub</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

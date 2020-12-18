@@ -37,11 +37,11 @@
   <group if="$(arg use_clock_frequency)">
     <param name="gazebo/pub_clock_frequency" value="$(arg pub_clock_frequency)" />
   </group>
-  <node name="gazebo" pkg="gazebo_ros" type="$(arg script_type)" respawn="$(arg respawn_gazebo)" output="screen" args="$(arg command_arg1) $(arg command_arg2) $(arg command_arg3) -e $(arg physics) $(arg extra_gazebo_args) $(arg world_name)" />
+  <node name="gazebo" pkg="gazebo_ros" type="$(arg script_type)" respawn="$(arg respawn_gazebo)" required="true" output="screen" args="$(arg command_arg1) $(arg command_arg2) $(arg command_arg3) -e $(arg physics) $(arg extra_gazebo_args) $(arg world_name)" />
 
   <!-- start gazebo client -->
   <group if="$(arg gui)">
-    <node name="gazebo_gui" pkg="gazebo_ros" type="gzclient" respawn="false" output="screen" required="true" />
+    <node name="gazebo_gui" pkg="gazebo_ros" type="gzclient" respawn="false" output="screen" required="false" />
   </group>
 
   <arg name="ns1" value="robot" />
@@ -66,7 +66,7 @@
 
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
 
-    <node name="navigation_action_server" pkg="exp_assignment2" type="navigation.py" respawn="true" output="screen" />
+    <node name="navigation_action_server" pkg="exp_assignment2" type="navigation.py" respawn="true" />
 
     <node name="usr_cmd__action_client" pkg="exp_assignment2" type="usr_cmd_client.py" />
 
@@ -75,9 +75,15 @@
   </group>
 
   <group ns="$(arg ns2)">
-    <!-- <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-urdf -model $(arg ns2) -param ball_description -x -7 -y 6 -z 0.25" /> -->
-    <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-urdf -model $(arg ns2) -param ball_description -x 6 -y 1 -z 0.25" />
-    <node name="position_server" pkg="exp_assignment2" type="go_to_point_ball.py" output="screen" />
+    <!-- <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-urdf -model $(arg ns2) -param ball_description -x -7 -y 6 -z 0.5" /> -->
+    <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" args="-urdf -model $(arg ns2) -param ball_description -x 6 -y 1 -z 0.5" />
+    <node name="position_server" pkg="exp_assignment2" type="go_to_point_ball.py" />
   </group>
+
+  <!-- The node is here just to be sure that all the other nodes are up -->
+  <node name="state_machine" pkg="exp_assignment2" type="state_machine.py" output="screen" ns="/robot" />
+
+  <!-- FSM viewer -->
+  <node pkg="smach_viewer" type="smach_viewer.py" name="smach_viewer" required="true" />
 
 </launch>

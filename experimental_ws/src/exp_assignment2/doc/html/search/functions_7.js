@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['planning',['planning',['../namespacego__to__point__ball.html#ab0e05a6be4adc81f80b5635d9bd692d1',1,'go_to_point_ball']]]
+  ['linear_5fvel',['linear_vel',['../classnavigation_1_1_navigation.html#a384bc16430a98ec28059ceaca41d9ad0',1,'navigation::Navigation']]]
 ];

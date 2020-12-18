@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['main',['main',['../namespacego__to__point__ball.html#a4d4c016b6bb12c612710a2d39ade3465',1,'go_to_point_ball.main()'],['../namespacestate__machine.html#a5c680ce705e6052fa07c6cece21743d0',1,'state_machine.main()'],['../namespaceusr__cmd__client.html#afb3218059bf0d13cb3408109de74e326',1,'usr_cmd_client.main()']]]
+  ['go_5fstraight_5fahead',['go_straight_ahead',['../namespacego__to__point__ball.html#aecbf76a67251ff6a3a0840bb61e1c581',1,'go_to_point_ball']]],
+  ['go_5fto_5fnew_5fposition',['go_to_new_position',['../namespacestate__machine.html#adb94b0a8473a7ba47947225a5e5917e6',1,'state_machine']]]
 ];
