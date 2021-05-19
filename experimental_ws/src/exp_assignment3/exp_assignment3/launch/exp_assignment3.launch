@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<launch>
+    <include file="$(find exp_assignment3)/launch/simulation.launch"/>
+    <include file="$(find exp_assignment3)/launch/gmapping.launch"/>
+    <include file="$(find exp_assignment3)/launch/move_base.launch"/>
+    <!-- <include file="$(find exp_assignment3)/launch/fsm.launch"/> -->
+</launch>

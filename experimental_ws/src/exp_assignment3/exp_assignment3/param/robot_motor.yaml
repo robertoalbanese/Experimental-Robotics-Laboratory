@@ -1,0 +1,13 @@
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 50
+
+joint_castor_wheel_controller:
+  type: effort_controllers/JointPositionController
+  joint: joint_left_castor_wheel
+  pid: {p: 1.0, i: 0.0, d: 0.0}
+
+joint_castor_dummy_controller:
+  type: effort_controllers/JointPositionController
+  joint: joint_left_castor_dummy
+  pid: {p: 2.0, i: 0.0, d: 0.0}

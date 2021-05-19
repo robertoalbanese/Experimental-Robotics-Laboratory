@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<launch>
+    <!-- FSM node -->
+    <param name="explore-lite path" type="str" value="$(find explore_lite)/launch/explore.launch"/>
+    <node pkg="exp_assignment3" type="state_machine.py" respawn="false" name="fsm" args=" " launch-prefix="terminator --new-tab -x" output="screen">
+    </node>
+
+    <!-- FSM viewer -->
+    <node pkg="smach_viewer" type="smach_viewer.py" name="smach_viewer" required="true" />
+
+</launch>
