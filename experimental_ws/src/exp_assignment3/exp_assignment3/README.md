@@ -10,7 +10,7 @@ In this project folder the reader will encounter the following folders:
 - [action](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/action) Action server message;
 - [config](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/config) Configuration file for Rviz layout;
 - [doc](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/doc/html) Doxygen documentation;
-- [img](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/doc/img) Report images;
+- [img](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/img) Report images;
 - [launch](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/launch) Launch files;
 - [msg](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/msg) Message files;
 - [param](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/param) Move base parameters;
@@ -46,7 +46,7 @@ A two-driving-wheeled robot was chosen for the project, equipped with an RGB cam
     
 The software architecture is composed by six elements, as shown in the figure:
 <p align="center">
-  <img src="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/blob/master/experimental_ws/src/exp_assignment3/img/Architecture.png" />
+  <img src="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/blob/master/experimental_ws/src/exp_assignment3/exp_assignment3/img/Architecture.png" />
 </p>
 
 * __User Command__: Human command to start playing with the robot;
