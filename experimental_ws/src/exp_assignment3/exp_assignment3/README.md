@@ -7,18 +7,18 @@
 ## Introduction
 This is the last assignment of the course *Experimental Robotics Laboratory* of the Master degree of Robotics Engineering of the University of Genova. The objective of the project is to build a ROS architecture capable to implement different behaviors. This package represents the last step of the learning process of ROS development.
 In this project folder the reader will encounter the following folders:
-- [action](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/action) Action server message;
-- [config](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/config) Configuration file for Rviz layout;
-- [doc](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/doc/html) Doxygen documentation;
-- [img](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/doc/img) Report images;
-- [launch](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/launch) Launch files;
-- [msg](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/msg) Message files;
-- [param](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/param) Move base parameters;
-- [scripts](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/scripts) Python source files;
-- [src](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/src) Cpp source code;
-- [srv](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/srv) Service messages;
-- [urdf](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/urdf) Urdf models;
-- [world](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/world) World model.
+- [action](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/action) Action server message;
+- [config](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/config) Configuration file for Rviz layout;
+- [doc](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/doc/html) Doxygen documentation;
+- [img](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/doc/img) Report images;
+- [launch](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/launch) Launch files;
+- [msg](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/msg) Message files;
+- [param](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/param) Move base parameters;
+- [scripts](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/scripts) Python source files;
+- [src](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/src) Cpp source code;
+- [srv](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/srv) Service messages;
+- [urdf](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/urdf) Urdf models;
+- [world](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/world) World model.
 
 The aim of this assignment is to cover essential concepts, i.e. SLAM algorithms, autonomous navigation and features recognition, for the development of a mobile robot capable of moving autonomously.
 
@@ -72,13 +72,13 @@ The software architecture is composed by six elements, as shown in the figure:
 *SLAM* block exploits the *gmapping* package which provides laser-based SLAM (Simultaneous Localization and Mapping), as a ROS node called slam_gmapping, creating a 2-D occupancy grid map from laser and pose data collected by the robot.
 
 ### File list
-In the [source folder](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/scripts) it is possible to find five files which compose the whole architecture:
+In the [source folder](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/scripts) it is possible to find five files which compose the whole architecture:
 
 * __usr_cmd_client.py__: the action server */user/go_to_command* is set up. The user *manually* sends the *"play"* command in the */user/play_command* topic and the decides where the robot ha to go. 
 * __ball_perception.py__: it uses six different masks to detect the presence of one the six ball color and send a message in the topic *ball/state* to the FSM with all the informations of the detected ball.
 * __state_machine.py__ is the core node that manages information from *Perception*. It initializes and executes a state machine, using the library *smach_ros*, in which all the five states and their behaviours are defined.<br>
 
-In the [message folder](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/msg) is it possible to find the file used by the node *Perception*:
+In the [message folder](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/msg) is it possible to find the file used by the node *Perception*:
 * __BallState.msg__: it represents the state of the ball w.r.t. the robot. Here we can find some informations, as the position of the center of the ball w.r.t. the image and its radius. *state* used as flags and color of the ball.
 ```
 bool state
@@ -86,7 +86,7 @@ int32[2] center
 float64 radius
 string color
 ```
-In the [server folder](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/srv) is it possible to find the file used by the node *User Command*:
+In the [server folder](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/srv) is it possible to find the file used by the node *User Command*:
 * __GoToCommand.srv__: it represents the message of the server with the request sent in the **Play** state and the response of the *User*
 ```
 string request
@@ -94,7 +94,7 @@ string request
 string location
 ```
 
-In the [launch folder](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/launch) it is possible to find the launch file used to execute all the nodes:
+In the [launch folder](https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/launch) it is possible to find the launch file used to execute all the nodes:
 * **exp_assignment3.launch**: launch file of the final project; it launches the Gazebo and RVIZ environments, gmapping algorithm, move_base server and the FSM;
 * **fsm.launch**: it launches the FSM node and the *smach_viewer* node;
 * **gmapping.launch**: it loads all the parameters for the gmapping and launches the gmapping node
