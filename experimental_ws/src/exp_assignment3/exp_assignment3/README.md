@@ -2,7 +2,7 @@
 
    - __Author:__ Roberto Albanese
    - __Version:__ 1.0
-   - __Date:__ -05-2021
+   - __Date:__ 21-05-2021
 
 ## Introduction
 This is the last assignment of the course *Experimental Robotics Laboratory* of the Master degree of Robotics Engineering of the University of Genova. The objective of the project is to build a ROS architecture capable to implement different behaviors. This package represents the last step of the learning process of ROS development.
