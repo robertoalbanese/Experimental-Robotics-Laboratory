@@ -63,11 +63,11 @@ The software architecture is composed by six elements, as shown in the figure:
 * *previous_state*: Contains the state from which the **Track** state was reached;
 * *requested_ball*: Contains the ball color requested from the **Play** state. It is used in the **Find** state to check if the ball seen was the requested one.
 
-*Navigation* block is composed of the *move_base* action server which includes the global and the local path planning and the obstacles avoidance provided by the package ROS Navighation Stack.
+*Navigation* block is composed of the *move_base* action server which includes the global (*nafvn* global planner) and the local path planning and the obstacles avoidance provided by the package ROS Navighation Stack.
 
 *Perception* block detects the presence of a ball using an *open_cv* algorithm which percive the presence of one of the six-ball color inside the image received from the camera. It was necessary to edit the color of the chair model of the human because the brown shade of the wood was detected as *red* from the algorithm.
 
-*Exploration* block is exectuted by the *explore_lite* package. For a better performance it was decided to decrease the hokuyo laser range in order to be consistent with the range of the camera. A too large difference in range resulted in the balls not being detected in the detection phase of the **Find** state: this is due to the fact that some location where considered already visited from the *explore_lite* algorithm (because present in the map) but never seen by the camera.
+*Exploration* block is exectuted by the *explore_lite* package. For a better performance it was decided to decrease the hokuyo laser horizontal range in order to be consistent with the range of the camera. A too large difference resulted in the balls not being detected in the detection phase of the **Find** state: this is due to the fact that some location where considered already visited from the *explore_lite* algorithm (because present in the map) but never seen by the camera.
 
 *SLAM* block exploits the *gmapping* package which provides laser-based SLAM (Simultaneous Localization and Mapping), as a ROS node called slam_gmapping, creating a 2-D occupancy grid map from laser and pose data collected by the robot.
 
@@ -100,49 +100,70 @@ In the [launch folder](https://github.com/robertoalbanese/Experimental-Robotics-
 * **gmapping.launch**: it loads all the parameters for the gmapping and launches the gmapping node
 * **move_base.launch**: it loads all the parameters for the move_base and enables the move_base action server
 * **simulation.launch**: it sets up the Gazebo and RVIZ environmets with che corresponding models. 
+## Knowledge Representation
+Regarding the knowledge representation the environment has been described with a simple structure which associates each room with a color ball and their respective locations in the environment in terms of x and y coordinates as shown below:
+```
+sm.userdata.room_dictionary = {    'blue':          {'room': 'entrance',    'seen': False,  'x': '',    'y': '',    'coord_x': [-5.0, -1.0],    'coord_y': [4.5, 7.5]},
+                                   'red':           {'room': 'closet',      'seen': False,  'x': '',    'y': '',    'coord_x': [-5.0, -2.5],    'coord_y': [1.5, 2.0]},
+                                   'green':         {'room': 'living room', 'seen': False,  'x': '',    'y': '',    'coord_x': [-5.0, 0],       'coord_y': [-4.5, -1.0]},
+                                   'yellow':        {'room': 'kitchen',     'seen': False,  'x': '',    'y': '',    'coord_x': [0.5, 5.0],      'coord_y': [-7.5, -7.0]},
+                                   'magenta':       {'room': 'bathroom',    'seen': False,  'x': '',    'y': '',    'coord_x': [3.5, 5.0],      'coord_y': [-4.5, -3.0]},
+                                   'black':         {'room': 'bedroom',     'seen': False,  'x': '',    'y': '',    'coord_x': [3.5, 5.0],      'coord_y': [-0.5, 2.0]},
+                                   'corridor_1':    {'seen': True,                                                  'coord_x': [-5.0, -1.0],    'coord_y': [4.5, 7.5]},
+                                   'corridor_2':    {'seen': False,                                                 'coord_x': [-1.5, -0.5],    'coord_y': [0.5, 2.5]},
+                                   'corridor_3':    {'seen': False,                                                 'coord_x': [0, 1.5],        'coord_y': [-4.5, -0.5]}}
 
+```
+where:
+ - **seen** is a flag that indicates if the ball has been detected;
+ - **x** is the *x* position of the ball (saved as soon as the ball is seen and tracked)
+ - **y** is the *y* position of the ball (saved as soon as the ball is seen and tracked)
+ - **coord_x** represents the dimension of the room along the *x-axis*
+ - **coord_y** represents the dimension of the room along the *y-axis*
 ## Installation
 The project was developed using the docker image given in the beginning of the course as a starting point. It is possible to install it by following the instractions in this link: https://hub.docker.com/r/carms84/rpr .<br>
-There are few steps to follow before being able to execute the code. Firs of all we need to intall the _smach_ library to let ROS to work with finite state machines:
+After that we need to intall couple of packages in order to execute the code (i.e slam-gmapping, ros-conntrol, smach-viewer, navigation). Open a terminal and digit the following commands:
 ```
-$ sudo apt-get install ros-kinetic-smach-viewer
+$ sudo apt-get update && sudo apt-get install ros-kinetic-gazebo-ros-control ros-kinetic-smach-viewer ros-kinetic-navigation libsuitesparse-dev ros-kinetic-openslam-gmapping
 ```
-Then it is also necessary to install the package imutils (install pip: https://pip.pypa.io/en/stable/installing/):
+Then it is also necessary to install the package imutils to make basic image processing(if necessary install pip: https://pip.pypa.io/en/stable/installing/):
 
 ```
 $ pip install imutils
 ```
-Then is it necessary to give running permission to the python source files:
-* Open the terminal
-* Move into the folder /../experimental_ws/src/exp_assignment3/scripts
-* Launch the command:
-```
-$ chmod +x name_of_the_file.py
-```
+Once all prerequisites have been met, it is possible to clone the repository to finish the set up. 
 
-It's also required to make a _catkin_make_ in your _ROS_ workspace. Check [ROS tutorials](http://wiki.ros.org/catkin/Tutorials) to see how to do it.    
+For the final step, create a ROS workspace following the [ROS tutorials](http://wiki.ros.org/catkin/Tutorials) and copy the folder *exp_assignment3*, containing the packages *exp_assignment3*, *m-explore* and *joint_state_publisher* inside the folder *src*. Finally open a terminal, move in the workspace folder and execute the command:
+```
+catkin_make
+```
 
 ## Usage
-First of all it is required to source your workspace setup.bash file. To do it open a terminal, move into the workspace directory and the launch the command:
+Open a terminal, move into the workspace directory and the launch the command:
 ```
 source devel/setup.bash
 ```
 
-If wou want run the whole project just type:
+Now set up the environment (ROS, Gazebo...)
 ```
-$ roslaunch exp_assignment3 gazebo_world.launch 
+$ roslaunch exp_assignment3 exp_assignment3.launch 
 ```
-The launch file is done in a way that it makes possible to see the state of the **FSM** in the *smach_viewer* node automatically.<br>
-A window will pop up showing the image taken from the camera.
-In the terminal in which the roslaunch command is executed it is possible to see the current positions of the robot.<br><br>
-In order to manually execute the nodes/services to see in each terminal the data generated from each node/service, it is required to *rosrun* each node/service listed in *exp_assignment3.launch* in the exact same order they are listed in.
+There should spawn three different windows (Gazebo, RVIZ, camera view) and two terminals (ball detection node, UI to send the *"play"* command).
+Once the set up is finished, it is possible to launch the *FSM* and *smach_viewer* with the command:
+```
+$ roslaunch exp_assignment3 fsm.launch 
+```
+As soon as the robot starts moving, it means that the execution started succesfully. It is now possible to interact with the robot through the UI, to have a log of the detected ball informations and to observe the execution of the *FSM* in the last spawn terminal.
+
 ## Software Limitation and Possible technical Improvements
 ### Limitations
-- The routine used to block the robot when the ball stops is not optimal; sometimes the robot think that the ball stopped becuase of the *if* condition too simplified (the FSM uses the velocity of the robot and the radius of the ball to understand if it has stopped: when the robot is going slow and the ball passes in front of it, the condition is verified (false positive)).
-- The robot is not able to avoid obstacles.
+During the testing phase has been encountered two main limitation: the **Track** state has been developed as a feature-following algorithm: it means that the robot moves based on where the ball w.r.t. the image of the camera (it moves forward until the radius of the ball matches a certain value and rotates to center the position of the ball w.r.t. the camera). This behavior deny any obstacle avoidance algorithm to take place in the motion. It may happens that the robot get stuck in some corner. 
+The second issue is that decreasing the horizontal range of the hokuyo sensor is not a feasible solution for an empirical test: for example it should be possible to use a LIDAR with a 360° horizontal range. It follows that the current code need an improvement in this respect.
 ### Possible Improvements
-- Improvement of the condition to recognise the stopping ball
-- Obstacle avoidance routine (SLAM and trajectory planning)
+The **Track** state could be improved either granting control to the *move_base* package (generating the goal position starting from the information of the ball state to deduce the distance of the ball from the robot) or implementig locally an obstacle avoidance algorithm (potential field).
+The second issue derives directly from the fact that the house conceived as unknow: one of the possible solutions is to increase the number of cameras installed in the robot to match the horizontal range with the FOV and develop an improved image processing to control the mobile robot. Another possible solution is to discard the unknow-nature of the environment and to use an Ontology to indicate a priori which areas have not been visited yet.
+
+
 ## Contacts
 Roberto Albanese ralbanese18@gmail.com
 <br>
