@@ -34,6 +34,7 @@ A two-driving-wheeled robot was chosen for the project, equipped with an RGB cam
 <p align="center">
   <img src="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/blob/master/experimental_ws/src/exp_assignment3/exp_assignment3/img/sectors.jpg" width="600" alt/>
 </p>
+
 *Fig.2: Sector Division*
 
 - ### Sleep
