@@ -25,13 +25,15 @@ The aim of this assignment is to cover essential concepts, i.e. SLAM algorithms,
 ## Software Architecture and System's Features
 A two-driving-wheeled robot was chosen for the project, equipped with an RGB camera used for feature recognition and a hokuyo laser used for SLAM. The robot has five possible behaviors: it can **Sleep**, **Play**, stay in a **Normal** state, explore the map to **Find** the balls and **Track** each ball. Below it will be explained in detail each state of the robot with a focus on design decisions.
 <p align="center">
-  <img src="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/blob/master/experimental_ws/src/exp_assignment3/exp_assignment3/img/FSM.png" alt="Finite State Machine States" width="800"/>
+  <img src="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/blob/master/experimental_ws/src/exp_assignment3/exp_assignment3/img/FSM.png" width="800"/>
+   <em>Finite State Machine States</em>
 </p>
 
 - ### Normal
     This is the initial state of the *FSM* and it is one of the more similar to the previous assignment. In this state the robot can move randomly in the house. The Navigation is managed by the package *move_base*, which receives a goal position and controls the robot by planning both a global and local path to bring it there. Since a SLAM alorithms is implemented in this project, the house is assumed to be unknown, as well as the location and dimension of each room. It follows that, in the **Normal** state, the robot cannot move freely in the house, but it can visit only known locations of it. Due to this design choice, the house has been divided in 9 sectors, which can be visited only when the room becomes known, i.e. the corresponding ball has been detected. Below it is shown how the sectors are defined:
 <p align="center">
-  <img src="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/blob/master/experimental_ws/src/exp_assignment3/exp_assignment3/img/sectors.jpg" alt="Sector Division" width="600" />
+  <img src="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/blob/master/experimental_ws/src/exp_assignment3/exp_assignment3/img/sectors.jpg" width="600" />
+   <em>Sector Division</em>
 </p>
 
 - ### Sleep
@@ -46,7 +48,8 @@ A two-driving-wheeled robot was chosen for the project, equipped with an RGB cam
     
 The software architecture is composed by six elements, as shown in the figure:
 <p align="center">
-  <img src="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/blob/master/experimental_ws/src/exp_assignment3/exp_assignment3/img/Architecture.jpg alt="Project Architecture" width="800"" />
+  <img src="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/blob/master/experimental_ws/src/exp_assignment3/exp_assignment3/img/Architecture.jpg width="800"" />
+   <em>Project Architecture</em>
 </p>
 
 * __User Command__: Human command to start playing with the robot;
