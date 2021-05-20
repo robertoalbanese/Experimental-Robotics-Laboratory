@@ -31,7 +31,7 @@ A two-driving-wheeled robot was chosen for the project, equipped with an RGB cam
 - ### Normal
     This is the initial state of the *FSM* and it is one of the more similar to the previous assignment. In this state the robot can move randomly in the house. The Navigation is managed by the package *move_base*, which receives a goal position and controls the robot by planning both a global and local path to bring it there. Since a SLAM alorithms is implemented in this project, the house is assumed to be unknown, as well as the location and dimension of each room. It follows that, in the **Normal** state, the robot cannot move freely in the house, but it can visit only known locations of it. Due to this design choice, the house has been divided in 9 sectors, which can be visited only when the room becomes known, i.e. the corresponding ball has been detected. Below it is shown how the sectors are defined:
 <p align="center">
-  <img src="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/blob/master/experimental_ws/src/exp_assignment3/exp_assignment3/img/sectors.jpg" alt="Sector Division" width="800" />
+  <img src="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/blob/master/experimental_ws/src/exp_assignment3/exp_assignment3/img/sectors.jpg" alt="Sector Division" width="600" />
 </p>
 
 - ### Sleep
