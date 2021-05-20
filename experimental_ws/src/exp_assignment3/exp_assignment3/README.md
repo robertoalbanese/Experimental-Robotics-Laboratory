@@ -27,6 +27,7 @@ A two-driving-wheeled robot was chosen for the project, equipped with an RGB cam
 <p align="center">
   <img src="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/blob/master/experimental_ws/src/exp_assignment3/exp_assignment3/img/FSM.png" width="800"/>
 </p>
+
 *Fig.1: Finite State Machine States*
 
 - ### Normal
@@ -51,6 +52,7 @@ The software architecture is composed by six elements, as shown in the figure:
 <p align="center">
   <img src="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/blob/master/experimental_ws/src/exp_assignment3/exp_assignment3/img/Architecture.jpg width="800"" />
 </p>
+
 *Fig.3: Project Architecture*
 
 * __User Command__: Human command to start playing with the robot;
