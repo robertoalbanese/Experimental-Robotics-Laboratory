@@ -48,7 +48,7 @@ class User():
 
         ## @private Rooms of the house
         self.rooms = ['entrance', 'closet', 'living room',
-                      'kitchen', 'bathroom', 'bedroom']
+                      'kitchen', 'bathroom', 'bedroom','end']
 
         ## @private Flag used to wait for the request of the server
         self.flag = False
@@ -70,6 +70,8 @@ Hello user! You will be free to choose the location that the robot has to reach.
                         Yellow  ----->   Kitchen
                         Magenta ----->   Bathroom
                         Black   ----->   Bedroom
+                        
+                        End     ----->   Stop Playing
             
 You can guide the robot by sending a "play" command whenever you want and then by choosing a room! """)
         while 1:

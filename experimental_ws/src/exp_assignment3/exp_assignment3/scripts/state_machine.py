@@ -257,6 +257,8 @@ class Play(smach.State):
         time.sleep(1)
         tmp = userdata.play_dictionary_in
         self.n = self.n + 1
+        
+        ball_color = ''
 
         # Stop playing if a certain number of iteraction has been executed and return to NORMAL state
         if (self.n == self.iter):
@@ -285,6 +287,9 @@ class Play(smach.State):
             print('')
 
             if not ball_color:
+                if new_loc.location.lower() == 'end':
+                    end = self.request_pos_client('end')
+                    return 'gotoNormal'
                 print(
                     "The received room is unknown or it doesn't exist! Wait for another location.")
             else:
