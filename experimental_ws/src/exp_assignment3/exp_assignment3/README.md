@@ -62,7 +62,7 @@ The software architecture is composed by six elements, as shown in the figure:
 * __Exploration__: Exploration of the unknow locations;
 * __SLAM__: SLAM algorithm
 
-*User Command* block represents the behaviour of the human. When the robot is in the **Normal** state the human can *manually* send a *"play"* command to start to play with the robot. It has been decided to send the command by writing a string message in the topic */user/play_command*. Then an action server is settled up so that the human can wait for the robot to reach the predefined position and then send the goal location. In this way two diffents nodes can work in parallel and send the needed messages only when the are both ready.
+*User Command* block represents the behaviour of the human. When the robot is in the **Normal** state the human can *manually* send a *"play"* command to start to play with the robot. It has been decided to send the command by writing a string message in the topic */user/play_command*. Then an action server is settled up so that the human can wait for the robot to reach the predefined position and then send the goal location. In this way two diffents nodes can work in parallel and send the needed messages only when they are both ready.
 
 *Command Manager* block represents the FSM controlling the program. It is composed of the five states and uses the following userdata to keep inside the machine some informations:
 * *room_dictionary*: Holds all the Knowledge information of the program, i.e. room/ball correlation, room dimensions, ball positions, ball detection flag;
