@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Exp_Rob Assignment 3: Main Page</title>
+<title>Exp_Rob Assignment 3: Robot dog Architecture - Assignment 3</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -89,25 +89,117 @@ $(document).ready(function(){initNavTree('index.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Exp_Rob Assignment 3 Documentation</div>  </div>
+<div class="title">Robot dog Architecture - Assignment 3 </div>  </div>
 </div><!--header-->
 <div class="contents">
-<ul><li><a href="index.html"><span>Main&#160;Page</span></a>
-</li><li><a href="namespaces.html"><span>Namespaces</span></a>
-<ul><li><a href="namespaces.html"><span>Namespace&#160;List</span></a>
-</li><li><a href="namespacemembers.html"><span>Namespace&#160;Members</span></a>
-</li></ul>
-</li><li><a href="annotated.html"><span>Classes</span></a>
-<ul><li><a href="annotated.html"><span>Class&#160;List</span></a>
-</li><li><a href="classes.html"><span>Class&#160;Index</span></a>
-</li><li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a>
-</li><li><a href="functions.html"><span>Class&#160;Members</span></a>
-</li></ul>
-</li><li><a href="files.html"><span>Files</span></a>
-<ul><li><a href="files.html"><span>File&#160;List</span></a>
-</li></ul>
-</li></ul>
-</div><!-- contents -->
+<div class="textblock"><ul>
+<li><b>Author:</b> Roberto Albanese</li>
+<li><b>Version:</b> 1.0</li>
+<li><b>Date:</b> 21-05-2021</li>
+</ul>
+<h2>Introduction</h2>
+<p>This is the last assignment of the course <em>Experimental Robotics Laboratory</em> of the Master degree of Robotics Engineering of the University of Genova. The objective of the project is to build a ROS architecture capable to implement different behaviors. This package represents the last step of the learning process of ROS development. In this project folder the reader will encounter the following folders:</p><ul>
+<li><a href="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/action">action</a> Action server message;</li>
+<li><a href="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/config">config</a> Configuration file for Rviz layout;</li>
+<li><a href="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/doc/html">doc</a> Doxygen documentation;</li>
+<li><a href="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/img">img</a> Report images;</li>
+<li><a href="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/launch">launch</a> Launch files;</li>
+<li><a href="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/msg">msg</a> Message files;</li>
+<li><a href="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/param">param</a> Move base parameters;</li>
+<li><a href="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/scripts">scripts</a> Python source files;</li>
+<li><a href="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/src">src</a> Cpp source code;</li>
+<li><a href="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/srv">srv</a> Service messages;</li>
+<li><a href="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/urdf">urdf</a> Urdf models;</li>
+<li><a href="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/world">world</a> World model.</li>
+</ul>
+<p>The aim of this assignment is to cover essential concepts, i.e. SLAM algorithms, autonomous navigation and features recognition, for the development of a mobile robot capable of moving autonomously.</p>
+<h2>Software Architecture and System's Features</h2>
+<p>A two-driving-wheeled robot was chosen for the project, equipped with an RGB camera used for feature recognition and a hokuyo laser used for SLAM. The robot has five possible behaviors: it can <b>Sleep</b>, <b>Play</b>, stay in a <b>Normal</b> state, explore the map to <b>Find</b> the balls and <b>Track</b> each ball. Below it will be explained in detail each state of the robot with a focus on design decisions. </p>
+<div class="image">
+<img src="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/blob/master/experimental_ws/src/exp_assignment3/exp_assignment3/img/FSM.png"  width="800"/>
+</div>
+ <p><em>Fig.1: Finite State Machine States</em></p>
+<ul>
+<li>### Normal This is the initial state of the <em>FSM</em> and it is one of the more similar to the previous assignment. In this state the robot can move randomly in the house. The Navigation is managed by the package <em>move_base</em>, which receives a goal position and controls the robot by planning both a global and local path to bring it there. Since a SLAM alorithms is implemented in this project, the house is assumed to be unknown, as well as the location of each room. It follows that, in the <b>Normal</b> state, the robot cannot move freely in the house, but it can visit only known locations of it. Due to this design choice, the house has been divided in 9 sectors, which can be visited only when the room becomes known, i.e. the corresponding ball has been detected. Below it is shown how the sectors are defined: </li>
+</ul>
+<div class="image">
+<img src="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/blob/master/experimental_ws/src/exp_assignment3/exp_assignment3/img/sectors.jpg"  width="600"/>
+</div>
+ <p><em>Fig.2: Sector Division</em></p>
+<ul>
+<li>### Sleep The robot can go in the <b>Sleep</b> state only from the <b>Normal</b> state. In the <b>Sleep</b> state the robot reaches the predefined location [ -4 , 7 ] and waits there for a bunch of seconds. After that, it returns back in the <b>Normal</b> state.</li>
+<li>### Play The robot reaches the <b>Play</b> state only from the <b>Normal</b> state. The transition happens whenever the robot receives a *"play"* command from the user. Once the command is received, the robot goes to the predefined location [ -5 , 7 ] (user position) and waits for a location to reach. If the robot knows the location (i.e the corresponding ball has already been seen) the robot navigates until it reaches it and stops there for a bunch of seconds and then returns in the <b>Play</b> state; if the location is unknown (i.e the corresponding ball has not been seen yet) the robot transitions to the <b>Find</b> state to look for it. After some time in the <b>Play</b> state the robot goes back to the <b>Normal</b> state.</li>
+<li>### Find In this state the robot explores the unknow locations of the house to find the missing balls. For this purpose, it was chosen to implement the <em>explore-lite</em> package, which cooperate with the <em>move_base</em> and the SLAM algorithm to control the robot. Whenever an unknown ball is seen, the robot goes to the <b>Track</b> state. Then, if the ball is the one corresponding to the requested location of the <b>Play</b> state, the robot goes back to the <b>Play</b> state, whereas if it does not correspond to it, the robot goes back to the <b>Find</b> state.</li>
+<li>### Track In this state the robot is controlled to move close to an unknow detected ball. As soon as it reaches it, it saves its position as the location of the corresponding room. Then it goes back to the previous state.</li>
+</ul>
+<p>The software architecture is composed by six elements, as shown in the figure: </p>
+<div class="image">
+<img src="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/blob/master/experimental_ws/src/exp_assignment3/exp_assignment3/img/Architecture.jpg"  width="800"/>
+</div>
+ <p><em>Fig.3: Project Architecture</em></p>
+<ul>
+<li><b>User Command</b>: Human command to start playing with the robot;</li>
+<li><b>Command Manager</b>: Logic core of the architecture in which the <b>FSM</b> is;</li>
+<li><b>Navigation</b>: Motion of the robot;</li>
+<li><b>Perception</b>: Detection of the balls;</li>
+<li><b>Exploration</b>: Exploration of the unknow locations;</li>
+<li><b>SLAM</b>: SLAM algorithm</li>
+</ul>
+<p><em>User Command</em> block represents the behaviour of the human. When the robot is in the <b>Normal</b> state the human can <em>manually</em> send a *"play"* command to start to play with the robot. It has been decided to send the command by writing a string message in the topic */user/play_command*. Then an action server is settled up so that the human can wait for the robot to reach the predefined position and then send the goal location. In this way two diffents nodes can work in parallel and send the needed messages only when they are both ready.</p>
+<p><em>Command Manager</em> block represents the FSM controlling the program. It is composed of the five states and uses the following userdata to keep inside the machine some informations:</p><ul>
+<li><em>room_dictionary</em>: Holds all the Knowledge information of the program, i.e. room/ball correlation, room dimensions, ball positions, ball detection flag;</li>
+<li><em>previous_state</em>: Contains the state from which the <b>Track</b> state was reached;</li>
+<li><em>requested_ball</em>: Contains the ball color requested from the <b>Play</b> state. It is used in the <b>Find</b> state to check if the ball seen was the requested one.</li>
+</ul>
+<p><em>Navigation</em> block is composed of the <em>move_base</em> action server which includes the global (<em>nafvn</em> global planner) and the local path planning and the obstacles avoidance provided by the package ROS Navighation Stack.</p>
+<p><em>Perception</em> block detects the presence of a ball using an <em>open_cv</em> algorithm which percive the presence of one of the six-ball color inside the image received from the camera. It was necessary to edit the color of the chair model of the human because the brown shade of the wood was detected as <em>red</em> from the algorithm.</p>
+<p><em>Exploration</em> block is exectuted by the <em>explore_lite</em> package. For a better performance it was decided to decrease the hokuyo laser horizontal range in order to be consistent with the range of the camera. A too large difference resulted in the balls not being detected in the detection phase of the <b>Find</b> state: this is due to the fact that some location where considered already visited from the <em>explore_lite</em> algorithm (because present in the map) but never seen by the camera.</p>
+<p><em>SLAM</em> block exploits the <em>gmapping</em> package which provides laser-based SLAM (Simultaneous Localization and Mapping), as a ROS node called slam_gmapping, creating a 2-D occupancy grid map from laser and pose data collected by the robot.</p>
+<h3>File list</h3>
+<p>In the <a href="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/scripts">source folder</a> it is possible to find five files which compose the whole architecture:</p>
+<ul>
+<li><b><a class="el" href="usr__cmd__client_8py.html" title="User interface to play with the robot in the PLAY state. ">usr_cmd_client.py</a></b>: the action server */user/go_to_command* is set up. The user <em>manually</em> sends the *"play"* command in the */user/play_command* topic and the decides where the robot ha to go.</li>
+<li><b><a class="el" href="ball__perception_8py.html" title="Ball detection node. ">ball_perception.py</a></b>: it uses six different masks to detect the presence of one the six ball color and send a message in the topic <em>ball/state</em> to the FSM with all the informations of the detected ball.</li>
+<li><b><a class="el" href="state__machine_8py.html" title="FSM of the architecture. ">state_machine.py</a></b> is the core node that manages information from <em>Perception</em>. It initializes and executes a state machine, using the library <em>smach_ros</em>, in which all the five states and their behaviours are defined.<br />
+</li>
+</ul>
+<p>In the <a href="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/msg">message folder</a> is it possible to find the file used by the node <em>Perception</em>:</p><ul>
+<li><b>BallState.msg</b>: it represents the state of the ball w.r.t. the robot. Here we can find some informations, as the position of the center of the ball w.r.t. the image and its radius. <em>state</em> used as flags and color of the ball. <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;bool state</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;int32[2] center</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;float64 radius</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;string color</div></div><!-- fragment --> In the <a href="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/srv">server folder</a> is it possible to find the file used by the node <em>User Command</em>:</li>
+<li><b>GoToCommand.srv</b>: it represents the message of the server with the request sent in the <b>Play</b> state and the response of the <em>User</em> <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;string request</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;---</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;string location</div></div><!-- fragment --></li>
+</ul>
+<p>In the <a href="https://github.com/robertoalbanese/Experimental-Robotics-Laboratory/tree/master/experimental_ws/src/exp_assignment3/exp_assignment3/launch">launch folder</a> it is possible to find the launch file used to execute all the nodes:</p><ul>
+<li><b>exp_assignment3.launch</b>: launch file of the final project; it launches the Gazebo and RVIZ environments, gmapping algorithm, move_base server and the FSM;</li>
+<li><b>fsm.launch</b>: it launches the FSM node and the <em>smach_viewer</em> node;</li>
+<li><b>gmapping.launch</b>: it loads all the parameters for the gmapping and launches the gmapping node</li>
+<li><b>move_base.launch</b>: it loads all the parameters for the move_base and enables the move_base action server</li>
+<li><b>simulation.launch</b>: it sets up the Gazebo and RVIZ environmets with che corresponding models. <h2>Knowledge Representation</h2>
+</li>
+</ul>
+<p>Regarding the knowledge representation the environment has been described with a simple structure which associates each room with a color ball and their respective locations in the environment in terms of x and y coordinates as shown below: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;sm.userdata.room_dictionary = {    &#39;blue&#39;:          {&#39;room&#39;: &#39;entrance&#39;,    &#39;seen&#39;: False,  &#39;x&#39;: &#39;&#39;,    &#39;y&#39;: &#39;&#39;,    &#39;coord_x&#39;: [-5.0, -1.0],    &#39;coord_y&#39;: [4.5, 7.5]},</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;                                   &#39;red&#39;:           {&#39;room&#39;: &#39;closet&#39;,      &#39;seen&#39;: False,  &#39;x&#39;: &#39;&#39;,    &#39;y&#39;: &#39;&#39;,    &#39;coord_x&#39;: [-5.0, -2.5],    &#39;coord_y&#39;: [1.5, 2.0]},</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;                                   &#39;green&#39;:         {&#39;room&#39;: &#39;living room&#39;, &#39;seen&#39;: False,  &#39;x&#39;: &#39;&#39;,    &#39;y&#39;: &#39;&#39;,    &#39;coord_x&#39;: [-5.0, 0],       &#39;coord_y&#39;: [-4.5, -1.0]},</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;                                   &#39;yellow&#39;:        {&#39;room&#39;: &#39;kitchen&#39;,     &#39;seen&#39;: False,  &#39;x&#39;: &#39;&#39;,    &#39;y&#39;: &#39;&#39;,    &#39;coord_x&#39;: [0.5, 5.0],      &#39;coord_y&#39;: [-7.5, -7.0]},</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;                                   &#39;magenta&#39;:       {&#39;room&#39;: &#39;bathroom&#39;,    &#39;seen&#39;: False,  &#39;x&#39;: &#39;&#39;,    &#39;y&#39;: &#39;&#39;,    &#39;coord_x&#39;: [3.5, 5.0],      &#39;coord_y&#39;: [-4.5, -3.0]},</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;                                   &#39;black&#39;:         {&#39;room&#39;: &#39;bedroom&#39;,     &#39;seen&#39;: False,  &#39;x&#39;: &#39;&#39;,    &#39;y&#39;: &#39;&#39;,    &#39;coord_x&#39;: [3.5, 5.0],      &#39;coord_y&#39;: [-0.5, 2.0]},</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;                                   &#39;corridor_1&#39;:    {&#39;seen&#39;: True,                                                  &#39;coord_x&#39;: [-5.0, -1.0],    &#39;coord_y&#39;: [4.5, 7.5]},</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;                                   &#39;corridor_2&#39;:    {&#39;seen&#39;: False,                                                 &#39;coord_x&#39;: [-1.5, -0.5],    &#39;coord_y&#39;: [0.5, 2.5]},</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;                                   &#39;corridor_3&#39;:    {&#39;seen&#39;: False,                                                 &#39;coord_x&#39;: [0, 1.5],        &#39;coord_y&#39;: [-4.5, -0.5]}}</div></div><!-- fragment --><p> where:</p><ul>
+<li><b>seen</b> is a flag that indicates if the ball has been detected;</li>
+<li><b>x</b> is the <em>x</em> position of the ball (saved as soon as the ball is seen and tracked)</li>
+<li><b>y</b> is the <em>y</em> position of the ball (saved as soon as the ball is seen and tracked)</li>
+<li><b>coord_x</b> represents the dimension of the room along the <em>x-axis</em></li>
+<li><b>coord_y</b> represents the dimension of the room along the <em>y-axis</em> <h2>Installation</h2>
+</li>
+</ul>
+<p>The project was developed using the docker image given in the beginning of the course as a starting point. It is possible to install it by following the instractions in this link: <a href="https://hub.docker.com/r/carms84/rpr">https://hub.docker.com/r/carms84/rpr</a> .<br />
+ After that we need to intall couple of packages in order to execute the code (i.e slam-gmapping, ros-conntrol, smach-viewer, navigation). Open a terminal and digit the following commands: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;$ sudo apt-get update &amp;&amp; sudo apt-get install ros-kinetic-gazebo-ros-control ros-kinetic-smach-viewer ros-kinetic-navigation libsuitesparse-dev ros-kinetic-openslam-gmapping</div></div><!-- fragment --><p> Then it is also necessary to install the package imutils to make basic image processing(if necessary install pip: <a href="https://pip.pypa.io/en/stable/installing/">https://pip.pypa.io/en/stable/installing/</a>):</p>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;$ pip install imutils</div></div><!-- fragment --><p> Once all prerequisites have been met, it is possible to clone the repository to finish the set up.</p>
+<p>For the final step, create a ROS workspace following the <a href="http://wiki.ros.org/catkin/Tutorials">ROS tutorials</a> and copy the folder <em>exp_assignment3</em>, containing the packages <em>exp_assignment3</em>, <em>m-explore</em> and <em>joint_state_publisher</em> inside the folder <em>src</em>. Finally open a terminal, move in the workspace folder and execute the command: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;catkin_make</div></div><!-- fragment --><h2>Usage</h2>
+<p>Open a terminal, move into the workspace directory and the launch the command: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;source devel/setup.bash</div></div><!-- fragment --><p>Now set up the environment (ROS, Gazebo...) </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;$ roslaunch exp_assignment3 exp_assignment3.launch </div></div><!-- fragment --><p> There should spawn three different windows (Gazebo, RVIZ, camera view) and two terminals (ball detection node, UI to send the *"play"* command). Once the set up is finished, it is possible to launch the <em>FSM</em> and <em>smach_viewer</em> with the command: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;$ roslaunch exp_assignment3 fsm.launch </div></div><!-- fragment --><p> As soon as the robot starts moving, it means that the execution started succesfully. It is now possible to interact with the robot through the UI, to have a log of the detected ball informations and to observe the execution of the <em>FSM</em> in the last spawn terminal.</p>
+<h2>Software Limitation and Possible technical Improvements</h2>
+<h3>Limitations</h3>
+<p>During the testing phase has been encountered two main limitation: the <b>Track</b> state has been developed as a feature-following algorithm: it means that the robot moves based on where the ball w.r.t. the image of the camera (it moves forward until the radius of the ball matches a certain value and rotates to center the position of the ball w.r.t. the camera). This behavior deny any obstacle avoidance algorithm to take place in the motion. It may happens that the robot get stuck in some corner. The second issue is that decreasing the horizontal range of the hokuyo sensor is not a feasible solution for an empirical test: for example it should be possible to use a LIDAR with a 360° horizontal range. It follows that the current code need an improvement in this respect. </p><h3>Possible Improvements</h3>
+<p>The <b>Track</b> state could be improved either granting control to the <em>move_base</em> package (generating the goal position starting from the information of the ball state to deduce the distance of the ball from the robot) or implementig locally an obstacle avoidance algorithm (potential field). The second issue derives directly from the fact that the house conceived as unknow: one of the possible solutions is to increase the number of cameras installed in the robot to match the horizontal range with the FOV and develop an improved image processing to control the mobile robot. Another possible solution is to discard the unknow-nature of the environment and to use an Ontology to indicate a priori which areas have not been visited yet.</p>
+<h2>Contacts</h2>
+<p>Roberto Albanese <a href="#" onclick="location.href='mai'+'lto:'+'ral'+'ba'+'nes'+'e1'+'8@g'+'ma'+'il.'+'co'+'m'; return false;">ralba<span style="display: none;">.nosp@m.</span>nese<span style="display: none;">.nosp@m.</span>18@gm<span style="display: none;">.nosp@m.</span>ail.<span style="display: none;">.nosp@m.</span>com</a> <br />
+ <br />
+ <br />
+</p>
+<p><b>Robotics Engineering Master - 2nd year</b> <br />
+ <b>University of Genoa</b> </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

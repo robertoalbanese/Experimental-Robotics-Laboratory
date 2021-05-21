@@ -32,7 +32,7 @@ DOXYFILE_ENCODING      = UTF-8
 # title of most generated pages and in a few other places.
 # The default value is: My Project.
 
-PROJECT_NAME           = "Exp_Rob Assignment 2"
+PROJECT_NAME           = "Exp_Rob Assignment 3"
 
 # The PROJECT_NUMBER tag can be used to enter a project or revision number. This
 # could be handy for archiving the generated documentation or if some version
@@ -58,7 +58,7 @@ PROJECT_LOGO           =
 # entered, it will be relative to the location where doxygen was started. If
 # left blank the current directory will be used.
 
-OUTPUT_DIRECTORY       = /root/Desktop/assignment_2/src/exp_assignment2/doc
+OUTPUT_DIRECTORY       = /home/roberto/Experimental-Robotics-Laboratory/experimental_ws/src/exp_assignment3/exp_assignment3/doc
 
 # If the CREATE_SUBDIRS tag is set to YES then doxygen will create 4096 sub-
 # directories (in 2 levels) under the output directory of each output format and
@@ -781,7 +781,7 @@ WARN_LOGFILE           =
 # spaces. See also FILE_PATTERNS and EXTENSION_MAPPING
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = /root/Desktop/assignment_2/src/exp_assignment2/scripts \
+INPUT                  = /home/roberto/Experimental-Robotics-Laboratory/experimental_ws/src/exp_assignment3/exp_assignment3/scripts \
                          ../README.md
 
 # This tag can be used to specify the character encoding of the source files
@@ -973,7 +973,7 @@ FILTER_SOURCE_PATTERNS =
 # (index.html). This can be useful if you have a project on for instance GitHub
 # and want to reuse the introduction page also for the doxygen output.
 
-USE_MDFILE_AS_MAINPAGE = README.md
+USE_MDFILE_AS_MAINPAGE = ../README.md
 
 #---------------------------------------------------------------------------
 # Configuration options related to source browsing

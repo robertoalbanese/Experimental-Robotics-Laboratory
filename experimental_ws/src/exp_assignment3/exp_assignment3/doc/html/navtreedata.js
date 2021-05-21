@@ -1,6 +1,7 @@
 var NAVTREE =
 [
   [ "Exp_Rob Assignment 3", "index.html", [
+    [ "Robot dog Architecture - Assignment 3", "index.html", null ],
     [ "Namespaces", null, [
       [ "Namespace List", "namespaces.html", "namespaces" ],
       [ "Namespace Members", "namespacemembers.html", [
